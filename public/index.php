@@ -26,10 +26,19 @@ $middleware = require __DIR__ . '/../src/middleware.php';
 $middleware($app);
 
 // Register routes
-$routes = require __DIR__ . '/../src/routes.php';
+$routes = require __DIR__ . '/../src/routes/routes.php';
 $routes($app);
+
 //login
-$routes = require __DIR__ . '/../src/loginRoute.php';
+$routes = require __DIR__ . '/../src/routes/loginRoute.php';
+$routes($app);
+
+// Cadastro Normal
+$routes = require __DIR__ . '/../src/routes/perfilNormalRoute.php';
+$routes($app);
+
+// Eventos
+$routes = require __DIR__ . '/../src/routes/eventosRoute.php';
 $routes($app);
 
 
