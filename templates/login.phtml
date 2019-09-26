@@ -37,9 +37,9 @@
                         <input type="password" class="form-control" id="inputPassword" placeholder="Password">
                     </div>
                     <div class="col-6 mx-auto">
-                        <button type="submit" class="btn btn-dark btn-lg w-25">Login</button>
-                        <button type="button" class="btn btn-dark btn-lg w-25"><a class="text-decoration-none" href="perfilNormal/">Criar
-                                Conta</a></button>
+                        <button type="submit" class="btn btn-dark btn-lg w-25"><a class="text-decoration-none" href="perfilNormal/">Login</button>
+                        <button type="button" class="btn btn-dark btn-lg w-25">Criar
+                            Conta</a></button>
                     </div>
 
                 </form>
@@ -56,6 +56,21 @@
         </nav>
     </footer>
 </body>
+<?php
+
+$conexao = $container->get('pdo');
+
+$resultSet = $conexao->query('SELECT * FROM perfil_normal')->fetchAll();
+
+
+$args['nome'] = $resultSet.nome;
+$args['senha'] = $resultSet.senha;
+
+foreach ($variable as $key => $value) {
+    # code...
+}
+
+?>
 <script src="../js/jquery-3.3.1.js"></script>
 <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
 
