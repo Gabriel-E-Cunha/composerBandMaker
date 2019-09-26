@@ -9,7 +9,7 @@ return function (App $app) {
 
     $app->get('/login/', function (Request $request, Response $response, array $args) use ($container) {
         // Sample log message
-        $container->get('logger')->info("Slim-Skeleton '/login' route");
+        $container->get('logger')->info("Slim-Skeleton '/login/' route");
 
 
         // Render index view
