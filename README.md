@@ -1,7 +1,5 @@
 # Projeto BandMaker
 
-## Descrição
-
 Site com objetivo de permitir usuários a criar bandas, unirem-se à bandas e também permitir a criação de eventos.  
 Apresenta as seguintes funções:
 
