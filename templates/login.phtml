@@ -29,17 +29,16 @@
                 <!-- Img -->
                 <img class="img-fluid mx-auto w-25 d-block" src="../assets/img/login.png" alt="">
                 <!-- Email + Senha -->
-                <form class="row d-block mt-3" method="POST">
+                <form class="row d-block mt-3" method="post" action="/perfil/">
                     <div class="form-group mx-auto mb-2 col-6">
-                        <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                        <input type="email" name="email" class="form-control" id="inputEmail" placeholder="Email">
                     </div>
                     <div class="form-group mx-auto mb-2 col-6">
-                        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                        <input type="password" name="senha" class="form-control" id="inputPassword" placeholder="Password">
                     </div>
                     <div class="col-6 mx-auto">
-                        <button type="submit" class="btn btn-dark btn-lg w-25"><a class="text-decoration-none" href="perfilNormal/">Login</button>
-                        <button type="button" class="btn btn-dark btn-lg w-25">Criar
-                            Conta</a></button>
+                        <button type="submit" class="btn btn-dark btn-lg w-25">Login</button>
+                        <button type="button" class="btn btn-dark btn-lg w-25">Criar Conta</a></button>
                     </div>
 
                 </form>
@@ -56,6 +55,7 @@
         </nav>
     </footer>
 </body>
+<script src="../php/function.php"></script>
 <script src="../js/jquery-3.3.1.js"></script>
 <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
 
