@@ -1,4 +1,4 @@
--- --------------------------------------------------------
+﻿-- --------------------------------------------------------
 -- Servidor:                     127.0.0.1
 -- Versão do servidor:           10.3.16-MariaDB - mariadb.org binary distribution
 -- OS do Servidor:               Win64
@@ -62,6 +62,7 @@ CREATE TABLE IF NOT EXISTS `perfil_normal` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `nome_usuário` varchar(24) NOT NULL,
   `nome` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
   `cidade` varchar(45) NOT NULL,
   `estado` varchar(45) NOT NULL,
   `instrumento` varchar(30) NOT NULL,
