@@ -41,6 +41,9 @@ $routes($app);
 $routes = require __DIR__ . '/../src/routes/eventosRoute.php';
 $routes($app);
 
+//Criar Conta normal
+$routes = require __DIR__ . '/../src/routes/cadastroNormalRoute.php';
+$routes($app);
 
 // Run app
 $app->run();
