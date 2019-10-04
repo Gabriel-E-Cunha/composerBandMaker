@@ -17,19 +17,22 @@ return function (App $app) {
         return $container->get('renderer')->render($response, 'login.phtml', $args);
     });
 
-    $app->post('/perfil/', function (Request $request, Response $response, array $args) use ($container) {
+    $app->post('/login/', function (Request $request, Response $response, array $args) use ($container) {
         // Sample log message
-        $container->get('logger')->info("Slim-Skeleton '/perfil/' route");
+        $container->get('logger')->info("Slim-Skeleton '/login/' route");
 
-        // $params = $request->getParsedBody();
-        // exit;
+        $conexao = $container->get('pdo');
+        $params = $request->getParsedBody();
+        $resultSet = $conexao->query('SELECT * FROM perfil_normal WHERE email = "' . $params['email'] . '" AND senha = "' . md5($params['senha']) . '"')->fetchAll();
 
-        // $conexao = $container->get('pdo');
-
-        // $resultSet = $conexao->query('SELECT * FROM perfil_normal WHERE email = ' . $params['email'] . ' and password = ' . $params['senha']);
+        if(count($resultSet) == 1) {
+            return $response->withRedirect('/'. $resultSet[0]['id']);
+        } else {
+            return $response->withRedirect('/login/');
+            exit;
+        }
 
         // Render index view
-            return $container->get('renderer')->render($response, 'perfilNormal.phtml', $args);
-       
+        return $container->get('renderer')->render($response, 'login.phtml', $args);
     });
 };
