@@ -10,8 +10,14 @@ return function (App $app) {
     $app->get('/[{id}]', function (Request $request, Response $response, array $args) use ($container) {
         // Sample log message
         $container->get('logger')->info("Slim-Skeleton '/' route");
+        $conexao = $container->get('pdo');
+        if (!isset($args['id'])) {
+            $resultSet = "";
+        } else {
+            $resultSet = $conexao->query('SELECT * FROM perfil_normal WHERE id = ' . $args['id'])->fetchAll();
+        }
 
-
+        $args['perfil_normal'] = $resultSet;
         // Render index view
         return $container->get('renderer')->render($response, 'index.phtml', $args);
     });
