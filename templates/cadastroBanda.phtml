@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Crie sua Banda</title>
-    <link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.min.css">    
+    <link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.min.css">
 </head>
 
 <body>
@@ -37,28 +37,19 @@
                 <!-- Input nome da banda -->
                 <div class="col-sm-12 col-md-12 input-group mb-3 p-0 justify-content-center">
                     <form method="get" class="col-10" action=".">
-                        <input type="text" class="form-control mb-3" placeholder="Nome da Banda"
-                            aria-label="Nome da Banda" aria-describedby="basic-addon1">
+                        <input type="text" class="form-control mb-3" placeholder="Nome da Banda" aria-label="Nome da Banda" aria-describedby="basic-addon1">
 
                         <!-- Input CEP -->
-                        <input name="cep" type="text" class="form-control mb-3" id="cep" value="" size="10"
-                            maxlength="9" placeholder="CEP: 000000000" /></label>
+                        <input name="cep" type="text" class="form-control mb-3" id="cep" value="" size="10" maxlength="9" placeholder="CEP: 000000000" /></label>
 
-                        <input name="uf" type="text" class="form-control mb-3" id="uf" size="2"
-                            placeholder="Estado (digite o CEP para preenchimento automatico)" /></label>
+                        <input name="uf" type="text" class="form-control mb-3" id="uf" size="2" placeholder="Estado (digite o CEP para preenchimento automatico)" /></label>
 
-                        <input name="cidade" type="text" class="form-control mb-3" id="cidade" size="40"
-                            placeholder="Cidade (digite o CEP para preenchimento automatico)" /></label>
+                        <input name="cidade" type="text" class="form-control mb-3" id="cidade" size="40" placeholder="Cidade (digite o CEP para preenchimento automatico)" /></label>
 
-                        <input name="rua" type="text" class="form-control mb-3" id="rua" size="60"
-                            placeholder="Rua Almeida José Pereira (digite o CEP para preenchimento automatico) " /></label>
-
-
-
+                        <input name="rua" type="text" class="form-control mb-3" id="rua" size="60" placeholder="Rua Almeida José Pereira (digite o CEP para preenchimento automatico) " /></label>
 
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="e-mail válido"
-                                aria-label="Recipient's username" aria-describedby="basic-addon2">
+                            <input name="email" type="text" class="form-control" placeholder="e-mail válido" aria-label="Recipient's username" aria-describedby="basic-addon2">
                             <div class="input-group-append">
                                 <span class="input-group-text" id="basic-addon2">@example.com</span>
                             </div>
@@ -68,7 +59,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Influencias</span>
                             </div>
-                            <textarea class="form-control" aria-label="With textarea" placeholder="Banda XxXMaker
+                            <textarea name="influencia" class="form-control" aria-label="With textarea" placeholder="Banda XxXMaker
 Banda Rodinha De Bicicleta
 Banda do sul"></textarea>
                         </div>
@@ -78,20 +69,21 @@ Banda do sul"></textarea>
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Descrição da Banda</span>
                             </div>
-                            <textarea class="form-control"
-                                placeholder="Banda de garagem com objetivo de se tornar Deuses do Rock assim como em Guitar HERO III  "></textarea>
+                            <textarea name="descricao" class="form-control" placeholder="Banda de garagem com objetivo de se tornar Deuses do Rock assim como em Guitar HERO III  "></textarea>
                         </div>
+
                         <!-- ADD Imagem -->
-
-
                         <div class="border border-light border-radius-3 col-6 w-25 h-25">
                             <p class="text-secondary">Adicione uma Imagem da banda</p>
                             <div>
-                                <input type="file" id="imgload">
-                                <img class=" mt-2 img-fluid mx-auto" src="#" id="imgshow" align="left">
-
+                                <input name="img" type="file" id="imgload">
+                                <img class="mt-2 img-fluid mx-auto" src="#" id="imgshow" align="left">
                             </div>
                         </div>
+                        <div class="col-sm-12 col-md-4 ml-auto my-4">
+                            <button type="submit" class="btn btn-dark btn-lg w-100">Criar</button>
+                        </div>
+
 
                     </form>
 
@@ -107,4 +99,5 @@ Banda do sul"></textarea>
 <script src="../js/jquery-3.3.1.js"></script>
 <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
 <script src="../js/app.js"></script>
+
 </html>
