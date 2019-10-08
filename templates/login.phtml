@@ -14,7 +14,7 @@
     <header id="beggining">
         <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
             <div class="mx-auto order-0">
-                <a class="navbar-brand mx-auto" href="../index.html">BandMaker</a>
+                <a class="navbar-brand mx-auto" href="/">BandMaker</a>
             </div>
         </nav>
     </header>
@@ -37,7 +37,13 @@
                         <input type="password" name="senha" class="form-control" id="inputPassword" placeholder="Password">
                     </div>
                     <div class="col-6 mx-auto" id="loginBox">
-                        <button onclick="loginError()" type="submit" class="btn btn-dark btn-lg w-25">Login</button>
+                        <?php 
+                        if($loginError) {
+                            echo '<h5 class="alert alert-danger">Erro: Login ou Senha incorretos!</h5>';
+                        }
+                        
+                        ?>
+                        <button type="submit" class="btn btn-dark btn-lg w-25">Login</button>
                         <button type="button" class="btn btn-dark btn-lg w-25">Criar Conta</a></button>
                     </div>
 
@@ -55,7 +61,6 @@
         </nav>
     </footer>
 </body>
-<script src="../php/function.php"></script>
 <script src="../js/jquery-3.3.1.js"></script>
 <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
 

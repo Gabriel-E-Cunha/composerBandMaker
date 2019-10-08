@@ -7,9 +7,15 @@ use Slim\Http\Response;
 return function (App $app) {
     $container = $app->getContainer();
 
-    $app->get('/login/', function (Request $request, Response $response, array $args) use ($container) {
+    $app->get('/login/[{erro}]', function (Request $request, Response $response, array $args) use ($container) {
         // Sample log message
         $container->get('logger')->info("Slim-Skeleton '/login/' route");
+
+        if(isset($args['erro']) && $args['erro'] == "error") {
+            $args['loginError'] = true;
+        } else {
+            $args['loginError'] = false;
+        }
 
         // Render index view
         return $container->get('renderer')->render($response, 'login.phtml', $args);
@@ -26,9 +32,7 @@ return function (App $app) {
         if(count($resultSet) == 1) {
             return $response->withRedirect('/'. $resultSet[0]['id']);
         } else {
-            return $response->withRedirect('/login/');
-            exit;
-            
+            return $response->withRedirect('/login/error');
         }
 
         // Render index view

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Person Profile</title>
-    <link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.min.css">    
+    <link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.min.css">
 </head>
 
 <body>
@@ -14,7 +14,7 @@
     <header id="beggining">
         <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
             <div class="mx-auto order-0">
-                <a class="navbar-brand mx-auto" href="../index.html">BandMaker</a>
+                <a class="navbar-brand mx-auto" href="/">BandMaker</a>
             </div>
         </nav>
     </header>
@@ -22,41 +22,55 @@
     <div class="container mt-5">
 
         <div class="row justify-content-center">
-            
-                <h1 class="mt-4">Perfil Profissional</h1>
-           
+
+            <h1 class="mt-4">Perfil Profissional</h1>
+
         </div>
 
         <div class="row mt-4">
             <div class="col-sm-12 col-md-8 d-flex">
-                <img class src="../assets/img/luan.jpg" width="185" height="145">
-                <ul id="ul1">
-                    <li>Luan Santana</li>
-                    <li>Sertanejo</li>
-                    <li>Amo minhas fãs</li>
-                </ul>
+                <?php
+                echo '<img class src="../assets/img/' . $perfil[0]['imagem'] . '" width="185" height="145">';
+
+                echo '<ul class="list-group list-group-vertical">';
+                echo '<li class="list-group-item">' . $perfil[0]['nome'] . ' // @' . $perfil[0]['nome_usuario'] . '</li>';
+                echo ' <li class="list-group-item">' . $perfil[0]['email'] . '</li>';
+                echo ' <li class="list-group-item">' . $perfil[0]['estado'] . ' // ' . $perfil[0]['cidade'] . '</li>';
+                echo '</ul>';
+                echo '<div class="card">';
+                echo ' <div class="card-body">' . $perfil[0]['influencia'] . '</div>';
+                echo '</div>';
+                ?>
             </div>
-                    
-            
+
+
         </div>
 
         <div class="row mt-6 pt-5">
 
             <div class="col-sm-4 col-md-0 margin-left-0">
-                <ul class="list-group">
-                    <li class="list-group-item">Campo Grande</li>
-                    <li class="list-group-item">28 anos</li>
-                    <li class="list-group-item">Violão e Vocal</li>
-                </ul>
+                <?php
+                echo '<ul class="list-group">';
+                echo '<li class="list-group-item">Idade: ' . $perfil[0]['idade'] . ' anos</li>';
+                echo '<li class="list-group-item">Telefone: ' . $perfil[0]['telefone'] . '</li>';
+                echo '<li class="list-group-item">Instrumento: ' . $perfil[0]['instrumento'] . '</li>';
+                echo '<li class="list-group-item">Tempo que toca: ' . $perfil[0]['tempo'] . ' anos</li>';
+                echo '</ul>';
+
+                ?>
             </div>
 
             <div class="col-sm-8 col-md-0 margin-left-0">
+                <?php
+                if($banda == null) {
+                    $banda[0]['nome'] = "Nenhuma";
+                }
+                echo '<div class="card">';
+                echo '<h4 class="card-body">Banda: ' . $banda[0]['nome'] . '</h4>';
+                echo '</div>';
 
-                <ul>
-                    <li class="list-group-item">BANDAS:</li>
-                    <li class="list-group-item">Banda Luan Santana</li>
+                ?>
 
-                </ul>
             </div>
 
         </div>
