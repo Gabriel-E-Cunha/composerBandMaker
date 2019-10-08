@@ -37,11 +37,11 @@
                         <input type="password" name="senha" class="form-control" id="inputPassword" placeholder="Password">
                     </div>
                     <div class="col-6 mx-auto" id="loginBox">
+                        <!-- Mostra mensagem de erro no login -->
                         <?php 
                         if($loginError) {
                             echo '<h5 class="alert alert-danger">Erro: Login ou Senha incorretos!</h5>';
-                        }
-                        
+                        } 
                         ?>
                         <button type="submit" class="btn btn-dark btn-lg w-25">Login</button>
                         <button type="button" class="btn btn-dark btn-lg w-25">Criar Conta</a></button>

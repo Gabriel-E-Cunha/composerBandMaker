@@ -14,6 +14,7 @@
     <header id="beggining">
         <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
             <div class="mx-auto order-0">
+                <!-- Mantém logado ao retornar para o início -->
                 <?php 
                 echo '<a class="navbar-brand mx-auto" href="/'. $perfil[0]['id'] .'">BandMaker</a>';
                 ?>
@@ -32,6 +33,7 @@
 
         <div class="row mt-4">
             <div class="col-sm-12 col-md-8 d-flex">
+                <!-- Escreve informações do Perfil -->
                 <?php
                 echo '<img class src="../assets/img/' . $perfil[0]['imagem'] . '" width="185" height="145">';
 
@@ -52,6 +54,7 @@
         <div class="row mt-6 pt-5">
 
             <div class="col-sm-4 col-md-0 margin-left-0">
+                <!-- Escreve informações do Perfil -->
                 <?php
                 echo '<ul class="list-group">';
                 echo '<li class="list-group-item">Idade: ' . $perfil[0]['idade'] . ' anos</li>';
@@ -64,6 +67,7 @@
             </div>
 
             <div class="col-sm-8 col-md-0 margin-left-0">
+                <!-- Escreve qual banda pertence -->
                 <?php
                 if($banda == null) {
                     $banda[0]['nome'] = "Nenhuma";
