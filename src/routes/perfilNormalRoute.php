@@ -13,9 +13,9 @@ return function (App $app) {
         $container->get('logger')->info("Slim-Skeleton '/perfil/' route");
 
         $conexao = $container->get('pdo');
-        if(isset($args['id'])) {
-            $resultSetPerfil = $conexao->query('SELECT * FROM perfil_normal WHERE id = ' . $args['id'])->fetchAll();
-            $resultSetBanda = $conexao->query('SELECT perfil_banda.nome FROM perfil_banda INNER JOIN perfil_normal WHERE perfil_normal.banda_id = perfil_banda.id AND perfil_normal.id = '. $args['id'])->fetchAll();
+        if(isset($_SESSION['loginID'])) {
+            $resultSetPerfil = $conexao->query('SELECT * FROM perfil_normal WHERE id = ' . $_SESSION['loginID'])->fetchAll();
+            $resultSetBanda = $conexao->query('SELECT perfil_banda.nome FROM perfil_banda INNER JOIN perfil_normal WHERE perfil_normal.banda_id = perfil_banda.id AND perfil_normal.id = '. $_SESSION['loginID'])->fetchAll();
         }
 
         $args['perfil'] = $resultSetPerfil;

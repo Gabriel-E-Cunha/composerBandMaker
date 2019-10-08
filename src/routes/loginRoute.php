@@ -29,8 +29,9 @@ return function (App $app) {
         $params = $request->getParsedBody();
         $resultSet = $conexao->query('SELECT * FROM perfil_normal WHERE email = "' . $params['email'] . '" AND senha = "' . md5($params['senha']) . '"')->fetchAll();
 
-        if(count($resultSet) == 1) {
-            return $response->withRedirect('/'. $resultSet[0]['id']);
+        if($resultSet != null) {
+            $_SESSION['loginID'] = $resultSet[0]['id'];
+            return $response->withRedirect('/');
         } else {
             return $response->withRedirect('/login/error');
         }

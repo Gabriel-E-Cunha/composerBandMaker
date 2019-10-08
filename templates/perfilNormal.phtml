@@ -14,11 +14,7 @@
     <header id="beggining">
         <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
             <div class="mx-auto order-0">
-                <!-- Mantém logado ao retornar para o início -->
-                <?php 
-                echo '<a class="navbar-brand mx-auto" href="/'. $perfil[0]['id'] .'">BandMaker</a>';
-                ?>
-                
+                <a class="navbar-brand mx-auto" href="/">BandMaker</a>
             </div>
         </nav>
     </header>
@@ -69,7 +65,7 @@
             <div class="col-sm-8 col-md-0 margin-left-0">
                 <!-- Escreve qual banda pertence -->
                 <?php
-                if($banda == null) {
+                if ($banda == null) {
                     $banda[0]['nome'] = "Nenhuma";
                 }
                 echo '<div class="card">';
