@@ -36,13 +36,13 @@
 
                 <!-- Input nome da banda -->
                 <div class="col-sm-12 col-md-12 input-group mb-3 p-0 justify-content-center">
-                    <form method="get" class="col-10" action=".">
-                        <input type="text" class="form-control mb-3" placeholder="Nome da Banda" aria-label="Nome da Banda" aria-describedby="basic-addon1">
+                    <form method="post" class="col-10" action="/criarBanda/">
+                        <input name="nome" type="text" class="form-control mb-3" placeholder="Nome da Banda" aria-label="Nome da Banda" aria-describedby="basic-addon1">
 
                         <!-- Input CEP -->
                         <input name="cep" type="text" class="form-control mb-3" id="cep" value="" size="10" maxlength="9" placeholder="CEP: 000000000" /></label>
 
-                        <input name="uf" type="text" class="form-control mb-3" id="uf" size="2" placeholder="Estado (digite o CEP para preenchimento automatico)" /></label>
+                        <input name="estado" type="text" class="form-control mb-3" id="uf" size="2" placeholder="Estado (digite o CEP para preenchimento automatico)" /></label>
 
                         <input name="cidade" type="text" class="form-control mb-3" id="cidade" size="40" placeholder="Cidade (digite o CEP para preenchimento automatico)" /></label>
 
@@ -59,7 +59,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Influencias</span>
                             </div>
-                            <textarea name="influencia" class="form-control" aria-label="With textarea" placeholder="Banda XxXMaker
+                            <textarea name="influencias" class="form-control" aria-label="With textarea" placeholder="Banda XxXMaker
 Banda Rodinha De Bicicleta
 Banda do sul"></textarea>
                         </div>

@@ -22,10 +22,24 @@ return function (App $app) {
         $params = $request->getParsedBody();
 
         
+        $conexao->query('INSERT INTO perfil_banda (nome,cidade,
+        cep,estado,email,influencias,descricao) 
+        VALUES("' . $params['nome'] . '", "' . $params['cidade'] . '",
+         "' . $params['cep'] . '", "' . $params['estado'] . '",
+         "' . $params['email'] . '","' . $params['influencias'] . '",
+         "' . $params['descricao'] . '")');
 
-        $resultSet = $conexao->query("INSERT INTO perfil_banda(nome,cidade,estado,telefone,influencias,descricao,imagem) VALUES()");
+        $resultSet = $conexao->query('SELECT * FROM perfil_banda
+        WHERE email = "' . $params['email'] . '"')->fetchAll();
 
-        
+        if ($conexao != null) {
+            return $response->withRedirect('/' . $resultSet[0]['id']);
+        } else {
+            return $response->withRedirect('/criarBanda/');
+            exit;
+        }
+
+
         // Render index view
         return $container->get('renderer')->render($response, 'perfilBanda.phtml', $args);
     });
