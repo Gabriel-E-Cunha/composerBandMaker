@@ -26,7 +26,7 @@ $middleware = require __DIR__ . '/../src/middleware.php';
 $middleware($app);
 
 // Register routes
-$routes = require __DIR__ . '/../src/routes/routes.php';
+$routes = require __DIR__ . '/../src/routes/indexRoute.php';
 $routes($app);
 
 //login
