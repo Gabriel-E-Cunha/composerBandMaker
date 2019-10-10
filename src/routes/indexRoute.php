@@ -19,12 +19,17 @@ return function (App $app) {
         $conexao = $container->get('pdo');
         
         if (isset($_SESSION['loginID'])) {
-            $resultSet = $conexao->query('SELECT * FROM perfil_normal WHERE id = ' . $_SESSION['loginID'])->fetchAll(); 
-        } else {
-            $resultSet = "";
+            if($_SESSION['banda']) {
+                $args['banda'] = true;
+                $resultSet = $conexao->query('SELECT * FROM perfil_banda WHERE id = ' . $_SESSION['loginID'])->fetchAll();
+            } else {
+                $args['banda'] = false;
+                $resultSet = $conexao->query('SELECT * FROM perfil_normal WHERE id = ' . $_SESSION['loginID'])->fetchAll(); 
+            }
+            $args['perfil'] = $resultSet;
         }
 
-        $args['perfil_normal'] = $resultSet;
+        
         // Render index view
         return $container->get('renderer')->render($response, 'index.phtml', $args);
     });
