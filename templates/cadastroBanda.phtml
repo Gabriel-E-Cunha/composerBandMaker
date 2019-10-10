@@ -28,34 +28,79 @@
             </div>
         </div>
 
-        <!-- Input de informações para cadastro -->
         <div class="row mt-5 justify-content-center">
             <div class="col-sm-12 col-md-12 justify-content-center ">
 
-
-
-                <!-- Input nome da banda -->
                 <div class="col-sm-12 col-md-12 input-group mb-3 p-0 justify-content-center">
                     <form method="post" class="col-10" action="/criarBanda/">
-                        <input name="nome" type="text" class="form-control mb-3" placeholder="Nome da Banda" aria-label="Nome da Banda" aria-describedby="basic-addon1">
 
-                        <!-- Input CEP -->
-                        <input name="cep" type="text" class="form-control mb-3" id="cep" value="" size="10" maxlength="9" placeholder="CEP: 000000000" /></label>
-
-                        <input name="estado" type="text" class="form-control mb-3" id="uf" size="2" placeholder="Estado (digite o CEP para preenchimento automatico)" /></label>
-
-                        <input name="cidade" type="text" class="form-control mb-3" id="cidade" size="40" placeholder="Cidade (digite o CEP para preenchimento automatico)" /></label>
-
-                        <input name="rua" type="text" class="form-control mb-3" id="rua" size="60" placeholder="Rua Almeida José Pereira (digite o CEP para preenchimento automatico) " /></label>
-
-                        <div class="input-group mb-3">
-                            <input name="email" type="text" class="form-control" placeholder="e-mail válido" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <span class="input-group-text" id="basic-addon2">@example.com</span>
+                        <!-- Nome -->
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Nome da Banda</span>
                             </div>
+                            <input type="text" class="form-control" placeholder="Prog Bulls" aria-label="Username" aria-describedby="basic-addon1">
                         </div>
+
+                        <!-- Senha -->
+                        <div class="input-group my-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Senha</span>
+                            </div>
+                            <input type="password" class="form-control" placeholder="*******" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                        </div>
+
+                        <!-- Confirmação Senha -->
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> Confirme a Senha</span>
+                            </div>
+                            <input type="password" class="form-control" placeholder="*******" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                        </div>
+
+                        <!-- CEP -->
+                        <div class="input-group my-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">CEP</span>
+                            </div>
+                            <input name="cep" type="text" class="form-control " id="cep" value="" size="10" maxlength="9" placeholder="000000000" /></label>
+                        </div>
+
+                        <!-- Estado -->
+                        <div class="input-group ">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Estado</span>
+                            </div>
+                            <input name="estado" type="text" class="form-control " id="uf" size="2" placeholder="SC" /></label>
+                        </div>
+
+                        <!-- Cidade -->
+                        <div class="input-group my-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Cidade</span>
+                            </div>
+
+                            <input name="cidade" type="text" class="form-control" id="cidade" size="40" placeholder="Blumenau" /></label>
+                        </div>
+
+                        <!-- Rua -->
+                        <div class="input-group ">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Rua</span>
+                            </div>
+                            <input name="rua" type="text" class="form-control " id="rua" size="60" placeholder="Rua Almeida José Pereira" /></label>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="input-group my-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Email</span>
+                            </div>
+                            <input name="email" type="text" class="form-control" placeholder="random@anon.com" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                        </div>
+
                         <!-- INFLUENCIAS -->
-                        <div class="input-group mb-3">
+                        <div class="input-group ">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Influencias</span>
                             </div>
@@ -65,7 +110,7 @@ Banda do sul"></textarea>
                         </div>
                         <!-- Descrição da Banda -->
 
-                        <div class="input-group mb-3">
+                        <div class="input-group my-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Descrição da Banda</span>
                             </div>
