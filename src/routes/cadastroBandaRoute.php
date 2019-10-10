@@ -29,9 +29,9 @@ return function (App $app) {
         $params = $request->getParsedBody();
 
         
-        $conexao->query('INSERT INTO perfil_banda (nome,cidade,
+        $conexao->query('INSERT INTO perfil_banda (nome_usuario,cidade,
         cep,estado,email,influencias,descricao) 
-        VALUES("' . $params['nome'] . '", "' . $params['cidade'] . '",
+        VALUES("' . $params['nome_usuario'] . '", "' . $params['cidade'] . '",
          "' . $params['cep'] . '", "' . $params['estado'] . '",
          "' . $params['email'] . '","' . $params['influencias'] . '",
          "' . $params['descricao'] . '")');
@@ -39,12 +39,12 @@ return function (App $app) {
         $resultSet = $conexao->query('SELECT * FROM perfil_banda
         WHERE email = "' . $params['email'] . '"')->fetchAll();
 
-        if ($resultSet != null) {
+        $conexao->query('INSERT INTO dado_login (nome_usuario, senha, banda_id)
+        VALUES("'. $params['nome_usuario'] .'", "'. md5($params['senha']).'", "'. $resultSet[0]['id'] .'")');
+        
+            $_SESSION['banda'] = true;
             $_SESSION['loginID'] = $resultSet[0]['id'];
             return $response->withRedirect('/');
-        } else {
-            return $response->withRedirect('/criarBanda/error');
-        }
 
 
         // Render index view
