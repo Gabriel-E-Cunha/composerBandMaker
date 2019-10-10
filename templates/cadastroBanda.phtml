@@ -82,6 +82,11 @@ Banda do sul"></textarea>
                         </div>
                         <div class="col-sm-12 col-md-4 ml-auto my-4">
                             <button type="submit" class="btn btn-dark btn-lg w-100">Criar</button>
+                            <?php
+                            if ($cadastroError) {
+                                echo '<h5 class="alert alert-danger">Erro: Não foi possível criar Banda</h5>';
+                            }
+                            ?>
                         </div>
 
 
