@@ -37,7 +37,7 @@ return function (App $app) {
          "' . $params['descricao'] . '")');
 
         $resultSet = $conexao->query('SELECT * FROM perfil_banda
-        WHERE email = "' . $params['email'] . '"')->fetchAll();
+        WHERE nome_usuario = "' . $params['nome_usuario'] . '"')->fetchAll();
 
         $conexao->query('INSERT INTO dado_login (nome_usuario, senha, banda_id)
         VALUES("'. $params['nome_usuario'] .'", "'. md5($params['senha']).'", "'. $resultSet[0]['id'] .'")');

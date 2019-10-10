@@ -8,7 +8,7 @@ return function (App $app) {
     $container = $app->getContainer();
 
 
-    $app->get('/perfil/[{id}]', function (Request $request, Response $response, array $args) use ($container) {
+    $app->get('/perfil/', function (Request $request, Response $response, array $args) use ($container) {
         // Sample log message
         $container->get('logger')->info("Slim-Skeleton '/perfil/' route");
 
