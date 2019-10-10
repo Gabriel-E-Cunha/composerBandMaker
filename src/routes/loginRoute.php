@@ -36,6 +36,7 @@ return function (App $app) {
             return $response->withRedirect('/login/error');
         }
 
+
         // Render index view
         return $container->get('renderer')->render($response, 'login.phtml', $args);
     });

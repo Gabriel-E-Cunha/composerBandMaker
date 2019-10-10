@@ -33,8 +33,16 @@ $routes($app);
 $routes = require __DIR__ . '/../src/routes/loginRoute.php';
 $routes($app);
 
+//Perfil Banda
+$routes = require __DIR__ . '/../src/routes/perfilBandaRoute.php';
+$routes($app);
+
 // Cadastro Normal
 $routes = require __DIR__ . '/../src/routes/perfilNormalRoute.php';
+$routes($app);
+
+// Cadastro Banda
+$routes = require __DIR__ . '/../src/routes/cadastroBandaRoute.php';
 $routes($app);
 
 // Eventos
