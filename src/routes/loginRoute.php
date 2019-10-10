@@ -30,9 +30,9 @@ return function (App $app) {
         $resultSet = $conexao->query('SELECT * FROM dado_login WHERE nome_usuario = "' . $params['user'] . '" AND senha = "' . md5($params['senha']) . '"')->fetchAll();
 
         if($resultSet != null) {
-            if($resultSet[0]['normal_id'] != null) {
+            if($resultSet[0]['pessoa_id'] != null) {
                 $_SESSION['banda'] = false;
-                $_SESSION['loginID'] = $resultSet[0]['normal_id'];
+                $_SESSION['loginID'] = $resultSet[0]['pessoa_id'];
             } else {
                 $_SESSION['banda'] = true;
                 $_SESSION['loginID'] = $resultSet[0]['banda_id'];

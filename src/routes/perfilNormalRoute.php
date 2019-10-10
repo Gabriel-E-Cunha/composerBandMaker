@@ -14,8 +14,8 @@ return function (App $app) {
 
         $conexao = $container->get('pdo');
         if(isset($_SESSION['loginID'])) {
-            $resultSetPerfil = $conexao->query('SELECT * FROM perfil_normal WHERE id = ' . $_SESSION['loginID'])->fetchAll();
-            $resultSetBanda = $conexao->query('SELECT perfil_banda.nome_usuario FROM perfil_banda INNER JOIN perfil_normal WHERE perfil_normal.banda_id = perfil_banda.id AND perfil_normal.id = '. $_SESSION['loginID'])->fetchAll();
+            $resultSetPerfil = $conexao->query('SELECT * FROM perfil_pessoa WHERE id = ' . $_SESSION['loginID'])->fetchAll();
+            $resultSetBanda = $conexao->query('SELECT perfil_banda.nome_usuario FROM perfil_banda INNER JOIN perfil_pessoa WHERE perfil_pessoa.banda_id = perfil_banda.id AND perfil_pessoa.id = '. $_SESSION['loginID'])->fetchAll();
         }
 
         $args['perfil'] = $resultSetPerfil;

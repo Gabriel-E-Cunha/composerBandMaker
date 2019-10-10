@@ -15,10 +15,10 @@ return function (App $app) {
         if (!isset($args['id'])) {
             $resultSet = "";
         } else {
-            $resultSet = $conexao->query('SELECT * FROM perfil_normal WHERE id = ' . $args['id'])->fetchAll();
+            $resultSet = $conexao->query('SELECT * FROM perfil_pessoa WHERE id = ' . $args['id'])->fetchAll();
         }
 
-        $args['perfil_normal'] = $resultSet;
+        $args['perfil_pessoa'] = $resultSet;
 
         // Render index view
         return $container->get('renderer')->render($response, 'eventos.phtml', $args);

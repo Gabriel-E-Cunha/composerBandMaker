@@ -24,7 +24,7 @@ return function (App $app) {
                 $resultSet = $conexao->query('SELECT * FROM perfil_banda WHERE id = ' . $_SESSION['loginID'])->fetchAll();
             } else {
                 $args['banda'] = false;
-                $resultSet = $conexao->query('SELECT * FROM perfil_normal WHERE id = ' . $_SESSION['loginID'])->fetchAll(); 
+                $resultSet = $conexao->query('SELECT * FROM perfil_pessoa WHERE id = ' . $_SESSION['loginID'])->fetchAll(); 
             }
             $args['perfil'] = $resultSet;
         }

@@ -21,13 +21,13 @@ CREATE TABLE IF NOT EXISTS `dado_login` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `nome_usuario` varchar(50) NOT NULL,
   `senha` varchar(50) NOT NULL,
-  `normal_id` int(10) unsigned DEFAULT NULL,
+  `pessoa_id` int(10) unsigned DEFAULT NULL,
   `banda_id` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `normal_idFK` (`normal_id`),
+  KEY `normal_idFK` (`pessoa_id`),
   KEY `banda_idFK` (`banda_id`),
   CONSTRAINT `banda_idFK` FOREIGN KEY (`banda_id`) REFERENCES `perfil_banda` (`id`),
-  CONSTRAINT `normal_idFK` FOREIGN KEY (`normal_id`) REFERENCES `perfil_normal` (`id`)
+  CONSTRAINT `normal_idFK` FOREIGN KEY (`pessoa_id`) REFERENCES `perfil_pessoa` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- Exportação de dados foi desmarcado.
@@ -56,7 +56,6 @@ CREATE TABLE IF NOT EXISTS `perfil_banda` (
   `imagem` varchar(255) DEFAULT NULL,
   `cep` int(11) NOT NULL,
   `email` varchar(50) NOT NULL DEFAULT '',
-  `senha` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
@@ -76,8 +75,8 @@ CREATE TABLE IF NOT EXISTS `perfil_banda_has_evento` (
 
 -- Exportação de dados foi desmarcado.
 
--- Copiando estrutura para tabela bandmaker.perfil_normal
-CREATE TABLE IF NOT EXISTS `perfil_normal` (
+-- Copiando estrutura para tabela bandmaker.perfil_pessoa
+CREATE TABLE IF NOT EXISTS `perfil_pessoa` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `nome_usuario` varchar(24) NOT NULL,
   `nome` varchar(50) NOT NULL,
