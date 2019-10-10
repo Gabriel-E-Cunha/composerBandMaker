@@ -27,10 +27,16 @@ return function (App $app) {
 
         $conexao = $container->get('pdo');
         $params = $request->getParsedBody();
-        $resultSet = $conexao->query('SELECT * FROM perfil_normal WHERE email = "' . $params['email'] . '" AND senha = "' . md5($params['senha']) . '"')->fetchAll();
+        $resultSet = $conexao->query('SELECT * FROM dado_login WHERE nome_usuario = "' . $params['user'] . '" AND senha = "' . md5($params['senha']) . '"')->fetchAll();
 
         if($resultSet != null) {
-            $_SESSION['loginID'] = $resultSet[0]['id'];
+            if($resultSet[0]['normal_id'] != null) {
+                $_SESSION['banda'] = false;
+                $_SESSION['loginID'] = $resultSet[0]['normal_id'];
+            } else {
+                $_SESSION['banda'] = true;
+                $_SESSION['loginID'] = $resultSet[0]['banda_id'];
+            }
             return $response->withRedirect('/');
         } else {
             return $response->withRedirect('/login/error');
