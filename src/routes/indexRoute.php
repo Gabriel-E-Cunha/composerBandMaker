@@ -11,7 +11,7 @@ return function (App $app) {
         // Sample log message
         $container->get('logger')->info("Slim-Skeleton '/' route");
 
-        if($args['action'] == "logout") {
+        if(isset($args['action']) && $args['action'] == "logout") {
             session_destroy();
             return $response->withRedirect('/');
         }
