@@ -22,15 +22,16 @@
             <div class="collapse navbar-collapse content-center" id="navbarText">
                 <ul class="navbar-nav d-flex bd-highlight">
                     <li class="nav-item active">
-                    <!-- Caso não logado, exibe "Login/cadastrar"
+                        <!-- Caso não logado, exibe "Login/cadastrar"
                     Caso logado, exibe o nome do perfil -->
-                    <?php
-                    if($perfil_normal != null) {
-                        echo '<a class="nav-link" href="/perfil/">'.$perfil_normal[0]['nome'].'<span class="sr-only">(current)</span></a>';
-                    } else {
-                        echo '<a class="nav-link" href="/login/">Login/Cadastrar<span class="sr-only">(current)</span></a>';
-                    }
-                    ?>     
+                        <?php
+                        if ($perfil_normal != null) {
+                            echo '<a class="nav-link" href="/perfil/">' . $perfil_normal[0]['nome'] . '<span class="sr-only">
+                        (current)</span></a>';
+                        } else {
+                            echo '<a class="nav-link" href="/login/">Login/Cadastrar<span class="sr-only">(current)</span></a>';
+                        }
+                        ?>
                     </li>
                     <li class="nav-item bd-highlight">
                         <a class="nav-link" href="#qs">Quem Somos</a>
@@ -43,32 +44,33 @@
                     </li>
                     <!-- Cria o botão sair caso esteja logado -->
                     <?php
-                    if($perfil_normal != null) {
+                    if ($perfil_normal != null) {
                         echo '<li class="nav-item bd-highlight">';
                         echo '<a class="nav-link" href="/logout">Sair</a>';
                         echo '</li>';
                     }
-                    ?>       
+                    ?>
                 </ul>
             </div>
         </nav>
     </header>
 
     <div class="container my-5">
-        <section class="text-center">
+       
+    <section class="text-center p-0">
             <div class="row">
                 <div class="col-12">
                     <h1>Band Maker: encontre sua banda</h1>
                 </div>
                 <div class="col-12">
-                    <img class="img-fluid mx-auto w-100 d-block rounded my-0" src="../assets/img/crowd.jpg" alt="">
+                    <img class="img-fluid mx-auto w-100 d-block rounded my-0" src="../assets/img/crowd.jpg" alt="Rock Image" title="Band Maker">
                 </div>
                 <!-- Pesquisa -->
                 <div class="row mt-4 justify-content-center mx-auto">
                     <div class="col-md-4 col-sm-12 ">
                         <div class="card ">
                             <a class="btn btn-light p-0" href="pesquisa/" role="button">
-                                <img class="card-img-top" src="assets/img/searchBand.png">
+                                <img class="card-img-top" src="assets/img/searchBand.png" title="Procurar Banda">
                                 <div class="card-body">
                                     <h5 class="card-title">Procurar Bandas</h5>
                                 </div>
@@ -78,7 +80,7 @@
                     <div class="col-md-4 col-sm-12">
                         <div class="card">
                             <a class="btn btn-light p-0" href="criarBanda/" role="button">
-                                <img class="card-img-top" src="assets/img/startBand.png">
+                                <img class="card-img-top" src="assets/img/startBand.png" title="Criar Banda">
                                 <div class="card-body">
                                     <h5 class="card-title">Criar Banda</h5>
                                 </div>
@@ -92,8 +94,8 @@
 
                 </div>
             </div>
+        </section>
     </div>
-    </section>
 
     <section class="mt-3 text-center">
         <!-- Como funciona -->
@@ -103,11 +105,13 @@
                     <h2 class="display-5">Como funciona</h2>
                     <article>
                         <p class="text-justify">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, ducimus,
-                            necessitatibus non dolorem consectetur vitae minima consequatur aut praesentium
-                            recusandae
-                            architecto, debitis culpa sapiente? Placeat, dolorum quo. Reiciendis, fuga quas.
+                            Nosso sistema possibilita a criação e gerenciamneto de bandas, sempre objetivando a praticidade,
+                            usabilidade e organização, é possível <a href="criarBanda/">criar um perfil de banda</a>, procurar e adicionar membros,
+                            <a href="/eventos/">organizar eventos</a> e encontros de bandas, além disso há possibilidede de <a href="/criarConta/">criar também um perfil individual</a> ,
+                            o qual será visível para bandas que procuram novos integrantes.
                         </p>
+
+                        <a href=""></a>
                     </article>
                 </div>
             </div>
@@ -119,10 +123,9 @@
                     <h2 class="display-5 ">Quem somos</h2>
                     <article>
                         <p class="text-justify">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, ducimus,
-                            necessitatibus non dolorem consectetur vitae minima consequatur aut praesentium
-                            recusandae
-                            architecto, debitis culpa sapiente? Placeat, dolorum quo. Reiciendis, fuga quas.
+                            Nosso grupo é composto por quatro alunos do SENAI de Blumenau, foi proposto ao grupo o desenvolvimento
+                            de um site, e nossa proposta foi um projeto que pudesse atender a uma necessidade real de um certo grupo
+                            de pessoas, o resultado foi esse site :)
                         </p>
                     </article>
                 </div>
@@ -135,7 +138,7 @@
     <footer>
         <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0 fixed-bottom">
             <div class="mx-auto order-0">
-                <a class="navbar-text mx-auto" href="#">&copy;Copyright</a>
+                <a class="navbar-text mx-auto" href="#">&copy;Copyright BandMaker® 2019</a>
             </div>
         </nav>
     </footer>
