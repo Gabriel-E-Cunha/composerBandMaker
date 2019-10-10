@@ -30,11 +30,11 @@ return function (App $app) {
 
         
         $conexao->query('INSERT INTO perfil_banda (nome_usuario,cidade,
-        cep,estado,email,influencias,descricao) 
+        cep,estado,email,influencias,descricao,telefone) 
         VALUES("' . $params['nome_usuario'] . '", "' . $params['cidade'] . '",
          "' . $params['cep'] . '", "' . $params['estado'] . '",
          "' . $params['email'] . '","' . $params['influencias'] . '",
-         "' . $params['descricao'] . '")');
+         "' . $params['descricao'] . '", "'. $params['telefone'] .'")');
 
         $resultSet = $conexao->query('SELECT * FROM perfil_banda
         WHERE nome_usuario = "' . $params['nome_usuario'] . '"')->fetchAll();
