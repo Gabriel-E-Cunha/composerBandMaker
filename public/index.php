@@ -26,7 +26,7 @@ $middleware = require __DIR__ . '/../src/middleware.php';
 $middleware($app);
 
 // Register routes
-$routes = require __DIR__ . '/../src/routes/routes.php';
+$routes = require __DIR__ . '/../src/routes/indexRoute.php';
 $routes($app);
 
 //login
@@ -49,6 +49,9 @@ $routes($app);
 $routes = require __DIR__ . '/../src/routes/eventosRoute.php';
 $routes($app);
 
+//Criar Conta normal
+$routes = require __DIR__ . '/../src/routes/cadastroNormalRoute.php';
+$routes($app);
 
 // Run app
 $app->run();
