@@ -40,7 +40,7 @@
                     <div class="col-6 mx-auto" id="loginBox">
                         <!-- Mostra mensagem de erro no login -->
                         <?php 
-                        if($loginError) {
+                        if(isset($action) && $action == "user-not-found") {
                             echo '<h5 class="alert alert-danger">Erro: Login ou Senha incorretos!</h5>';
                         } 
                         ?>

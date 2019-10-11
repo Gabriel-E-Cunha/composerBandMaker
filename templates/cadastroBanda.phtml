@@ -44,6 +44,12 @@
 
                         </div>
 
+                        <?php 
+                        if(isset($action) && $action == "band-alredy-exists") {
+                            echo '<h5 class="alert alert-danger my-3">Erro: Nome já foi usado, escolha outro</h5>';
+                        }
+                        ?>
+
                         <!-- Senha -->
                         <div class="input-group my-3">
                             <div class="input-group-prepend">
@@ -57,8 +63,16 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"> Confirme a Senha</span>
                             </div>
-                            <input type="password" class="form-control" placeholder="*******" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                            <input name="confirmar-senha" type="password" class="form-control" placeholder="*******" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                            
                         </div>
+
+                        <!-- Mostra erro de confirmação de senha -->
+                        <?php 
+                        if(isset($action) && $action == "passwords-not-equal") {
+                            echo '<h5 class="alert alert-danger my-3">Erro: As senhas não batem!</h5>';
+                        }
+                        ?>
 
                         <!-- Telefone -->
                         <div class="input-group my-3">
@@ -128,14 +142,23 @@ Banda do sul"></textarea>
                         </div>
 
                         <!-- ADD Imagem -->
-                        <div class="border border-light border-radius-3 col-6 w-25 h-25">
-                            <p class="text-secondary">Adicione uma Imagem da banda</p>
-                            <div>
-                                <input name="img" type="file" id="imgload">
-                                <img class="mt-2 img-fluid mx-auto" src="#" id="imgshow" align="left">
+                        <div class="col-sm-12 col-md-6">
+                            <div class="border border-light border-radius-3 col-6">
+                                <p class="text-secondary">Adicione uma Imagem da banda</p>
+                                <div>
+                                    <input name="img" type="file" id="imgload">
+                                    <img class="mt-2 img-fluid mx-auto" src="#" id="imgshow" align="left">
+                                </div>
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-4 ml-auto my-4">
+                        <div class="col-sm-12 col-md-6">
+                        <?php 
+                        if(isset($action) && $action == "blank-fields") {
+                            echo '<h5 class="alert alert-danger">Erro: Preencha todos os campos obrigatórios!</h5>';
+                        }
+                        ?>
+                        </div>
+                        <div class="col-sm-12 col-md-4 ml-auto my-1">
                             <button type="submit" class="btn btn-dark btn-lg w-100">Criar</button>
                         </div>
 

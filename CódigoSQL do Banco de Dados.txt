@@ -17,8 +17,6 @@ DROP DATABASE IF EXISTS `bandmaker`;
 CREATE DATABASE IF NOT EXISTS `bandmaker` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `bandmaker`;
 
--- Exportação de dados foi desmarcado.
-
 -- Copiando estrutura para tabela bandmaker.evento
 DROP TABLE IF EXISTS `evento`;
 CREATE TABLE IF NOT EXISTS `evento` (
@@ -37,13 +35,14 @@ DROP TABLE IF EXISTS `perfil_banda`;
 CREATE TABLE IF NOT EXISTS `perfil_banda` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `nome_usuario` varchar(45) NOT NULL,
-  `cidade` varchar(30) NOT NULL,
-  `estado` varchar(30) NOT NULL,
-  `telefone` varchar(15) NOT NULL,
-  `influencias` varchar(100) NOT NULL,
-  `descricao` varchar(255) NOT NULL,
-  `imagem` varchar(255) DEFAULT NULL,
   `cep` int(11) NOT NULL,
+  `cidade` varchar(30) NOT NULL,
+  `rua` varchar(50) NOT NULL,
+  `estado` varchar(30) NOT NULL,
+  `telefone` varchar(15) DEFAULT 'Não informado',
+  `influencias` varchar(100) DEFAULT 'Nenhuma influência',
+  `descricao` varchar(255) DEFAULT 'Nenhuma descrição',
+  `imagem` varchar(255) DEFAULT 'nonprofile.jpg',
   `email` varchar(50) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
@@ -80,10 +79,10 @@ CREATE TABLE IF NOT EXISTS `perfil_pessoa` (
   `idade` int(4) unsigned NOT NULL,
   `instrumento` varchar(30) NOT NULL,
   `tempo` varchar(30) NOT NULL,
-  `telefone` varchar(15) NOT NULL,
+  `telefone` varchar(15) DEFAULT 'Não informado',
   `influencia` varchar(255) DEFAULT NULL,
   `banda_id` int(11) unsigned DEFAULT NULL,
-  `imagem` varchar(255) DEFAULT NULL,
+  `imagem` varchar(255) DEFAULT 'nonprofile.jpg',
   PRIMARY KEY (`id`),
   KEY `bandaidfk_idx` (`banda_id`),
   CONSTRAINT `bandaidfk` FOREIGN KEY (`banda_id`) REFERENCES `perfil_banda` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -103,6 +102,9 @@ CREATE TABLE IF NOT EXISTS `dado_login` (
   CONSTRAINT `banda_idFK` FOREIGN KEY (`banda_id`) REFERENCES `perfil_banda` (`id`),
   CONSTRAINT `normal_idFK` FOREIGN KEY (`pessoa_id`) REFERENCES `perfil_pessoa` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+-- Exportação de dados foi desmarcado.
+
 
 -- Exportação de dados foi desmarcado.
 
