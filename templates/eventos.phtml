@@ -17,13 +17,7 @@
         <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
             <div class="mx-auto order-0">
                 <!-- Mantém logado ao voltar para o início -->
-            <?php 
-            if($perfil_normal != null) {
-                echo '<a class="navbar-brand mx-auto" href="/'. $perfil_normal[0]['id'] .'">BandMaker</a>';
-            } else {
-                echo '<a class="navbar-brand mx-auto" href="/">BandMaker</a>';
-            }
-            ?>
+                <a class="navbar-brand mx-auto" href="/">BandMaker</a>
             </div>
         </nav>
     </header>
@@ -75,6 +69,25 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="accordion" id="accordionExample">
+                    <?php
+                        if($eventos != null) {
+                            foreach ($eventos as $key => $value) {
+                                echo '<div class="card"><div class="card-header" id="headingOne"><h2 class="mb-0">';
+                                echo '<button class="btn btn-link" type="button" data-toggle="collapse"
+                                data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                '. $value[$key]['nome_evento'] .'</button>';
+                                echo '</button></h2></div>';
+                                echo '<div id="collapseOne" class="collapse show" aria-labelledby="headingOne"data-parent="#accordionExample"><div class="card-body">';
+                                echo $value[$key]['descricao'];
+                                echo '</div></div></div>';
+                            }
+                            
+                        } else {
+                            echo '<h5 class="text-muted">Nenhum evento marcado</h5>';
+                        }
+                    
+                    ?>
+                    
                     <div class="card">
                         <div class="card-header" id="headingOne">
                             <h2 class="mb-0">
@@ -86,50 +99,6 @@
                         </div>
 
                         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
-                            data-parent="#accordionExample">
-                            <div class="card-body">
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
-                                squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck
-                                quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it
-                                squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
-                                craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur
-                                butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth
-                                nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-header" id="headingTwo">
-                            <h2 class="mb-0">
-                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
-                                    data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                    AMORCAT BLUMENAU - 25/08/2019
-                                </button>
-                            </h2>
-                        </div>
-                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-                            data-parent="#accordionExample">
-                            <div class="card-body">
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
-                                squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck
-                                quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it
-                                squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
-                                craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur
-                                butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth
-                                nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-header" id="headingThree">
-                            <h2 class="mb-0">
-                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
-                                    data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                    DON PUB BLUMENAU - 12/10/2019
-                                </button>
-                            </h2>
-                        </div>
-                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
                             data-parent="#accordionExample">
                             <div class="card-body">
                                 Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
