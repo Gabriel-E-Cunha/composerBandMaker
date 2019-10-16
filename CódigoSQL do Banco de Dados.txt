@@ -40,6 +40,7 @@ CREATE TABLE IF NOT EXISTS `evento` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `nome_evento` varchar(50) NOT NULL,
   `data` datetime NOT NULL,
+  `descricao` varchar(255) DEFAULT 'Nenhuma descrição adicionada',
   `banda_id` int(11) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   KEY `banda_id_FK` (`banda_id`),
