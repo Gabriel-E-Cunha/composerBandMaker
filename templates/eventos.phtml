@@ -17,13 +17,13 @@
         <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
             <div class="mx-auto order-0">
                 <!-- Mantém logado ao voltar para o início -->
-            <?php 
-            if($perfil_normal != null) {
-                echo '<a class="navbar-brand mx-auto" href="/'. $perfil_normal[0]['id'] .'">BandMaker</a>';
-            } else {
-                echo '<a class="navbar-brand mx-auto" href="/">BandMaker</a>';
-            }
-            ?>
+                <?php
+                if ($perfil_normal != null) {
+                    echo '<a class="navbar-brand mx-auto" href="/' . $perfil_normal[0]['id'] . '">BandMaker</a>';
+                } else {
+                    echo '<a class="navbar-brand mx-auto" href="/">BandMaker</a>';
+                }
+                ?>
             </div>
         </nav>
     </header>
@@ -38,17 +38,15 @@
         <!-- lista de eventos -->
         <div class="row">
             <!-- input de pesquisa -->
-            <div class="col-sm-12 col-md-6 mb-2 mx-auto">
+            <form class="col-sm-12 col-md-6 mb-2 mx-auto" class="row d-block mt-3" method="post" action="/login/">
                 <div class="input-group">
                     <div class="input-group-prepend">
-                        <button class="btn btn-outline-secondary" type="button" id="button-addon1"><i
-                                class="fas fa-search"></i></button>
+                        <button class="btn btn-outline-secondary" type="submit" id="button-addon1"><i class="fas fa-search"></i></button>
                     </div>
-                    <input type="text" class="form-control" placeholder="" aria-label="Example text with button addon"
-                        aria-describedby="button-addon1">
+                    <input type="text" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
                 </div>
 
-            </div>
+            </form>
             <div class="col-sm-12 col-md-6 mb-2">
                 <!--calendário -->
                 <div class="container">
@@ -56,10 +54,8 @@
                         <div class="col-sm-12 p-0">
                             <div class="form-group">
                                 <div class="input-group date" id="datetimepicker4" data-target-input="nearest">
-                                    <input type="text" class="form-control datetimepicker-input"
-                                        data-target="#datetimepicker4" />
-                                    <div class="input-group-append" data-target="#datetimepicker4"
-                                        data-toggle="datetimepicker">
+                                    <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker4" />
+                                    <div class="input-group-append" data-target="#datetimepicker4" data-toggle="datetimepicker">
                                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                     </div>
                                 </div>
@@ -78,15 +74,13 @@
                     <div class="card">
                         <div class="card-header" id="headingOne">
                             <h2 class="mb-0">
-                                <button class="btn btn-link" type="button" data-toggle="collapse"
-                                    data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                     AHOY BLUMENAU - 17/08/2019
                                 </button>
                             </h2>
                         </div>
 
-                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
-                            data-parent="#accordionExample">
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                             <div class="card-body">
                                 Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
                                 squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck
@@ -101,14 +95,12 @@
                     <div class="card">
                         <div class="card-header" id="headingTwo">
                             <h2 class="mb-0">
-                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
-                                    data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                     AMORCAT BLUMENAU - 25/08/2019
                                 </button>
                             </h2>
                         </div>
-                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-                            data-parent="#accordionExample">
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                             <div class="card-body">
                                 Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
                                 squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck
@@ -123,14 +115,12 @@
                     <div class="card">
                         <div class="card-header" id="headingThree">
                             <h2 class="mb-0">
-                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
-                                    data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                                     DON PUB BLUMENAU - 12/10/2019
                                 </button>
                             </h2>
                         </div>
-                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
-                            data-parent="#accordionExample">
+                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                             <div class="card-body">
                                 Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
                                 squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck
@@ -161,8 +151,7 @@
 <script src="../js/jquery-3.3.1.js"></script>
 <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
 <script src="../vendor/moment-develop/min/moment.min.js"></script>
-<script
-    src="../vendor/bootstrap4-datetime-picker-rails-master/vendor/assets/javascripts/tempusdominus-bootstrap-4.min.js"></script>
+<script src="../vendor/bootstrap4-datetime-picker-rails-master/vendor/assets/javascripts/tempusdominus-bootstrap-4.min.js"></script>
 <script src="../js/app.js"></script>
 
 </html>

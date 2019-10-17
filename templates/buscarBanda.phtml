@@ -21,36 +21,37 @@
 
     <div class="container mt-3 text-center">
         <h2>Buscar Bandas</h2>
-        <input class="form-control" id="myInput" type="text" placeholder="Buscar">
-        <br>
-        <table class="table  table-bordered table-hover">
+        <form class="col-sm-12 col-md-6 mb-2 mx-auto" class="row d-block mt-3" method="get" action="/pesquisaBanda/">
+            <div class="input-group">
+                <input type="text" name="busca" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                <div class="input-group-prepend">
+                    <button class="btn btn-outline-secondary" type="submit" value="submit" id="button-addon1"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+        </form>
+
+
+        <table class="table table-bordered table-hover">
 
             <tbody id="myTable">
-                <tr>
-                    <td class="d-flex">
-                        <img class="img-fluid w-25 " src="../assets/img/beatles.jpg">
-                        <h4 class="my-auto mx-auto">The beatles</h4>
-                        
-                    </td>
-                </tr>
-                <tr>
-                    <td class="d-flex ">
-                        <img class="img-fluid w-25 " src="../assets/img/pj.jpg">
-                        <h4 class="my-auto mx-auto">Pearl Jam</h4>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="d-flex">
-                        <img class="img-fluid w-25 " src="../assets/img/acdc.jpg">
-                        <h4 class="my-auto mx-auto">ACDC</h4>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="d-flex">
-                        <img class="img-fluid w-25  " src="../assets/img/eye.png">
-                        <h4 class="my-auto mx-auto">Grabbing Crabs</h4>
-                    </td>
-                </tr>
+                <?php
+                if (isset($resultado)) {
+                    if ($resultado != null) {
+                        foreach ($resultado as $key => $value) {
+                            echo '<tr>
+                           <td class="d-flex">
+                            <img class="img-fluid " src="../assets/img/' . $resultado[$key]['imagem'] . '">
+                            <h4 class="my-auto mx-auto"> ' . $resultado[$key]['nome_usuario'] . '</h4>
+                            <h4 class="my-auto mx-auto"> ' . $resultado[$key]['genero'] . '
+                            </h4>       
+                            </td>
+                            </tr>';
+                        }
+                    } else {
+                        echo '<h5 class="alert alert-danger">Banda inexistente ou digitada incorretamente</h5>';
+                    }
+                }
+                ?>
             </tbody>
         </table>
     </div>
@@ -59,6 +60,5 @@
 <script src="../js/jquery-3.3.1.js"></script>
 <script src="../js/app.js"></script>
 <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
-
 
 </html>
