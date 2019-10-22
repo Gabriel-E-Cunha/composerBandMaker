@@ -15,6 +15,9 @@ return function (App $app) {
 
         $resultSet = $conexao->query('SELECT * FROM perfil_banda WHERE id = ' . $_SESSION['loginID'])->fetchAll();
         $args['perfil'] = $resultSet;
+
+        $resultSet = $conexao->query('SELECT * FROM perfil_pessoa WHERE banda_id = ' . $_SESSION['loginID'])->fetchAll();
+        $args['integrante']  = $resultSet;
         
 
         // Render index view

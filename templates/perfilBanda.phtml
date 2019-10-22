@@ -22,11 +22,14 @@
     <div class="container my-5">
         <section>
             <!-- Nome e Gênero -->
-            <div class="row">
+            
                 <div class="col-4">
                     <div class="row">
                         <div class="col-6">
-                            <img class="img-fluid mx-auto w-100 d-block" src="../assets/img/eye.png">
+                       <?php 
+                      echo '<img class="img-fluid mx-auto w-100 d-block" src="../assets/img/'.$perfil[0]['imagem'].'">' 
+                       ?>
+                        
                         </div>
                         <div class="col-6 text-center">
                             <?php
@@ -67,68 +70,34 @@
                             </p>
                         </article>
                     </div>
+                    
+                    <!-- integrantes -->
                     <div class="col-8">
-                        <div class="card mb-3 py-1">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-2">
-                                        <img class="img-fluid mx-auto w-100 d-block" src="../assets/img/profile01.jpg"
-                                            alt="">
-                                    </div>
-                                    <div class="col-6 my-4">
-                                        <h6>Gene - Bateria</h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card mb-3 py-1">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-2">
-                                        <img class="img-fluid mx-auto w-100 d-block" src="../assets/img/profile02.jpg"
-                                            alt="">
-                                    </div>
-                                    <div class="col-6 my-4 ">
-                                        <h6>Eddie - Guitarra (Solo)</h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card mb-3 py-1">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-2">
-                                        <img class="img-fluid mx-auto w-100 d-block" src="../assets/img/profile03.jpg"
-                                            alt="">
-                                    </div>
-                                    <div class="col-6 my-4">
-                                        <h6>Maria - Vocal</h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card mb-3 py-1">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-2">
-                                        <img class="img-fluid mx-auto w-100 d-block" src="../assets/img/profile04.jpg"
-                                            alt="">
-                                    </div>
-                                    <div class="col-6 my-4">
-                                        <h6>Lzzy - Guitarra (Base)</h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        
+                        <?php  
+                        
+                        foreach ($integrante as $key => $value) {
+                            
+                            echo '<div class="card mb-3 py-1"> <div class="card-body"> <div class="row"> <div class="col-2">' ;
+                            
+                            echo '<img class="img-fluid mx-auto w-100 d-block" src="../assets/img/'.$integrante[$key]['imagem'] .'" alt="">';
+    
+                            echo ' </div> <div class="col-6 my-4"> <h6> '.$integrante[$key]['nome_usuario'].' - '.$integrante[$key]['instrumento'].'</h6> </div> </div> </div> </div>';
+                        
+                        }
+
+                
+            
+                        ?>
                     </div>
                 </div>
-            </div>
+            
         </section>
     </div>
     <footer>
         <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
             <div class="mx-auto order-0">
-                <a class="navbar-text mx-auto" href="#">&copy;Copyright</a>
+                <a class="navbar-text mx-auto" href="#">&copy;Copyright BandMaker® 2019</a>
             </div>
         </nav>
     </footer>
