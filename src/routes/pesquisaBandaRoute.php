@@ -11,15 +11,18 @@ return function (App $app) {
         // Sample log message
         $container->get('logger')->info("Slim-Skeleton '/pesquisaBanda/' route");
 
+        $conexao = $container->get('pdo');   
 
-        if (isset($_GET['busca'])) {
+        $resultSet0 = $conexao->query('SELECT genero FROM perfil_banda')->fetchAll();       
+        $args['genero'] = $resultSet0;
 
-            $conexao = $container->get('pdo');
+        if (isset($_GET['busca'])) {                     
+            $resultSet01 = $conexao->query('SELECT * FROM perfil_banda WHERE nome_usuario LIKE "%' . $_GET['busca'] . '%"')->fetchAll();
+            $args['resultado'] = $resultSet01;            
 
-            $resultSet = $conexao->query('SELECT * FROM perfil_banda WHERE nome_usuario LIKE "%' . $_GET['busca'] . '%"')->fetchAll();
-
-
-            $args['resultado'] = $resultSet;
+        }if (isset($_GET['genero']) && $_GET['genero'] != "Gênero") {            
+            $resultSet01 = $conexao->query('SELECT * FROM perfil_banda WHERE genero LIKE "%' . $_GET['genero'] . '%"')->fetchAll();
+            $args['resultado'] = $resultSet01;  
         }
 
         // Render index view
