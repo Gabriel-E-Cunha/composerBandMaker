@@ -16,11 +16,14 @@ return function (App $app) {
             if($_SESSION['banda']) {
                 $args['banda'] = true;
                 $resultSet = $conexao->query('SELECT * FROM perfil_banda WHERE id = ' . $_SESSION['loginID'])->fetchAll();
-                $args['eventos'] = $conexao->query('SELECT * FROM evento WHERE banda_id = ' . $resultSet[0]['id']);
+                $args['eventos'] = $conexao->query('SELECT * FROM evento WHERE banda_id = ' . $resultSet[0]['id'])->fetchAll();
+                $args['nome_banda'] = $resultSet[0]['nome_usuario'];
             } else {
                 $args['banda'] = false;
                 $resultSet = $conexao->query('SELECT * FROM perfil_pessoa WHERE id = ' . $_SESSION['loginID'])->fetchAll();
-                $args['eventos'] = $conexao->query('SELECT * FROM evento WHERE banda_id = ' . $resultSet[0]['banda_id']); 
+                $args['eventos'] = $conexao->query('SELECT * FROM evento WHERE banda_id = ' . $resultSet[0]['banda_id'])->fetchAll(); 
+                $resultNomeBanda = $conexao->query('SELECT nome_usuario FROM perfil_banda WHERE id = ' . $resultSet[0]['banda_id'])->fetchAll();
+                $args['nome_banda'] = $resultNomeBanda[0]['nome_usuario'];
             }
             $args['perfil'] = $resultSet;
             
