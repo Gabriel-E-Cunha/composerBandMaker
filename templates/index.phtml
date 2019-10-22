@@ -27,9 +27,9 @@
                     <?php
                     if(isset($perfil)) {
                         if($banda) {
-                            echo '<a class="nav-link" href="/perfil-banda/">Banda: '.$perfil[0]['nome_usuario'].'<span class="sr-only">(current)</span></a>';
+                            echo '<a class="nav-link" href="/perfil-banda/'.$perfil[0]['nome_usuario'].'">Banda: '.$perfil[0]['nome_usuario'].'<span class="sr-only">(current)</span></a>';
                         } else {
-                            echo '<a class="nav-link" href="/perfil/">'.$perfil[0]['nome_usuario'].'<span class="sr-only">(current)</span></a>';
+                            echo '<a class="nav-link" href="/perfil/'.$perfil[0]['nome_usuario'].'">'.$perfil[0]['nome_usuario'].'<span class="sr-only">(current)</span></a>';
                         }
                     } else {
                         echo '<a class="nav-link" href="/login/">Login/Cadastrar<span class="sr-only">(current)</span></a>';

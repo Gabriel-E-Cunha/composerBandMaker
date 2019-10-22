@@ -14,7 +14,7 @@
     <header id="beggining">
         <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
             <div class="mx-auto order-0">
-                <a class="navbar-brand mx-auto" href="../index.html">BandMaker</a>
+                <a class="navbar-brand mx-auto" href="/">BandMaker</a>
             </div>
         </nav>
     </header>
@@ -22,15 +22,20 @@
     <div class="container my-5">
         <section>
             <!-- Nome e Gênero -->
-            <div class="row">
+            
                 <div class="col-4">
                     <div class="row">
                         <div class="col-6">
-                            <img class="img-fluid mx-auto w-100 d-block" src="../assets/img/eye.png">
+                       <?php 
+                      echo '<img class="img-fluid mx-auto w-100 d-block" src="../assets/img/'.$perfil[0]['imagem'].'">' 
+                       ?>
+                        
                         </div>
                         <div class="col-6 text-center">
-                            <h3>Grabbing Crabs</h3>
-                            <h4 class="mt-4">Trash Metal</h4>
+                            <?php
+                            echo '<h3>'. $perfil[0]['nome_usuario'] .'</h3>' ;
+                            echo '<h4 class="mt-4">' . $perfil[0]['genero'] . '</h4>'
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -39,87 +44,51 @@
                     <div class="col-3 border border-dark text-justify mr-5">
                         <h5>Influências</h5>
                         <article>
-                            <p>
-                                Anthrax, Blue Oyster Cult, Kiss.
-                            </p>
+                        <?php
+                        echo '<p>'. $perfil[0]['influencias'] .'</p>';
+             
+                        
+                        ?>    
+                        
                         </article>
                         <h5>Sobre a Banda</h5>
                         <article>
-                            <p>
-                                Banda de garagem formada com objetivo de
-                                se tornar deuses do rock assim como em
-                                Guitar Hero III.
-                            </p>
-                        </article>
+                            <?php echo '<p>' . $perfil[0]['descricao'] .'</p>'; 
+                            
+                            ?>
+                            
+                        </article> 
+
                         <h5><strong>Precisamos de:</strong></h5>
                         <article>
-                            <p>
+                
+                        <?php 
+                        echo '<p>' . $perfil[0]['necessidade']. '</p>';
+                        ?>
+                        <p>
                                 Baixista experiente.
                             </p>
                         </article>
                     </div>
+                    
+                    <!-- integrantes -->
                     <div class="col-8">
-                        <div class="card mb-3 py-1">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-2">
-                                        <img class="img-fluid mx-auto w-100 d-block" src="../assets/img/profile01.jpg"
-                                            alt="">
-                                    </div>
-                                    <div class="col-6 my-4">
-                                        <h6>Gene - Bateria</h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card mb-3 py-1">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-2">
-                                        <img class="img-fluid mx-auto w-100 d-block" src="../assets/img/profile02.jpg"
-                                            alt="">
-                                    </div>
-                                    <div class="col-6 my-4 ">
-                                        <h6>Eddie - Guitarra (Solo)</h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card mb-3 py-1">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-2">
-                                        <img class="img-fluid mx-auto w-100 d-block" src="../assets/img/profile03.jpg"
-                                            alt="">
-                                    </div>
-                                    <div class="col-6 my-4">
-                                        <h6>Maria - Vocal</h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card mb-3 py-1">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-2">
-                                        <img class="img-fluid mx-auto w-100 d-block" src="../assets/img/profile04.jpg"
-                                            alt="">
-                                    </div>
-                                    <div class="col-6 my-4">
-                                        <h6>Lzzy - Guitarra (Base)</h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <?php  
+                        foreach ($integrante as $key => $value) {        
+                            echo '<a class="text-reset nav-link" href="/perfil/'.$integrante[$key]['nome_usuario'].'"><div class="card mb-3 py-1"> <div class="card-body"> <div class="row"> <div class="col-2">' ;
+                            echo '<img class="img-fluid mx-auto w-100 d-block" src="../assets/img/'.$integrante[$key]['imagem'] .'" alt="">';
+                            echo ' </div> <div class="col-6 my-4"> <h6> '.$integrante[$key]['nome_usuario'].' - '.$integrante[$key]['instrumento'].'</h6> </div> </div> </div> </div></a>';
+                        }
+                        ?>
                     </div>
                 </div>
-            </div>
+            
         </section>
     </div>
     <footer>
         <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
             <div class="mx-auto order-0">
-                <a class="navbar-text mx-auto" href="#">&copy;Copyright</a>
+                <a class="navbar-text mx-auto" href="#">&copy;Copyright BandMaker® 2019</a>
             </div>
         </nav>
     </footer>
