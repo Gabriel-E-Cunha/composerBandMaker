@@ -14,7 +14,7 @@
     <header id="beggining">
         <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
             <div class="mx-auto order-0">
-                <a class="navbar-brand mx-auto" href="../index.html">BandMaker</a>
+                <a class="navbar-brand mx-auto" href="/">BandMaker</a>
             </div>
         </nav>
     </header>
@@ -73,21 +73,12 @@
                     
                     <!-- integrantes -->
                     <div class="col-8">
-                        
                         <?php  
-                        
-                        foreach ($integrante as $key => $value) {
-                            
-                            echo '<div class="card mb-3 py-1"> <div class="card-body"> <div class="row"> <div class="col-2">' ;
-                            
+                        foreach ($integrante as $key => $value) {        
+                            echo '<a class="text-reset nav-link" href="/perfil/'.$integrante[$key]['nome_usuario'].'"><div class="card mb-3 py-1"> <div class="card-body"> <div class="row"> <div class="col-2">' ;
                             echo '<img class="img-fluid mx-auto w-100 d-block" src="../assets/img/'.$integrante[$key]['imagem'] .'" alt="">';
-    
-                            echo ' </div> <div class="col-6 my-4"> <h6> '.$integrante[$key]['nome_usuario'].' - '.$integrante[$key]['instrumento'].'</h6> </div> </div> </div> </div>';
-                        
+                            echo ' </div> <div class="col-6 my-4"> <h6> '.$integrante[$key]['nome_usuario'].' - '.$integrante[$key]['instrumento'].'</h6> </div> </div> </div> </div></a>';
                         }
-
-                
-            
                         ?>
                     </div>
                 </div>
