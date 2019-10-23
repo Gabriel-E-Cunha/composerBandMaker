@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>BandMaker</title>
+    <link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../vendor/fontawesome/css/all.min.css">
+
+</head>
+
+<body>
+    <!-- Menu -->
+    <header id="beggining">
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
+            <div class="mx-auto order-0">
+                <!-- Mantém logado ao voltar para o início -->
+                <a class="navbar-brand mx-auto" href="/">BandMaker</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container mt-5">
+
+        <!-- titulo -->
+        <div class="row justify-content-center">
+            <?php
+
+            echo '<h2 class="text-muted my-5">Criar evento</h2>';
+            ?>
+        </div>
+
+        <!-- lista de eventos -->
+        <form action="/criar-evento/" method="post">
+            <div class="row">
+                <div class="col-12">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon3">Nome do Evento</span>
+                        </div>
+                        <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" name="nome_evento">
+                    </div>
+                </div>
+                <div class="col-sm-12 mt-3">
+                    <div class="form-group">
+                        <div class="input-group date" id="datetimepicker4" data-target-input="nearest">
+                            <input type="text" placeholder="Data" class="form-control datetimepicker-input" data-target="#datetimepicker4" name="data" />
+                            <div class="input-group-append" data-target="#datetimepicker4" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Descrição</span>
+                        </div>
+                        <textarea class="form-control" aria-label="With textarea" name="descricao"></textarea>
+                    </div>
+
+                </div>
+
+
+
+
+                <div class="col-12 d-flex justify-content-center my-2">
+                    <button type="submit" class="btn btn-outline-secondary">Criar Evento</button>
+
+                </div>
+            </div>
+        </form>
+
+
+        <!-- eventos -->
+        <div class="row">
+            <div class="col-12">
+                <h2 class="text-muted mt-3 mb-5 text-center">Lista de eventos</h2>
+
+            </div>
+            <div class="col-sm-12">
+                <div class="accordion" id="accordionExample">
+                    <?php
+                    if ($eventos != null) {
+                        foreach ($eventos as $key => $value) {
+                            echo '<div class="card"><div class="card-header" id="heading' . $key . '"><h2 class="mb-0">';
+                            echo '<button class="btn btn-link text-reset" type="button" data-toggle="collapse"
+                                data-target="#collapse' . $key . '" aria-expanded="true" aria-controls="collapse' . $key . '">
+                                ' . $eventos[$key]['nome_evento'] . '</button>';
+                            echo '</button></h2></div>';
+                            echo '<div id="collapse' . $key . '" class="collapse" aria-labelledby="heading' . $key . '"data-parent="#accordionExample"><div class="card-body">';
+                            echo $eventos[$key]['descricao'];
+                            echo '</div></div></div>';
+                        }
+                    } else {
+                        echo '<h4 class="text-muted">Nenhum evento marcado</h4>';
+                    }
+
+                    ?>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer>
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0 sticky-bottom mt-5">
+            <div class="mx-auto order-0">
+                <a class="navbar-text mx-auto" href="#">&copy;Copyright</a>
+            </div>
+        </nav>
+    </footer>
+
+</body>
+
+
+<script src="../js/jquery-3.3.1.js"></script>
+<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="../vendor/moment-develop/min/moment.min.js"></script>
+<script src="../vendor/bootstrap4-datetime-picker-rails-master/vendor/assets/javascripts/tempusdominus-bootstrap-4.min.js"></script>
+<script src="../js/app.js"></script>
+
+</html>

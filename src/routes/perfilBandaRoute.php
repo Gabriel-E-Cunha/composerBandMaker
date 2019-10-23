@@ -5,7 +5,7 @@ use Slim\Http\Request;
 use Slim\Http\Response;
 
 return function (App $app) {
-    $container = $app->getContainer();
+    $container = $app->getContainer(); 
 
 
     $app->get('/perfil-banda/[{action}]', function (Request $request, Response $response, array $args) use ($container) {
