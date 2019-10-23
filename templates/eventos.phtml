@@ -17,6 +17,7 @@
         <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
             <div class="mx-auto order-0">
                 <!-- Mantém logado ao voltar para o início -->
+
                 <a class="navbar-brand mx-auto" href="/">BandMaker</a>
             </div>
         </nav>
@@ -35,28 +36,37 @@
         <!-- lista de eventos -->
         <div class="row">
             <!-- input de pesquisa -->
-            <div class="col-sm-12 col-md-6 mb-2 mx-auto">
+
+            <div class="col-sm-12 col-md-<?php if($banda){echo '4';} else {echo '6';}?> mb-2 mx-auto">
+
                 <div class="input-group">
                     <div class="input-group-prepend">
-                        <button class="btn btn-outline-secondary" type="button" id="button-addon1"><i
-                                class="fas fa-search"></i></button>
+                        <button class="btn btn-outline-secondary" type="submit" id="button-addon1"><i class="fas fa-search"></i></button>
                     </div>
-                    <input type="text" class="form-control" placeholder="" aria-label="Example text with button addon"
-                        aria-describedby="button-addon1">
+                    <input type="text" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
                 </div>
 
+
             </div>
-            <div class="col-sm-12 col-md-6 mb-2">
+            <?php
+            if($banda) {
+                echo '<div class="col-sm-12 col-md-4 mb-auto d-flex justify-content-center">
+                <a class="btn btn-outline-secondary" href="/criar-evento/">Criar Evento</a>
+                </div>';
+
+            }
+            ?>
+            
+            <div class="col-sm-12 col-md-<?php if($banda){echo '4';} else {echo '6';}?> mb-2">
+
                 <!--calendário -->
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-12 p-0">
                             <div class="form-group">
                                 <div class="input-group date" id="datetimepicker4" data-target-input="nearest">
-                                    <input type="text" class="form-control datetimepicker-input"
-                                        data-target="#datetimepicker4" />
-                                    <div class="input-group-append" data-target="#datetimepicker4"
-                                        data-toggle="datetimepicker">
+                                    <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker4" />
+                                    <div class="input-group-append" data-target="#datetimepicker4" data-toggle="datetimepicker">
                                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                     </div>
                                 </div>
@@ -72,6 +82,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="accordion" id="accordionExample">
+
                 <?php
                         if($eventos != null) {
                             foreach ($eventos as $key => $value) {
@@ -90,13 +101,14 @@
                         }
                     
                     ?>
+
                 </div>
             </div>
         </div>
     </div>
     <!-- Footer -->
     <footer>
-        <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0 fixed-bottom">
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0 fixed-bottom mt-5">
             <div class="mx-auto order-0">
                 <a class="navbar-text mx-auto" href="#">&copy;Copyright</a>
             </div>
@@ -109,8 +121,7 @@
 <script src="../js/jquery-3.3.1.js"></script>
 <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
 <script src="../vendor/moment-develop/min/moment.min.js"></script>
-<script
-    src="../vendor/bootstrap4-datetime-picker-rails-master/vendor/assets/javascripts/tempusdominus-bootstrap-4.min.js"></script>
+<script src="../vendor/bootstrap4-datetime-picker-rails-master/vendor/assets/javascripts/tempusdominus-bootstrap-4.min.js"></script>
 <script src="../js/app.js"></script>
 
 </html>

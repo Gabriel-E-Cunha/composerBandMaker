@@ -26,7 +26,7 @@ return function (App $app) {
 
         if (
             $params['nome_usuario'] == null || $params['cidade'] == null || $params['cep'] == null ||
-            $params['estado'] == null || $params['email'] == null || $params['rua'] == null
+            $params['estado'] == null || $params['email'] == null || $params['rua'] == null || $params['genero'] == null
         ) {
             return $response->withRedirect('/criarBanda/blank-fields');
 
@@ -41,11 +41,12 @@ return function (App $app) {
         } else {
 
             $conexao->query('INSERT INTO perfil_banda (nome_usuario,cidade,
-            cep,estado,email,influencias,descricao,telefone,rua) 
+            cep,estado,email,influencias,descricao,telefone,rua,genero) 
             VALUES("' . $params['nome_usuario'] . '", "' . $params['cidade'] . '",
              "' . $params['cep'] . '", "' . $params['estado'] . '",
              "' . $params['email'] . '","' . $params['influencias'] . '",
-             "' . $params['descricao'] . '", "' . $params['telefone'] . '", "' . $params['rua'] . '" )');
+             "' . $params['descricao'] . '", "' . $params['telefone'] . '", "' . $params['rua'] . '",
+             "' . $params['genero'] . '")');
 
             $resultSet = $conexao->query('SELECT * FROM perfil_banda
             WHERE nome_usuario = "' . $params['nome_usuario'] . '"')->fetchAll();
