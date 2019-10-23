@@ -44,20 +44,28 @@
         </form>
 
         <div class="col-8  mx-auto">
-            <table class="table table-bordered table-hover mt-4">
-                <tbody id="myTable">
+            <table class="table table-hover mt-4">
+                <tbody>
                     <?php
                     if (isset($resultado)) {
                         if ($resultado != null) {
                             foreach ($resultado as $key => $value) {
                                 echo '<tr>
-                               <td><img class="img-fluid" src="../assets/img/' . $resultado[$key]['imagem'] . '" style="max-height: 100px; max-width: 100px;></td>
-                               <td><h4 class="my-auto mx-auto"><a class="text-reset nav-link p-5" href="/perfil-banda/' . $resultado[$key]['nome_usuario'] . '">
-                                ' . $resultado[$key]['nome_usuario'] . '
-                                </a></h4></td>
-                                <td><h4 class="my-auto mx-auto"> ' . $resultado[$key]['genero'] . '
-                                </h4></td>
-                                
+                                <td>
+                                    <img class="img-fluid" src="../assets/img/' . $resultado[$key]['imagem'] . '" style="max-height: 100px; max-width: 100px;">
+                                </td>
+                                <td>
+                                     <h5>
+                                        <a class="text-reset nav-link my-4" href="/perfil-banda/' . $resultado[$key]['nome_usuario'] . '">
+                                        ' . $resultado[$key]['nome_usuario'] . '</a>             
+                                    </h5>
+                                </td>
+                                <td>                                    
+                                    <h5>
+                                        <a class="text-reset nav-link my-4" href="/perfil-banda/' . $resultado[$key]['nome_usuario'] . '">
+                                        ' . $resultado[$key]['genero'] . '</a>                         
+                                    </h5>                                
+                                </td>
                                 </tr>';
                             }
                         } else {
