@@ -35,7 +35,7 @@
         <!-- lista de eventos -->
         <div class="row">
             <!-- input de pesquisa -->
-            <div class="col-sm-12 col-md-6 mb-2 mx-auto">
+            <div class="col-sm-12 col-md-<?php if($banda){echo '4';} else {echo '6';}?> mb-2 mx-auto">
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <button class="btn btn-outline-secondary" type="button" id="button-addon1"><i
@@ -46,7 +46,16 @@
                 </div>
 
             </div>
-            <div class="col-sm-12 col-md-6 mb-2">
+            <?php
+            if($banda) {
+                echo '<div class="col-sm-12 col-md-4 mb-auto d-flex justify-content-center">
+                <a class="btn btn-outline-secondary" href="/criar-evento/">Criar Evento</a>
+                </div>';
+
+            }
+            ?>
+            
+            <div class="col-sm-12 col-md-<?php if($banda){echo '4';} else {echo '6';}?> mb-2">
                 <!--calendário -->
                 <div class="container">
                     <div class="row">
@@ -96,7 +105,7 @@
     </div>
     <!-- Footer -->
     <footer>
-        <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0 fixed-bottom">
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0 fixed-bottom mt-5">
             <div class="mx-auto order-0">
                 <a class="navbar-text mx-auto" href="#">&copy;Copyright</a>
             </div>

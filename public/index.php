@@ -53,6 +53,10 @@ $routes($app);
 $routes = require __DIR__ . '/../src/routes/eventosRoute.php';
 $routes($app);
 
+// Criar Eventos
+$routes = require __DIR__ . '/../src/routes/CriarEventoRoute.php';
+$routes($app);
+
 
 // Run app
 $app->run();

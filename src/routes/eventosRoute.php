@@ -31,4 +31,5 @@ return function (App $app) {
         // Render index view
         return $container->get('renderer')->render($response, 'eventos.phtml', $args);
     });
+
 };
