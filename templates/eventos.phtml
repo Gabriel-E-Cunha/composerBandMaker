@@ -17,13 +17,8 @@
         <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
             <div class="mx-auto order-0">
                 <!-- Mantém logado ao voltar para o início -->
-                <?php
-                if ($perfil_normal != null) {
-                    echo '<a class="navbar-brand mx-auto" href="/' . $perfil_normal[0]['id'] . '">BandMaker</a>';
-                } else {
-                    echo '<a class="navbar-brand mx-auto" href="/">BandMaker</a>';
-                }
-                ?>
+
+                <a class="navbar-brand mx-auto" href="/">BandMaker</a>
             </div>
         </nav>
     </header>
@@ -32,7 +27,10 @@
 
         <!-- titulo -->
         <div class="row justify-content-center">
-            <h2 class="text-muted my-5">Events and Meetings</h2>
+            <?php
+            
+            echo '<h2 class="text-muted my-5">Eventos de '. $nome_banda .'</h2>';
+            ?>
         </div>
 
         <!-- lista de eventos -->
@@ -71,6 +69,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="accordion" id="accordionExample">
+
                     <div class="card">
                         <div class="card-header" id="headingOne">
                             <h2 class="mb-0">
@@ -132,6 +131,8 @@
                             </div>
                         </div>
                     </div>
+    ?>
+
                 </div>
             </div>
         </div>

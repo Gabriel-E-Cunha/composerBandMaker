@@ -40,6 +40,7 @@ CREATE TABLE IF NOT EXISTS `evento` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `nome_evento` varchar(50) NOT NULL,
   `data` datetime NOT NULL,
+  `descricao` varchar(255) DEFAULT 'Nenhuma descrição adicionada',
   `banda_id` int(11) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   KEY `banda_id_FK` (`banda_id`),
@@ -62,6 +63,8 @@ CREATE TABLE IF NOT EXISTS `perfil_banda` (
   `descricao` varchar(255) DEFAULT 'Nenhuma descrição',
   `imagem` varchar(255) DEFAULT 'nonprofile.jpg',
   `email` varchar(50) NOT NULL DEFAULT '',
+  `genero` varchar(50) NOT NULL,
+  `necessidade` varchar(100) DEFAULT 'Do que a band precisa?',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

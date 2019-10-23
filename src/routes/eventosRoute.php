@@ -9,7 +9,9 @@ return function (App $app) {
 
     $app->get('/eventos/', function (Request $request, Response $response, array $args) use ($container) {
         // Sample log message
+
         $container->get('logger')->info("Slim-Skeleton '/eventos/' route");        
+
 
         // Render index view
         return $container->get('renderer')->render($response, 'eventos.phtml', $args);
