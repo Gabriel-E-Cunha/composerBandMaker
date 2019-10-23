@@ -50,23 +50,19 @@
                     if (isset($resultado)) {
                         if ($resultado != null) {
                             foreach ($resultado as $key => $value) {
-                                echo '<tr>
-                                <td>
-                                    <img class="img-fluid" src="../assets/img/' . $resultado[$key]['imagem'] . '" style="max-height: 100px; max-width: 100px;">
-                                </td>
-                                <td>
-                                     <h5>
-                                        <a class="text-reset nav-link my-4" href="/perfil-banda/' . $resultado[$key]['nome_usuario'] . '">
-                                        ' . $resultado[$key]['nome_usuario'] . '</a>             
-                                    </h5>
-                                </td>
-                                <td>                                    
-                                    <h5>
-                                        <a class="text-reset nav-link my-4" href="/perfil-banda/' . $resultado[$key]['nome_usuario'] . '">
-                                        ' . $resultado[$key]['genero'] . '</a>                         
-                                    </h5>                                
-                                </td>
-                                </tr>';
+                                echo '<tr>';
+                                echo '<td>';
+                                echo '<img class="img-fluid" src="../assets/img/' . $resultado[$key]['imagem'] . '" style="max-height: 100px; max-width: 100px;">';
+                                echo '</td>';
+                                echo '<td><h5>';                                
+                                echo '<a class="text-reset nav-link my-4" href="/perfil-banda/' . $resultado[$key]['nome_usuario'] . '">
+                                     ' . $resultado[$key]['nome_usuario'] . '</a>';             
+                                echo '</h5></td>';                                
+                                echo '<td><h5>';
+                                echo '<a class="text-reset nav-link my-4" href="/perfil-banda/' . $resultado[$key]['nome_usuario'] . '">
+                                     ' . $resultado[$key]['genero'] . '</a>';
+                                echo '</h5></td>';
+                                echo '</tr>';
                             }
                         } else {
                             echo '<h5 class="alert alert-danger">Banda inexistente ou digitada incorretamente</h5>';
