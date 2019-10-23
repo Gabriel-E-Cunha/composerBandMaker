@@ -22,39 +22,39 @@
             <div class="collapse navbar-collapse content-center" id="navbarText">
                 <ul class="navbar-nav d-flex bd-highlight">
                     <li class="nav-item active">
-                    <!-- Caso não logado, exibe "Login/cadastrar"
+                        <!-- Caso não logado, exibe "Login/cadastrar"
                     Caso logado, exibe o nome do perfil -->
-                    <?php
-                    if(isset($perfil)) {
-                        if($banda) {
-                            echo '<a class="nav-link" href="/perfil-banda/'.$perfil[0]['nome_usuario'].'">Banda: '.$perfil[0]['nome_usuario'].'<span class="sr-only">(current)</span></a>';
+                        <?php
+                        if (isset($perfil)) {
+                            if ($banda) {
+                                echo '<a class="nav-link" href="/perfil-banda/' . $perfil[0]['nome_usuario'] . '">Banda: ' . $perfil[0]['nome_usuario'] . '<span class="sr-only">(current)</span></a>';
+                            } else {
+                                echo '<a class="nav-link" href="/perfil/' . $perfil[0]['nome_usuario'] . '">' . $perfil[0]['nome_usuario'] . '<span class="sr-only">(current)</span></a>';
+                            }
                         } else {
-                            echo '<a class="nav-link" href="/perfil/'.$perfil[0]['nome_usuario'].'">'.$perfil[0]['nome_usuario'].'<span class="sr-only">(current)</span></a>';
+                            echo '<a class="nav-link" href="/login/">Login/Cadastrar<span class="sr-only">(current)</span></a>';
                         }
-                    } else {
-                        echo '<a class="nav-link" href="/login/">Login/Cadastrar<span class="sr-only">(current)</span></a>';
-                    }
-                    ?>     
+                        ?>
                     </li>
                     <li class="nav-item bd-highlight">
                         <a class="nav-link" href="#sb">Saiba Mais</a>
-                    </li>   
+                    </li>
                     <!-- Cria o botão de evento caso esteja logado -->
                     <?php
-                    if(isset($perfil)) {
+                    if (isset($perfil)) {
                         echo '<li class="nav-item bd-highlight">';
                         echo '<a class="nav-link" href="/eventos/">Eventos</a>';
                         echo '</li>';
-                    }             
+                    }
                     ?>
                     <!-- Cria o botão sair caso esteja logado -->
                     <?php
-                    if(isset($perfil)) {
+                    if (isset($perfil)) {
                         echo '<li class="nav-item bd-highlight">';
                         echo '<a class="nav-link" href="/logout">Sair</a>';
                         echo '</li>';
                     }
-                    ?>       
+                    ?>
                 </ul>
             </div>
         </nav>
@@ -103,45 +103,44 @@
 
     <section class="mt-3 text-center">
         <!-- Como funciona -->
-       
-            <div class="col-12" id="sb">
-                <div class="jumbotron py-2">
-                    <h2 class="display-5">Como funciona</h2>
-                    <article>
-                        <p class="text-justify">
-                        Nosso sistema possibilita a criação e gerenciamneto de bandas, sempre objetivando a praticidade,
-                            usabilidade e organização, é possível <a href="criarBanda/" class="text-decoration-none">criar um perfil de banda</a>, procurar e adicionar membros,
-                            <a href="/eventos/" class="text-decoration-none">organizar eventos</a> e encontros de bandas, além disso há possibilidede de <a href="/criarConta/" class="text-decoration-none">criar também um perfil individual</a> ,
-                            o qual será visível para bandas que procuram novos integrantes.
-                        </p>
-                    </article>
-                </div>
-            </div>
-        
-        <!-- Quem Somos -->
-        
-            <div class="col-12">
-                <div class="jumbotron py-2 ">
-                    <h2 class="display-5 ">Quem somos</h2>
-                    <article>
-                        <p class="text-justify">
-                        Nosso grupo é composto por quatro alunos do SENAI de Blumenau, foi proposto ao grupo o desenvolvimento
-                            de um site, e nossa proposta foi um projeto que pudesse atender a uma necessidade real de um certo grupo
-                            de pessoas, o resultado foi esse site :)
 
-                        </p>
-                    </article>
-                </div>
+        <div class="col-12" id="sb">
+            <div class="jumbotron py-2">
+                <h2 class="display-5">Como funciona</h2>
+                <article>
+                    <p class="text-justify">
+                        Nosso sistema possibilita a criação e gerenciamneto de bandas, sempre objetivando a praticidade,
+                        usabilidade e organização, é possível <a href="criarBanda/" class="text-decoration-none">criar um perfil de banda</a>, procurar e adicionar membros,
+                        <a href="/eventos/" class="text-decoration-none">organizar eventos</a> e encontros de bandas, além disso há possibilidede de <a href="/criarConta/" class="text-decoration-none">criar também um perfil individual</a> ,
+                        o qual será visível para bandas que procuram novos integrantes.
+                    </p>
+                </article>
             </div>
-      
+        </div>
+
+        <!-- Quem Somos -->
+
+        <div class="col-12">
+            <div class="jumbotron py-2 ">
+                <h2 class="display-5 ">Quem somos</h2>
+                <article>
+                    <p class="text-justify">
+                        Nosso grupo é composto por quatro alunos do SENAI de Blumenau, foi proposto ao grupo o desenvolvimento
+                        de um site, e nossa proposta foi um projeto que pudesse atender a uma necessidade real de um certo grupo
+                        de pessoas, o resultado foi esse site :)
+
+                    </p>
+                </article>
+            </div>
+        </div>
+
     </section>
     </div>
-
     <!-- Footer -->
     <footer>
-        <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0 sticky-bottom">
+        <nav class="navbar navbar-fixed-bottom navbar-dark bg-dark p-0 mt-5">
             <div class="mx-auto order-0">
-                <a class="navbar-text mx-auto" href="#">&copy;Copyright BandMaker® 2019</a>
+                <a class="navbar-text mx-auto" href="#">&copy;Copyright</a>
             </div>
         </nav>
     </footer>

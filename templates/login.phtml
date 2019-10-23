@@ -39,23 +39,22 @@
 
                     <div class="col-6 mx-auto" id="loginBox">
                         <!-- Mostra mensagem de erro no login -->
-                        <?php 
-                        if(isset($action) && $action == "user-not-found") {
+                        <?php
+                        if (isset($action) && $action == "user-not-found") {
                             echo '<h5 class="alert alert-danger">Erro: Login ou Senha incorretos!</h5>';
-                        } 
+                        }
                         ?>
                         <button type="submit" class="btn btn-dark btn-lg w-25">Login</button>
-                        <a class="btn btn-dark btn-lg w-25" href="/criarConta/" role="button">Criar Conta</a>                        
+                        <a class="btn btn-dark btn-lg w-25" href="/criarConta/" role="button">Criar Conta</a>
                     </div>
 
                 </form>
             </div>
         </div>
     </div>
-
     <!-- Footer -->
     <footer>
-        <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0 fixed-bottom">
+        <nav class="navbar navbar-fixed-bottom navbar-dark bg-dark p-0 mt-5">
             <div class="mx-auto order-0">
                 <a class="navbar-text mx-auto" href="#">&copy;Copyright</a>
             </div>

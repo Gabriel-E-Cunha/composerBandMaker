@@ -22,73 +22,75 @@
     <div class="container my-5">
         <section>
             <!-- Nome e Gênero -->
-            
-                <div class="col-4">
-                    <div class="row">
-                        <div class="col-6">
-                       <?php 
-                      echo '<img class="img-fluid mx-auto w-100 d-block" src="../assets/img/'.$perfil[0]['imagem'].'">' 
-                       ?>
-                        
-                        </div>
-                        <div class="col-6 text-center">
-                            <?php
-                            echo '<h3>'. $perfil[0]['nome_usuario'] .'</h3>' ;
-                            echo '<h4 class="mt-4">' . $perfil[0]['genero'] . '</h4>'
-                            ?>
-                        </div>
+
+            <div class="col-4">
+                <div class="row">
+                    <div class="col-6">
+                        <?php
+                        echo '<img class="img-fluid mx-auto w-100 d-block" src="../assets/img/' . $perfil[0]['imagem'] . '">'
+                        ?>
+
+                    </div>
+                    <div class="col-6 text-center">
+                        <?php
+                        echo '<h3>' . $perfil[0]['nome_usuario'] . '</h3>';
+                        echo '<h4 class="mt-4">' . $perfil[0]['genero'] . '</h4>'
+                        ?>
                     </div>
                 </div>
-                <!-- Integrantes -->
-                <div class="row ml-3 mt-2">
-                    <div class="col-3 border border-dark text-justify mr-5">
-                        <h5>Influências</h5>
-                        <article>
+            </div>
+            <!-- Integrantes -->
+            <div class="row ml-3 mt-2">
+                <div class="col-3 border border-dark text-justify mr-5">
+                    <h5>Influências</h5>
+                    <article>
                         <?php
-                        echo '<p>'. $perfil[0]['influencias'] .'</p>';
-             
-                        
-                        ?>    
-                        
-                        </article>
-                        <h5>Sobre a Banda</h5>
-                        <article>
-                            <?php echo '<p>' . $perfil[0]['descricao'] .'</p>'; 
-                            
-                            ?>
-                            
-                        </article> 
+                        echo '<p>' . $perfil[0]['influencias'] . '</p>';
 
-                        <h5><strong>Precisamos de:</strong></h5>
-                        <article>
-                
-                        <?php 
-                        echo '<p>' . $perfil[0]['necessidade']. '</p>';
+
+                        ?>
+
+                    </article>
+                    <h5>Sobre a Banda</h5>
+                    <article>
+                        <?php echo '<p>' . $perfil[0]['descricao'] . '</p>';
+
+                        ?>
+
+                    </article>
+
+                    <h5><strong>Precisamos de:</strong></h5>
+                    <article>
+
+                        <?php
+                        echo '<p>' . $perfil[0]['necessidade'] . '</p>';
                         ?>
                         <p>
-                                Baixista experiente.
-                            </p>
-                        </article>
-                    </div>
-                    
-                    <!-- integrantes -->
-                    <div class="col-8">
-                        <?php  
-                        foreach ($integrante as $key => $value) {        
-                            echo '<a class="text-reset nav-link" href="/perfil/'.$integrante[$key]['nome_usuario'].'"><div class="card mb-3 py-1"> <div class="card-body"> <div class="row"> <div class="col-2">' ;
-                            echo '<img class="img-fluid mx-auto w-100 d-block" src="../assets/img/'.$integrante[$key]['imagem'] .'" alt="">';
-                            echo ' </div> <div class="col-6 my-4"> <h6> '.$integrante[$key]['nome_usuario'].' - '.$integrante[$key]['instrumento'].'</h6> </div> </div> </div> </div></a>';
-                        }
-                        ?>
-                    </div>
+                            Baixista experiente.
+                        </p>
+                    </article>
                 </div>
-            
+
+                <!-- integrantes -->
+                <div class="col-8">
+                    <?php
+                    foreach ($integrante as $key => $value) {
+                        echo '<a class="text-reset nav-link" href="/perfil/' . $integrante[$key]['nome_usuario'] . '"><div class="card mb-3 py-1"> <div class="card-body"> <div class="row"> <div class="col-2">';
+                        echo '<img class="img-fluid mx-auto w-100 d-block" src="../assets/img/' . $integrante[$key]['imagem'] . '" alt="">';
+                        echo ' </div> <div class="col-6 my-4"> <h6> ' . $integrante[$key]['nome_usuario'] . ' - ' . $integrante[$key]['instrumento'] . '</h6> </div> </div> </div> </div></a>';
+                    }
+                    ?>
+                </div>
+            </div>
+
         </section>
     </div>
+
+    <!-- Footer -->
     <footer>
-        <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
+        <nav class="navbar navbar-fixed-bottom navbar-dark bg-dark p-0 mt-5">
             <div class="mx-auto order-0">
-                <a class="navbar-text mx-auto" href="#">&copy;Copyright BandMaker® 2019</a>
+                <a class="navbar-text mx-auto" href="#">&copy;Copyright</a>
             </div>
         </nav>
     </footer>
