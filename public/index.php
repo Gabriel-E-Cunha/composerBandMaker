@@ -53,8 +53,13 @@ $routes($app);
 $routes = require __DIR__ . '/../src/routes/eventosRoute.php';
 $routes($app);
 
+
 // Criar Eventos
 $routes = require __DIR__ . '/../src/routes/CriarEventoRoute.php';
+
+// Pesquisa de Bandas
+$routes = require __DIR__ . '/../src/routes/pesquisaBandaRoute.php';
+
 $routes($app);
 
 

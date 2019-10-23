@@ -44,8 +44,8 @@
 
                         </div>
 
-                        <?php 
-                        if(isset($action) && $action == "band-alredy-exists") {
+                        <?php
+                        if (isset($action) && $action == "band-alredy-exists") {
                             echo '<h5 class="alert alert-danger my-3">Erro: Nome já foi usado, escolha outro</h5>';
                         }
                         ?>
@@ -64,12 +64,12 @@
                                 <span class="input-group-text"> Confirme a Senha</span>
                             </div>
                             <input name="confirmar-senha" type="password" class="form-control" placeholder="*******" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                            
+
                         </div>
 
                         <!-- Mostra erro de confirmação de senha -->
-                        <?php 
-                        if(isset($action) && $action == "passwords-not-equal") {
+                        <?php
+                        if (isset($action) && $action == "passwords-not-equal") {
                             echo '<h5 class="alert alert-danger my-3">Erro: As senhas não batem!</h5>';
                         }
                         ?>
@@ -112,7 +112,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Rua</span>
                             </div>
-                            <input name="rua" type="text" class="form-control " id="rua" size="60" placeholder="Rua Almeida José Pereira" /></label>
+                            <input name="rua" id="rua" type="text" class="form-control" size="60" placeholder="Rua Almeida José Pereira" /></label>
                         </div>
 
                         <!-- Email -->
@@ -123,8 +123,16 @@
                             <input name="email" type="text" class="form-control" placeholder="random@anon.com" aria-label="Recipient's username" aria-describedby="basic-addon2">
                         </div>
 
+                        <!-- Gênero -->
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Gênero</span>
+                            </div>
+                            <input name="genero" type="text" class="form-control" size="60" placeholder="Metal" /></label>
+                        </div>
+
                         <!-- INFLUENCIAS -->
-                        <div class="input-group ">
+                        <div class="input-group my-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Influencias</span>
                             </div>
@@ -134,7 +142,7 @@ Banda do sul"></textarea>
                         </div>
                         <!-- Descrição da Banda -->
 
-                        <div class="input-group my-3">
+                        <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Descrição da Banda</span>
                             </div>
@@ -152,27 +160,20 @@ Banda do sul"></textarea>
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-6">
-                        <?php 
-                        if(isset($action) && $action == "blank-fields") {
-                            echo '<h5 class="alert alert-danger">Erro: Preencha todos os campos obrigatórios!</h5>';
-                        }
-                        ?>
+                            <?php
+                            if (isset($action) && $action == "blank-fields") {
+                                echo '<h5 class="alert alert-danger">Erro: Preencha todos os campos obrigatórios!</h5>';
+                            }
+                            ?>
                         </div>
                         <div class="col-sm-12 col-md-4 ml-auto my-1">
                             <button type="submit" class="btn btn-dark btn-lg w-100">Criar</button>
                         </div>
-
-
                     </form>
-
-
                 </div>
-
             </div>
-
         </div>
     </div>
-
 </body>
 <script src="../js/jquery-3.3.1.js"></script>
 <script src="../js/app.js"></script>
