@@ -187,6 +187,12 @@ Banda do sul"></textarea>
                         <?php 
                         if(isset($action) && $action == "blank-fields") {
                             echo '<h5 class="alert alert-danger">Erro: Preencha todos os campos obrigatórios!</h5>';
+                        } else if(isset($action) && $action == "not-an-image") {
+                            echo '<h5 class="alert alert-danger">Erro: O arquivo não é uma imagem!</h5>';
+                        } else if(isset($action) && $action == "img-too-big") {
+                            echo '<h5 class="alert alert-danger">Erro: Imagem muito grande!</h5>';
+                        } else if(isset($action) && $action == "incorrect-format") {
+                            echo '<h5 class="alert alert-danger">Erro: Formato incompatível, a imagem deve ser jpg, jpeg ou png!</h5>';
                         }
                         ?>
                         <div class="col-sm-12 col-md-4 ml-auto my-1">
