@@ -46,29 +46,25 @@
                     <article>
                         <?php
                         echo '<p>' . $perfil[0]['influencias'] . '</p>';
-
-
                         ?>
 
                     </article>
                     <h5>Sobre a Banda</h5>
                     <article>
-                        <?php echo '<p>' . $perfil[0]['descricao'] . '</p>';
-
+                        <?php 
+                        echo '<p>' . $perfil[0]['descricao'] . '</p>';
                         ?>
-
                     </article>
 
-                    <h5><strong>Precisamos de:</strong></h5>
-                    <article>
-
+                    <h5><strong>Vagas Disponíveis</strong></h5>                        
                         <?php
-                        echo '<p>' . $perfil[0]['necessidade'] . '</p>';
+                            echo '<form action="/perfil-banda/'.$action.'" method="post">';
                         ?>
-                        <p>
-                            Baixista experiente.
-                        </p>
-                    </article>
+                            <input type="text" class="form-control" id="basic-url" name="vagas">    
+                            <div class="col-12 d-flex justify-content-center my-2">
+                                <button type="submit" class="btn btn-outline-secondary">Postar</button>
+                            </div>
+                        </form>
                 </div>
 
                 <!-- integrantes -->

@@ -61,6 +61,9 @@ $routes($app);
 $routes = require __DIR__ . '/../src/routes/pesquisaBandaRoute.php';
 $routes($app);
 
+// Vagas
+$routes = require __DIR__ . '/../src/routes/vagasRoute.php';
+$routes($app);
 
 // Run app
 $app->run();
