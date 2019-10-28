@@ -41,7 +41,14 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Usuário</span>
                             </div>
-                            <input name="nome_usuario" type="text" class="form-control" placeholder="random123" aria-label="Username" aria-describedby="basic-addon1">
+                            <?php
+                            if(isset($_SESSION['inputValues']) && isset($action) && $action != 'user-alredy-exists') {
+                                echo '<input name="nome_usuario" type="text" class="form-control" placeholder="random123" aria-label="Username" aria-describedby="basic-addon1" value="'.$_SESSION['inputValues']['nome_usuario'].'">';
+                            } else {
+                                echo '<input name="nome_usuario" type="text" class="form-control" placeholder="random123" aria-label="Username" aria-describedby="basic-addon1">';
+                            }
+                            ?>
+                            
                         </div>
 
                         <?php 
@@ -55,7 +62,13 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Senha</span>
                             </div>
-                            <input name="senha" type="password" class="form-control" placeholder="*******" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                            <?php
+                            if(isset($_SESSION['inputValues']) && isset($action) && $action != 'passwords-not-equal') {
+                                echo '<input name="senha" type="password" class="form-control" placeholder="*******" aria-label="Recipients username" aria-describedby="basic-addon2" value="'.$_SESSION['inputValues']['senha'].'">';
+                            } else {
+                                echo '<input name="senha" type="password" class="form-control" placeholder="*******" aria-label="Recipients username" aria-describedby="basic-addon2">';
+                            }
+                            ?>
                         </div>
 
                         <!-- Confirmação Senha -->
@@ -63,7 +76,13 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"> Confirme a Senha</span>
                             </div>
-                            <input name="confirmar-senha" type="password" class="form-control" placeholder="*******" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                            <?php
+                            if(isset($_SESSION['inputValues']) && isset($action) && $action != 'passwords-not-equal') {
+                                echo '<input name="confirmar-senha" type="password" class="form-control" placeholder="*******" aria-label="Recipients username" aria-describedby="basic-addon2" value="'.$_SESSION['inputValues']['confirmar-senha'].'">';
+                            } else {
+                                echo '<input name="confirmar-senha" type="password" class="form-control" placeholder="*******" aria-label="Recipients username" aria-describedby="basic-addon2">';
+                            }
+                            ?>
                         </div>
 
                         <!-- Mostra erro de confirmação de senha -->
@@ -78,9 +97,17 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Nome Completo</span>
                             </div>
-                            <input name="nome" type="text" aria-label="First name" class="form-control
-                            " placeholder="Nome">
-                            <input name="sobrenome" type="text" aria-label="Last name" class="form-control" placeholder="Sobrenome">
+                            <?php
+                            if(isset($_SESSION['inputValues'])) {
+                                echo '<input name="nome" type="text" aria-label="First name" class="form-control
+                                " placeholder="Nome" value="'.$_SESSION['inputValues']['nome'].'">';
+                                echo '<input name="sobrenome" type="text" aria-label="Last name" class="form-control" placeholder="Sobrenome" value="'.$_SESSION['inputValues']['sobrenome'].'">';
+                            } else {
+                                echo '<input name="nome" type="text" aria-label="First name" class="form-control
+                                " placeholder="Nome">';
+                                echo '<input name="sobrenome" type="text" aria-label="Last name" class="form-control" placeholder="Sobrenome">';
+                            }
+                            ?>
                         </div>
 
                         <!-- Idade -->
@@ -88,7 +115,13 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Idade</span>
                             </div>
-                            <input name="idade" type="text" aria-label="exp" class="form-control" placeholder="1000">
+                            <?php
+                            if(isset($_SESSION['inputValues'])) {
+                                echo '<input name="idade" type="text" aria-label="exp" class="form-control" placeholder="1000" value="'.$_SESSION['inputValues']['idade'].'">';
+                            } else {
+                                echo '<input name="idade" type="text" aria-label="exp" class="form-control" placeholder="1000">';
+                            }
+                            ?>
                         </div>
 
                         <!-- Telefone -->
@@ -96,7 +129,13 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Telefone</span>
                             </div>
-                            <input name="telefone" type="text" aria-label="exp" class="form-control" placeholder="0000000000">
+                            <?php
+                            if(isset($_SESSION['inputValues'])) {
+                                echo '<input name="telefone" type="text" aria-label="exp" class="form-control" placeholder="0000000000" value="'.$_SESSION['inputValues']['telefone'].'">';
+                            } else {
+                                echo '<input name="telefone" type="text" aria-label="exp" class="form-control" placeholder="0000000000">';
+                            }
+                            ?>
                         </div>
 
 
@@ -105,7 +144,14 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">CEP</span>
                             </div>
-                            <input name="cep" type="text" class="form-control " id="cep" value="" size="10" maxlength="9" placeholder="000000000" /></label>
+                            <?php
+                            if(isset($_SESSION['inputValues'])) {
+                                echo '<input name="cep" type="text" class="form-control " id="cep" size="10" maxlength="9" placeholder="000000000" value="'.$_SESSION['inputValues']['cep'].'">';
+                            } else {
+                                echo '<input name="cep" type="text" class="form-control " id="cep" size="10" maxlength="9" placeholder="000000000">';
+                            }
+                            ?>
+                            
                         </div>
 
                         <!-- Estado -->
@@ -113,7 +159,13 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Estado</span>
                             </div>
-                            <input name="estado" type="text" class="form-control " id="uf" size="2" placeholder="SC" /></label>
+                            <?php
+                            if(isset($_SESSION['inputValues'])) {
+                                echo '<input name="estado" type="text" class="form-control " id="uf" size="2" placeholder="SC" value="'.$_SESSION['inputValues']['estado'].'">';
+                            } else {
+                                echo '<input name="estado" type="text" class="form-control " id="uf" size="2" placeholder="SC">';
+                            }
+                            ?>
                         </div>
 
                         <!-- Cidade -->
@@ -121,8 +173,13 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Cidade</span>
                             </div>
-
-                            <input name="cidade" type="text" class="form-control" id="cidade" size="40" placeholder="Blumenau" /></label>
+                            <?php
+                            if(isset($_SESSION['inputValues'])) {
+                                echo '<input name="cidade" type="text" class="form-control" id="cidade" size="40" placeholder="Blumenau" value="'.$_SESSION['inputValues']['cidade'].'">';
+                            } else {
+                                echo '<input name="cidade" type="text" class="form-control" id="cidade" size="40" placeholder="Blumenau">';
+                            }
+                            ?> 
                         </div>
 
                         <!-- Rua -->
@@ -130,7 +187,14 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Rua</span>
                             </div>
-                            <input name="rua" type="text" class="form-control " id="rua" size="60" placeholder="Rua Almeida José Pereira" /></label>
+                            <?php
+                            if(isset($_SESSION['inputValues'])) {
+                                echo '<input name="rua" type="text" class="form-control " id="rua" size="60" placeholder="Rua Almeida José Pereira" value="'.$_SESSION['inputValues']['rua'].'">';
+                            } else {
+                                echo '    <input name="rua" type="text" class="form-control " id="rua" size="60" placeholder="Rua Almeida José Pereira">';
+                            }
+                            ?>
+                        
                         </div>
 
                         <!-- Email -->
@@ -138,7 +202,13 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Email</span>
                             </div>
-                            <input name="email" type="text" class="form-control" placeholder="random@anon.com" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                            <?php
+                            if(isset($_SESSION['inputValues'])) {
+                                echo '<input name="email" type="text" class="form-control" placeholder="random@anon.com" aria-label="Recipients username" aria-describedby="basic-addon2" value="'.$_SESSION['inputValues']['email'].'">';
+                            } else {
+                                echo '<input name="email" type="text" class="form-control" placeholder="random@anon.com" aria-label="Recipients username" aria-describedby="basic-addon2">';
+                            }
+                            ?>
                         </div>
 
                         <!-- Instrumento -->
@@ -162,7 +232,14 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Experiência</span>
                             </div>
-                            <input name="tempo" type="text" aria-label="exp" class="form-control">
+                            <?php
+                            if(isset($_SESSION['inputValues'])) {
+                                echo '<input name="tempo" type="text" aria-label="exp" class="form-control" value="'.$_SESSION['inputValues']['tempo'].'">';
+                            } else {
+                                echo '<input name="tempo" type="text" aria-label="exp" class="form-control">';
+                            }
+                            ?>
+
                         </div>
 
 
@@ -171,9 +248,13 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Influencias</span>
                             </div>
-                            <textarea name="influencia" class="form-control" aria-label="With textarea" placeholder="Banda XxXMaker
-Banda Rodinha De Bicicleta
-Banda do sul"></textarea>
+                            <?php
+                            if(isset($_SESSION['inputValues'])) {
+                                echo '<textarea name="influencia" class="form-control" aria-label="With textarea">'.$_SESSION['inputValues']['tempo'].'</textarea>';
+                            } else {
+                                echo '<textarea name="influencia" class="form-control" aria-label="With textarea"></textarea>';
+                            }
+                            ?>
                         </div>
 
                         <!-- ADD Imagem -->
@@ -187,7 +268,7 @@ Banda do sul"></textarea>
                         <?php 
                         if(isset($action) && $action == "blank-fields") {
                             echo '<h5 class="alert alert-danger">Erro: Preencha todos os campos obrigatórios!</h5>';
-                        } else if(isset($action) && $action == "not-an-image") {
+                        } else if(isset($action) && $action == "not-an-ima ge") {
                             echo '<h5 class="alert alert-danger">Erro: O arquivo não é uma imagem!</h5>';
                         } else if(isset($action) && $action == "img-too-big") {
                             echo '<h5 class="alert alert-danger">Erro: Imagem muito grande!</h5>';

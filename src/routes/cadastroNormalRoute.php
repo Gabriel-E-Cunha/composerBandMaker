@@ -10,7 +10,6 @@ return function (App $app) {
     $app->get('/criarConta/[{action}]', function (Request $request, Response $response, array $args) use ($container) {
         // Sample log message
         $container->get('logger')->info("Slim-Skeleton '/criarConta/' route");
-  
         // Render index view
         return $container->get('renderer')->render($response, 'cadastroNormal.phtml', $args);
     });
@@ -29,7 +28,10 @@ return function (App $app) {
         $imgName = "profile".$resultSet[0]['id']."." . $imgFileType;
         $target_dir = "public/assets/profileImg/";
         $target_file = $target_dir . $imgName;
-        
+        $_SESSION['inputValues'] = $params;
+        $_SESSION['inputValues']['senha'] = null;
+        $_SESSION['inputValues']['confirmar-senha'] = null;
+       
         if (
             $params['nome_usuario'] == null || $params['nome'] == null || $params['cidade'] == null || $params['cep'] == null ||
             $params['sobrenome'] == null || $params['estado'] == null || $params['email'] == null || $params['idade'] == null ||
@@ -44,7 +46,7 @@ return function (App $app) {
         } else if ($params['senha'] != $params['confirmar-senha']) {
             return $response->withRedirect('/criarConta/passwords-not-equal');
         }else if (getimagesize($_FILES["img"]["tmp_name"]) == false) {
-            return $response->withRedirect('/criarConta/img-too-big');
+            return $response->withRedirect('/criarConta/not-an-iamge');
         } else if ($imgFileType != "jpeg" && $imgFileType != "png" && $imgFileType != "jpg") {
             return $response->withRedirect('/criarConta/incorrect-format');
         } else if ($_FILES["img"]["size"] > 500000) {
@@ -68,8 +70,11 @@ return function (App $app) {
 
             $conexao->query('UPDATE perfil_pessoa SET imagem = "'.$imgName.'" WHERE id = ' . $resultSet[0]['id']);
 
+            session_destroy();
+
             $_SESSION['banda'] = false;
             $_SESSION['loginID'] = $resultSet[0]['id'];
+
             return $response->withRedirect('/');
         }
         // Render index view
