@@ -32,7 +32,7 @@
             <div class="col-sm-12 col-md-12 justify-content-center ">
 
                 <div class="col-sm-12 col-md-12 input-group mb-3 p-0 justify-content-center">
-                    <form method="post" class="col-10" action="/criarBanda/">
+                    <form method="post" class="col-10" action="/criarBanda/" enctype="multipart/form-data">
 
                         <!-- Nome -->
                         <div class="input-group">
@@ -154,7 +154,7 @@ Banda do sul"></textarea>
                             <div class="border border-light border-radius-3 col-6">
                                 <p class="text-secondary">Adicione uma Imagem da banda</p>
                                 <div>
-                                    <input name="imagemBanda" type="file" id="imgload">
+                                    <input name="img" type="file" id="imgload">
                                     <img class="mt-2 img-fluid mx-auto" src="#" id="imgshow" align="left">
                                 </div>
                             </div>
@@ -163,12 +163,19 @@ Banda do sul"></textarea>
                             <?php
                             if (isset($action) && $action == "blank-fields") {
                                 echo '<h5 class="alert alert-danger">Erro: Preencha todos os campos obrigatórios!</h5>';
+                            } else if(isset($action) && $action == "not-an-image") {
+                                echo '<h5 class="alert alert-danger">Erro: O arquivo não é uma imagem!</h5>';
+                            } else if(isset($action) && $action == "img-too-big") {
+                                echo '<h5 class="alert alert-danger">Erro: Imagem muito grande!</h5>';
+                            } else if(isset($action) && $action == "incorrect-format") {
+                                echo '<h5 class="alert alert-danger">Erro: Formato incompatível, a imagem deve ser jpg, jpeg ou png!</h5>';
                             }
                             ?>
                         </div>
                         <div class="col-sm-12 col-md-4 ml-auto my-1">
                             <button type="submit" class="btn btn-dark btn-lg w-100">Criar</button>
                         </div>
+                        
                     </form>
                 </div>
             </div>
