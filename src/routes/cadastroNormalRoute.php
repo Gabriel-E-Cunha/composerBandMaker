@@ -44,7 +44,7 @@ return function (App $app) {
         } else if ($params['senha'] != $params['confirmar-senha']) {
             return $response->withRedirect('/criarConta/passwords-not-equal');
         }else if (getimagesize($_FILES["img"]["tmp_name"]) == false) {
-            return $response->withRedirect('/criarConta/img-too-big');
+            return $response->withRedirect('/criarConta/not-an-image');
         } else if ($imgFileType != "jpeg" && $imgFileType != "png" && $imgFileType != "jpg") {
             return $response->withRedirect('/criarConta/incorrect-format');
         } else if ($_FILES["img"]["size"] > 500000) {
