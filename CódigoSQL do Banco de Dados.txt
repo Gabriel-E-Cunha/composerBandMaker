@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `dado_login` (
   KEY `banda_idFK` (`banda_id`),
   CONSTRAINT `banda_idFK` FOREIGN KEY (`banda_id`) REFERENCES `perfil_banda` (`id`),
   CONSTRAINT `normal_idFK` FOREIGN KEY (`pessoa_id`) REFERENCES `perfil_pessoa` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 -- Exportação de dados foi desmarcado.
 
@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `evento` (
   PRIMARY KEY (`id`),
   KEY `banda_id_FK` (`banda_id`),
   CONSTRAINT `banda_id_FK` FOREIGN KEY (`banda_id`) REFERENCES `perfil_banda` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 -- Exportação de dados foi desmarcado.
 
@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `perfil_banda` (
   `genero` varchar(50) NOT NULL,
   `necessidade` varchar(100) DEFAULT 'Do que a band precisa?',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 -- Exportação de dados foi desmarcado.
 
@@ -92,10 +92,11 @@ CREATE TABLE IF NOT EXISTS `perfil_pessoa` (
   PRIMARY KEY (`id`),
   KEY `bandaidfk_idx` (`banda_id`),
   CONSTRAINT `bandaidfk` FOREIGN KEY (`banda_id`) REFERENCES `perfil_banda` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 -- Exportação de dados foi desmarcado.
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+
