@@ -217,13 +217,13 @@
                                 <label class="input-group-text" for="inputGroupSelect01">Instrumento</label>
                             </div>
                             <select name="instrumento" class="custom-select" id="instrumento">
-                                <option selected>---</option>
-                                <option value="Guitarra">Guitarra</option>
-                                <option value="Baixo">Baixo</option>
-                                <option value="Bateria">Bateria</option>
-                                <option value="Piano">Piano</option>
-                                <option value="Vocal">Vocal</option>
-                                <option value="Pandeiro">Pandeiro</option>
+                                <option <?php if(isset($_SESSION['inputValues'])){}else{echo 'selected';}?>>---</option>
+                                <option <?php if(isset($_SESSION['inputValues']) && $_SESSION['inputValues']['instrumento'] == "Guitarra"){echo 'selected';}?> value="Guitarra">Guitarra</option>
+                                <option <?php if(isset($_SESSION['inputValues']) && $_SESSION['inputValues']['instrumento'] == "Baixo"){echo 'selected';}?> value="Baixo">Baixo</option>
+                                <option <?php if(isset($_SESSION['inputValues']) && $_SESSION['inputValues']['instrumento'] == "Bateria"){echo 'selected';}?> value="Bateria">Bateria</option>
+                                <option <?php if(isset($_SESSION['inputValues']) && $_SESSION['inputValues']['instrumento'] == "Piano"){echo 'selected';}?> value="Piano">Piano</option>
+                                <option <?php if(isset($_SESSION['inputValues']) && $_SESSION['inputValues']['instrumento'] == "Vocal"){echo 'selected';}?> value="Vocal">Vocal</option>
+                                <option <?php if(isset($_SESSION['inputValues']) && $_SESSION['inputValues']['instrumento'] == "Pandeiro"){echo 'selected';}?> value="Pandeiro">Pandeiro</option>
                             </select>
                         </div>
 
