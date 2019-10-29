@@ -62,7 +62,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Senha</span>
                             </div>
-                            <input name="senha" type="password" class="form-control" placeholder="*******" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                            <input name="senha" type="password" class="form-control" placeholder="Digite sua senha" aria-label="Recipient's username" aria-describedby="basic-addon2">
                         </div>
 
                         <!-- Confirmação Senha -->
@@ -70,7 +70,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"> Confirme a Senha</span>
                             </div>
-                            <input name="confirmar-senha" type="password" class="form-control" placeholder="*******" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                            <input name="confirmar-senha" type="password" class="form-control" placeholder="Digite sua senha" aria-label="Recipient's username" aria-describedby="basic-addon2">
 
                         </div>
 
@@ -88,9 +88,9 @@
                             </div>
                             <?php
                             if(isset($_SESSION['inputValues'])) {
-                                echo '<input name="telefone" type="text" aria-label="exp" class="form-control" placeholder="0000000000" value="'. $_SESSION['inputValues']['telefone'] .'">';
+                                echo '<input name="telefone" type="number" aria-label="exp" class="form-control" placeholder="912345698" value="'. $_SESSION['inputValues']['telefone'] .'">';
                             } else {
-                                echo '<input name="telefone" type="text" aria-label="exp" class="form-control" placeholder="0000000000">';
+                                echo '<input name="telefone" type="number" aria-label="exp" class="form-control" placeholder="912345698">';
                             }
                             ?>
                             
@@ -118,9 +118,9 @@
                             </div>
                             <?php
                             if(isset($_SESSION['inputValues'])) {
-                                echo '<input name="estado" type="text" class="form-control " id="uf" size="2" placeholder="SC" value="'. $_SESSION['inputValues']['estado'] .'">';
+                                echo '<input name="estado" type="text" class="form-control " id="uf" size="2" placeholder="Informe o CEP" value="'. $_SESSION['inputValues']['estado'] .'">';
                             } else {
-                                echo '<input name="estado" type="text" class="form-control " id="uf" size="2" placeholder="SC"';
+                                echo '<input name="estado" type="text" class="form-control " id="uf" size="2" placeholder="Informe o CEP"';
                             }
                             ?>
                             
@@ -133,9 +133,9 @@
                             </div>
                             <?php
                             if(isset($_SESSION['inputValues'])) {
-                                echo '<input name="cidade" type="text" class="form-control" id="cidade" size="40" placeholder="Blumenau" value="'. $_SESSION['inputValues']['cidade'] .'">';
+                                echo '<input name="cidade" type="text" class="form-control" id="cidade" size="40" placeholder="Informe o CEP" value="'. $_SESSION['inputValues']['cidade'] .'">';
                             } else {
-                                echo '<input name="cidade" type="text" class="form-control" id="cidade" size="40" placeholder="Blumenau">';
+                                echo '<input name="cidade" type="text" class="form-control" id="cidade" size="40" placeholder="Informe o CEP">';
                             }
                             ?>
                         </div>
@@ -147,9 +147,9 @@
                             </div>
                             <?php
                             if(isset($_SESSION['inputValues'])) {
-                                echo '<input name="rua" id="rua" type="text" class="form-control" size="60" placeholder="Rua Almeida José Pereira" value="'. $_SESSION['inputValues']['rua'] .'">';
+                                echo '<input name="rua" id="rua" type="text" class="form-control" size="60" placeholder="Informe o CEP" value="'. $_SESSION['inputValues']['rua'] .'">';
                             } else {
-                                echo '<input name="rua" id="rua" type="text" class="form-control" size="60" placeholder="Rua Almeida José Pereira">';
+                                echo '<input name="rua" id="rua" type="text" class="form-control" size="60" placeholder="Informe o CEP">';
                             }
                             ?>
                             
@@ -162,9 +162,9 @@
                             </div>
                             <?php
                             if(isset($_SESSION['inputValues'])) {
-                                echo '<input name="email" type="text" class="form-control" placeholder="random@anon.com" aria-label="Recipients username" aria-describedby="basic-addon2" value="'. $_SESSION['inputValues']['email'] .'">';
+                                echo '<input name="email" type="text" class="form-control" placeholder="exemplo@bandmaker.com" aria-label="Recipients username" aria-describedby="basic-addon2" value="'. $_SESSION['inputValues']['email'] .'">';
                             } else {
-                                echo '<input name="email" type="text" class="form-control" placeholder="random@anon.com" aria-label="Recipients username" aria-describedby="basic-addon2">';
+                                echo '<input name="email" type="text" class="form-control" placeholder="exemplo@bandmaker.com" aria-label="Recipients username" aria-describedby="basic-addon2">';
                             }
                             ?>
                             
@@ -177,9 +177,9 @@
                             </div>
                             <?php
                             if(isset($_SESSION['inputValues'])) {
-                                echo '<input name="genero" type="text" class="form-control" size="60" placeholder="Metal" value="'. $_SESSION['inputValues']['genero'] .'">';
+                                echo '<input name="genero" type="text" class="form-control" size="60" placeholder="Ex: Rock" value="'. $_SESSION['inputValues']['genero'] .'">';
                             } else {
-                                echo '<input name="genero" type="text" class="form-control" size="60" placeholder="Metal">';
+                                echo '<input name="genero" type="text" class="form-control" size="60" placeholder="Ex: Rock">';
                             }
                             ?>
                             
@@ -192,9 +192,9 @@
                             </div>
                             <?php
                             if(isset($_SESSION['inputValues'])) {
-                                echo '<textarea name="influencias" class="form-control" aria-label="With textarea">'. $_SESSION['inputValues']['influencias'] .'</textarea>';
+                                echo '<textarea name="influencias" class="form-control" placeholder="Queens" aria-label="With textarea">'. $_SESSION['inputValues']['influencias'] .'</textarea>';
                             } else {
-                                echo '<textarea name="influencias" class="form-control" aria-label="With textarea"></textarea>';
+                                echo '<textarea name="influencias" class="form-control" placeholder="Queens" aria-label="With textarea"></textarea>';
                             }
                             ?>
                             
@@ -229,8 +229,8 @@
                             <?php
                             if (isset($action) && $action == "blank-fields") {
                                 echo '<h5 class="alert alert-danger">Erro: Preencha todos os campos obrigatórios!</h5>';
-                            } else if(isset($action) && $action == "not-an-image") {
-                                echo '<h5 class="alert alert-danger">Erro: O arquivo não é uma imagem!</h5>';
+                            } else if (isset($action) && $action == "email-not-valid"){
+                                echo '<h5 class="alert alert-danger">Erro: O email não é válido!</h5>';
                             } else if(isset($action) && $action == "img-too-big") {
                                 echo '<h5 class="alert alert-danger">Erro: Imagem muito grande!</h5>';
                             } else if(isset($action) && $action == "incorrect-format") {

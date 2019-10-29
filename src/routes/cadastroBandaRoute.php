@@ -43,9 +43,11 @@ return function (App $app) {
         } else if ($params['senha'] != $params['confirmar-senha']) {
 
             return $response->withRedirect('/criarBanda/passwords-not-equal');
-        } else if (getimagesize($_FILES["img"]["tmp_name"]) == false) {
-            return $response->withRedirect('/criarBanda/not-an-image');
-        } else if ($imgFileType != "jpeg" && $imgFileType != "png" && $imgFileType != "jpg") {
+        } else if(filter_var($params['email'], FILTER_VALIDATE_EMAIL) == false){
+            return $response->withRedirect('/criarConta/email-not-valid');
+        }
+
+        else if ($imgFileType != "jpeg" && $imgFileType != "png" && $imgFileType != "jpg") {
             return $response->withRedirect('/criarBanda/incorrect-format');
         } else if ($_FILES["img"]["size"] > 500000) {
             return $response->withRedirect('/criarConta/img-too-big');

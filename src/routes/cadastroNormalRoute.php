@@ -40,10 +40,17 @@ return function (App $app) {
             return $response->withRedirect('/criarConta/blank-fields');
 
         } else if ($resultSet != null) {
+        //    verifica conta/senha
             return $response->withRedirect('/criarConta/user-alredy-exists');
         } else if ($params['senha'] != $params['confirmar-senha']) {
             return $response->withRedirect('/criarConta/passwords-not-equal');
-        } else if ($_FILES['img']['name'] != null && $imgFileType != "jpeg" && $imgFileType != "png" && $imgFileType != "jpg") {
+        } 
+        // verifica email
+        else if(filter_var($params['email'], FILTER_VALIDATE_EMAIL) == false){
+            return $response->withRedirect('/criarConta/email-not-valid');
+        } 
+        // verifica imagem
+        else if ($_FILES['img']['name'] != null && $imgFileType != "jpeg" && $imgFileType != "png" && $imgFileType != "jpg") {
             return $response->withRedirect('/criarConta/incorrect-format');
         } else if ($_FILES['img']['name'] != null && $_FILES["img"]["size"] > 500000) {
                 return $response->withRedirect('/criarConta/img-too-big');
