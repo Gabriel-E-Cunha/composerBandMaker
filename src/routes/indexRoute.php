@@ -15,10 +15,6 @@ return function (App $app) {
             session_destroy();
             return $response->withRedirect('/');
         }
-        
-        if(isset($_SESSION['loginID']) == false) {
-            session_destroy();
-        }
 
         $conexao = $container->get('pdo');
         
