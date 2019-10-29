@@ -22,25 +22,33 @@ return function (App $app) {
         $conexao = $container->get('pdo');
         $params = $request->getParsedBody();
 
-        $resultSet = $conexao->query('SELECT nome_usuario FROM perfil_banda WHERE nome_usuario = "'. $params['nome_usuario'] .'"')->fetchAll();
+        $resultSet = $conexao->query('SELECT nome_usuario FROM perfil_banda WHERE nome_usuario = "' . $params['nome_usuario'] . '"')->fetchAll();
+        $imgFileType = explode('/', $_FILES["img"]["type"])[1];
+        $imgName = "profile" . $resultSet[0]['id'] . "." . $imgFileType;
+        $target_dir = "public/assets/BandP  rofileImg/";
+        $target_file = $target_dir . $imgName;
         $_SESSION['inputValues'] = $params;
         $_SESSION['inputValues']['senha'] = null;
         $_SESSION['inputValues']['confirmar-senha'] = null;
+
 
         if (
             $params['nome_usuario'] == null || $params['senha'] == null || $params['confirmar-senha'] == null  || $params['cidade'] == null || $params['cep'] == null ||
             $params['estado'] == null || $params['email'] == null || $params['rua'] == null || $params['genero'] == null
         ) {
             return $response->withRedirect('/criarBanda/blank-fields');
-
-        } else if($resultSet != null) {
+        } else if ($resultSet != null) {
 
             return $response->withRedirect('/criarBanda/band-alredy-exists');
-
         } else if ($params['senha'] != $params['confirmar-senha']) {
 
             return $response->withRedirect('/criarBanda/passwords-not-equal');
-
+        } else if (getimagesize($_FILES["img"]["tmp_name"]) == false) {
+            return $response->withRedirect('/criarBanda/not-an-image');
+        } else if ($imgFileType != "jpeg" && $imgFileType != "png" && $imgFileType != "jpg") {
+            return $response->withRedirect('/criarBanda/incorrect-format');
+        } else if ($_FILES["img"]["size"] > 500000) {
+            return $response->withRedirect('/criarConta/img-too-big');
         } else {
 
             $conexao->query('INSERT INTO perfil_banda (nome_usuario,cidade,
@@ -56,6 +64,12 @@ return function (App $app) {
 
             $conexao->query('INSERT INTO dado_login (nome_usuario, senha, banda_id)
             VALUES("' . $params['nome_usuario'] . '", "' . md5($params['senha']) . '", "' . $resultSet[0]['id'] . '")');
+
+            //Tratamento de imagem 
+            move_uploaded_file($_FILES["img"]["tmp_name"], $target_file);
+
+            $conexao->query('UPDATE perfil_pessoa SET imagem = "' . $imgName . '" WHERE id = ' . $resultSet[0]['id']);
+
 
             $_SESSION['banda'] = true;
             $_SESSION['loginID'] = $resultSet[0]['id'];

@@ -105,9 +105,9 @@
                             </div>
                             <?php
                             if(isset($_SESSION['inputValues'])) {
-                                echo '<input name="idade" type="text" aria-label="exp" class="form-control" placeholder="1000" value="'.$_SESSION['inputValues']['idade'].'">';
+                                echo '<input name="idade" type="text" aria-label="exp" class="form-control" placeholder="30" value="'.$_SESSION['inputValues']['idade'].'">';
                             } else {
-                                echo '<input name="idade" type="text" aria-label="exp" class="form-control" placeholder="1000">';
+                                echo '<input name="idade" type="text" aria-label="exp" class="form-control" placeholder="30">';
                             }
                             ?>
                         </div>
@@ -119,9 +119,9 @@
                             </div>
                             <?php
                             if(isset($_SESSION['inputValues'])) {
-                                echo '<input name="telefone" type="text" aria-label="exp" class="form-control" placeholder="0000000000" value="'.$_SESSION['inputValues']['telefone'].'">';
+                                echo '<input name="telefone" type="text" aria-label="exp" class="form-control" placeholder="ex: 99999-8888" value="'.$_SESSION['inputValues']['telefone'].'">';
                             } else {
-                                echo '<input name="telefone" type="text" aria-label="exp" class="form-control" placeholder="0000000000">';
+                                echo '<input name="telefone" type="text" aria-label="exp" class="form-control" placeholder="ex: 99999-8888">';
                             }
                             ?>
                         </div>
@@ -149,9 +149,9 @@
                             </div>
                             <?php
                             if(isset($_SESSION['inputValues'])) {
-                                echo '<input name="estado" type="text" class="form-control " id="uf" size="2" placeholder="SC" value="'.$_SESSION['inputValues']['estado'].'">';
+                                echo '<input name="estado" type="text" class="form-control " id="uf" size="2" placeholder="ex: SC" value="'.$_SESSION['inputValues']['estado'].'">';
                             } else {
-                                echo '<input name="estado" type="text" class="form-control " id="uf" size="2" placeholder="SC">';
+                                echo '<input name="estado" type="text" class="form-control " id="uf" size="2" placeholder="ex: SC">';
                             }
                             ?>
                         </div>
@@ -163,9 +163,9 @@
                             </div>
                             <?php
                             if(isset($_SESSION['inputValues'])) {
-                                echo '<input name="cidade" type="text" class="form-control" id="cidade" size="40" placeholder="Blumenau" value="'.$_SESSION['inputValues']['cidade'].'">';
+                                echo '<input name="cidade" type="text" class="form-control" id="cidade" size="40" placeholder="ex: Blumenau" value="'.$_SESSION['inputValues']['cidade'].'">';
                             } else {
-                                echo '<input name="cidade" type="text" class="form-control" id="cidade" size="40" placeholder="Blumenau">';
+                                echo '<input name="cidade" type="text" class="form-control" id="cidade" size="40" placeholder="ex: Blumenau">';
                             }
                             ?> 
                         </div>
@@ -177,12 +177,11 @@
                             </div>
                             <?php
                             if(isset($_SESSION['inputValues'])) {
-                                echo '<input name="rua" type="text" class="form-control " id="rua" size="60" placeholder="Rua Almeida José Pereira" value="'.$_SESSION['inputValues']['rua'].'">';
+                                echo '<input name="rua" type="text" class="form-control " id="rua" size="60" placeholder="ex: Rua Antônio da Veiga" value="'.$_SESSION['inputValues']['rua'].'">';
                             } else {
-                                echo '    <input name="rua" type="text" class="form-control " id="rua" size="60" placeholder="Rua Almeida José Pereira">';
+                                echo '    <input name="rua" type="text" class="form-control " id="rua" size="60" placeholder="ex: Rua Antônio da Veiga">';
                             }
                             ?>
-                        
                         </div>
 
                         <!-- Email -->
@@ -277,7 +276,7 @@
     <footer>
         <nav class="navbar navbar-fixed-bottom navbar-dark bg-dark  p-0 mt-5">
             <div class="mx-auto order-0">
-                <a class="navbar-text mx-auto" href="#">&copy;Copyright</a>
+                <a class="navbar-text mx-auto" href="#">&copy;Copyright BandMaker 2019</a>
             </div>
         </nav>
     </footer>
