@@ -62,13 +62,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Senha</span>
                             </div>
-                            <?php
-                            if(isset($_SESSION['inputValues']) && isset($action) && $action != 'passwords-not-equal') {
-                                echo '<input name="senha" type="password" class="form-control" placeholder="*******" aria-label="Recipients username" aria-describedby="basic-addon2" value="'.$_SESSION['inputValues']['senha'].'">';
-                            } else {
-                                echo '<input name="senha" type="password" class="form-control" placeholder="*******" aria-label="Recipients username" aria-describedby="basic-addon2">';
-                            }
-                            ?>
+                            <input name="senha" type="password" class="form-control" placeholder="*******" aria-label="Recipients username" aria-describedby="basic-addon2">
                         </div>
 
                         <!-- Confirmação Senha -->
@@ -76,13 +70,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"> Confirme a Senha</span>
                             </div>
-                            <?php
-                            if(isset($_SESSION['inputValues']) && isset($action) && $action != 'passwords-not-equal') {
-                                echo '<input name="confirmar-senha" type="password" class="form-control" placeholder="*******" aria-label="Recipients username" aria-describedby="basic-addon2" value="'.$_SESSION['inputValues']['confirmar-senha'].'">';
-                            } else {
-                                echo '<input name="confirmar-senha" type="password" class="form-control" placeholder="*******" aria-label="Recipients username" aria-describedby="basic-addon2">';
-                            }
-                            ?>
+                            <input name="confirmar-senha" type="password" class="form-control" placeholder="*******" aria-label="Recipients username" aria-describedby="basic-addon2">
                         </div>
 
                         <!-- Mostra erro de confirmação de senha -->

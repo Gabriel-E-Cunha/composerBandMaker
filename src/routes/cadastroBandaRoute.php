@@ -23,9 +23,12 @@ return function (App $app) {
         $params = $request->getParsedBody();
 
         $resultSet = $conexao->query('SELECT nome_usuario FROM perfil_banda WHERE nome_usuario = "'. $params['nome_usuario'] .'"')->fetchAll();
+        $_SESSION['inputValues'] = $params;
+        $_SESSION['inputValues']['senha'] = null;
+        $_SESSION['inputValues']['confirmar-senha'] = null;
 
         if (
-            $params['nome_usuario'] == null || $params['cidade'] == null || $params['cep'] == null ||
+            $params['nome_usuario'] == null || $params['senha'] == null || $params['confirmar-senha'] == null  || $params['cidade'] == null || $params['cep'] == null ||
             $params['estado'] == null || $params['email'] == null || $params['rua'] == null || $params['genero'] == null
         ) {
             return $response->withRedirect('/criarBanda/blank-fields');
