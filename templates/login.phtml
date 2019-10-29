@@ -42,6 +42,8 @@
                         <?php
                         if (isset($action) && $action == "user-not-found") {
                             echo '<h5 class="alert alert-danger">Erro: Login ou Senha incorretos!</h5>';
+                        } else if (isset($action) && $action == "blank-fields") {
+                            echo '<h5 class="alert alert-danger">Erro: Login ou Senha não inseridos!</h5>';
                         }
                         ?>
                         <button type="submit" class="btn btn-dark btn-lg w-25">Login</button>

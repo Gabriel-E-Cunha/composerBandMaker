@@ -27,9 +27,13 @@ return function (App $app) {
         $imgName = "profile" . $resultSet[0]['id'] . "." . $imgFileType;
         $target_dir = "public/assets/BandP  rofileImg/";
         $target_file = $target_dir . $imgName;
+        $_SESSION['inputValues'] = $params;
+        $_SESSION['inputValues']['senha'] = null;
+        $_SESSION['inputValues']['confirmar-senha'] = null;
+
 
         if (
-            $params['nome_usuario'] == null || $params['cidade'] == null || $params['cep'] == null ||
+            $params['nome_usuario'] == null || $params['senha'] == null || $params['confirmar-senha'] == null  || $params['cidade'] == null || $params['cep'] == null ||
             $params['estado'] == null || $params['email'] == null || $params['rua'] == null || $params['genero'] == null
         ) {
             return $response->withRedirect('/criarBanda/blank-fields');

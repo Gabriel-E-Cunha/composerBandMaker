@@ -32,6 +32,8 @@ return function (App $app) {
                 $_SESSION['loginID'] = $resultSet[0]['banda_id'];
             }
             return $response->withRedirect('/');
+        } else if($params['user'] == null || $params['senha'] == null){
+            return $response->withRedirect('/login/blank-fields');
         } else {
             return $response->withRedirect('/login/user-not-found');
         }
