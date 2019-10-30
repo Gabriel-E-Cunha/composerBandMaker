@@ -23,6 +23,7 @@ return function (App $app) {
         }if (isset($_GET['genero']) && $_GET['genero'] != "Gênero") {            
             $resultSet01 = $conexao->query('SELECT * FROM perfil_banda WHERE genero LIKE "%' . $_GET['genero'] . '%"')->fetchAll();
             $args['resultado'] = $resultSet01;  
+
         }
 
         // Render index view

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../vendor/fontawesome/css/fontawesome.css">
+    <link rel="stylesheet" href="../vendor/fontawesome/css/brands.css">
+    <link rel="stylesheet" href="../vendor/fontawesome/css/solid.css">
+    <title>Vagas</title>
+</head>
+
+<body>
+    <!--Menu-->
+    <header id="beggining">
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
+            <div class="mx-auto order-0">
+                <a class="navbar-brand mx-auto" href="../index.html">BandMaker</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container my-3 text-center">
+        <?php
+        // PARTE DO USUÁRIO
+        if ($_SESSION['banda'] == false) {
+            echo '<h1>Vagas Disponíveis</h1>';
+            echo '<form class="col-sm-12 col-md-6 mb-2 mx-auto" class="row d-block my-4" method="get" action="/vagas/">
+                <div class="input-group">
+                <input type="text" name="busca" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                <select class="custom-select ml-3 col-3" name="genero">
+                    <option selected>Gênero</option>             
+                ';
+            if (isset($genero)) {
+                foreach ($genero as $key => $value) {
+                    echo '<option>' . $genero[$key]['genero'] . '</option>';
+                }
+            }
+            echo '
+                </select>
+                <select class="custom-select ml-3 col-3" name="vaga">
+                    <option selected>Vaga</option>
+                    <option>Baixista</option>
+                    <option>Guitarrista</option>
+                    <option>Baterista</option>
+                    <option>Vocalista</option>
+                    <option>Tecladista</option>
+                </select>
+                <div class="input-group-prepend">
+                    <button class="btn btn-outline-secondary" type="submit" value="submit" id="button-addon1"><i class="fas fa-search"></i></button>
+                </div>
+                </div>
+                </form>
+            
+                <div class="col-8  mx-auto">
+                <table class="table table-hover mt-4">
+                <tbody>
+                ';
+            if (isset($resultado)) {
+                if ($resultado != null) {
+                    foreach ($resultado as $key => $value) {
+                        echo '<tr>';
+                        echo '<form method="post" action="/vagas/">';
+                        echo '<td>';
+                        echo '<img class="img-fluid" src="../assets/profileImg/' . $resultado[$key]['imagem'] . '" style="max-height: 100px; max-width: 100px;">';
+                        echo '</td>';
+                        echo '<td><h5>';
+                        echo '<a class="text-reset nav-link my-4"  href="/perfil-banda/' . $resultado[$key]['banda_id'] . '">
+                                 ' . $resultado[$key]['nome_usuario'] . '</a>';
+                        echo '</h5></td>';
+                        echo '<input type="hidden" name="perfil_banda" value="' . $resultado[$key]['banda_id'] . '">';
+                        echo '<td><h5>';
+                        echo '<a class="text-reset nav-link my-4" href="/perfil-banda/' . $resultado[$key]['nome_usuario'] . '">
+                                 ' . $resultado[$key]['genero'] . '</a>';
+                        echo '</h5></td>';
+                        echo '<td><h5>';
+                        echo '<a class="text-reset nav-link my-4" href="/perfil-banda/' . $resultado[$key]['vaga'] . '">
+                                 ' . $resultado[$key]['vaga'] . '</a>';
+                        echo '</h5></td>';
+                        echo '<input type="hidden" name="vaga" value="' . $resultado[$key]['id'] . '">';
+                        echo '<td><h5>';
+                        echo '<td>';
+                        echo '<button class="btn btn-secondary my-4" type="submit" value="submit" id="button-addon1">Solicitar Vaga</button>';
+                        echo '</td>';
+                        echo '</form>';
+                        echo '</tr>';
+                    }
+                } else {
+                    echo '<h5 class="alert alert-danger">Vaga indisponível ou digitada incorretamente</h5>';
+                }
+            }
+            echo '
+                </tbody>
+                </table>
+                </div>
+                </div>            
+            ';
+            // PARTE DA BANDA
+        } else {
+            echo '
+                <h1>Solicitações de Vaga</h1>
+                <div class="col-12 mx-auto">
+                
+                <h5><strong>Criar Vagas</strong></h5>                        
+                </div> 
+                <form action="/vagas/" method="post">
+                <div class="col-12 input-group  d-flex justify-content-center mb-3">
+                <select class="custom-select ml-3 col-3" name="vaga">
+                    <option selected>Precisamos de:</option>
+                    <option>Baixista</option>
+                    <option>Guitarrista</option>
+                    <option>Baterista</option>
+                    <option>Vocalista</option>
+                    <option>Tecladista</option>
+                </select> 
+                <button type="submit" class="btn btn-outline-secondary">Postar</button>
+                </div>
+                </form>
+                <div class="col-8  mx-auto">
+                <table class="table table-hover mt-4">
+                ';
+
+
+            if ($resultado != null) {
+                echo '<h5>Solicitações</h5>';
+                foreach ($resultado as $key => $value) {
+                    echo '<tr>';
+                    echo '<form method="post" action="/vagas/">';
+                    echo '<td><h5>';
+                    echo $resultado[$key]['vaga'];
+                    echo '</h5></td>';
+                    echo '<input type="hidden" name="vaga_id" value="' . $resultado[$key]['id'] . '">';
+                    echo '<td><h5>';
+                    echo '<td>';
+                    echo '<button class="btn btn-secondary my-4" type="submit" value="submit" id="button-addon1">Remover solicitação</button>';
+                    echo '</td>';
+                    echo '</form>';
+                    echo '</tr>';
+                }
+            } else {
+                echo '<h5>Sua banda não possui solicitações de vaga</h5>';
+            }
+        }
+        echo '</div>'
+        ?>
+
+</body>
+<script src="../js/jquery-3.3.1.js"></script>
+<script src="../js/app.js"></script>
+<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+
+</html>
