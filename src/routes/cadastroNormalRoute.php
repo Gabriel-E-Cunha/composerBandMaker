@@ -65,8 +65,8 @@ return function (App $app) {
             if($_FILES['img']['tmp_name'] != null) {
                 move_uploaded_file($_FILES["img"]["tmp_name"], $target_file);   
                 $conexao->query('UPDATE perfil_pessoa SET imagem = "'.$imgName.'" WHERE id = ' . $resultSet[0]['id']);
-                session_destroy();
             }
+            
             $_SESSION['banda'] = false;
             $_SESSION['loginID'] = $resultSet[0]['id'];
             
