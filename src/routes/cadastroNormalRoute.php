@@ -23,11 +23,10 @@ return function (App $app) {
         $conexao = $container->get('pdo');
         $params = $request->getParsedBody();
 
-        $resultSet = $conexao->query('SELECT nome_usuario FROM perfil_pessoa WHERE nome_usuario = "'. $params['nome_usuario'] .'"')->fetchAll();
-        $imgFileType = explode('/',$_FILES["img"]["type"])[1];
-        $imgName = "profile".$resultSet[0]['id']."." . $imgFileType;
-        $target_dir = "public/assets/profileImg/";
-        $target_file = $target_dir . $imgName;
+        if($_FILES['img']['tmp_name'] != null) {
+            $imgFileType = explode('/',$_FILES["img"]["type"])[1];
+        }
+        
         $_SESSION['inputValues'] = $params;
         $_SESSION['inputValues']['senha'] = null;
         $_SESSION['inputValues']['confirmar-senha'] = null;
@@ -40,10 +39,17 @@ return function (App $app) {
             return $response->withRedirect('/criarConta/blank-fields');
 
         } else if ($resultSet != null) {
+        //    verifica conta/senha
             return $response->withRedirect('/criarConta/user-alredy-exists');
         } else if ($params['senha'] != $params['confirmar-senha']) {
             return $response->withRedirect('/criarConta/passwords-not-equal');
-        } else if ($_FILES['img']['name'] != null && $imgFileType != "jpeg" && $imgFileType != "png" && $imgFileType != "jpg") {
+        } 
+        // verifica email
+        else if(filter_var($params['email'], FILTER_VALIDATE_EMAIL) == false){
+            return $response->withRedirect('/criarConta/email-not-valid');
+        } 
+        // verifica imagem
+        else if ($_FILES['img']['name'] != null && $imgFileType != "jpeg" && $imgFileType != "png" && $imgFileType != "jpg") {
             return $response->withRedirect('/criarConta/incorrect-format');
         } else if ($_FILES['img']['name'] != null && $_FILES["img"]["size"] > 500000) {
                 return $response->withRedirect('/criarConta/img-too-big');
@@ -55,7 +61,7 @@ return function (App $app) {
             "' . $params['email'] . '", "' . $params['idade'] . '", "' . $params['cidade'] . '", "' . $params['estado'] . '",
             "' . $params['instrumento'] . '", "' . $params['tempo'] . '", "' . $params['telefone'] . '", "' . $params['influencia'] . '","' . $params['cep'] . '", "' . $params['rua'] . '")');
 
-            $resultSet = $conexao->query('SELECT * FROM perfil_pessoa
+            $resultSet = $conexao->query('SELECT id FROM perfil_pessoa
             WHERE nome_usuario = "' . $params['nome_usuario'] . '"')->fetchAll();
 
             $conexao->query('INSERT INTO dado_login (nome_usuario, senha, pessoa_id)
@@ -63,6 +69,9 @@ return function (App $app) {
 
             //Tratamento da imagem
             if($_FILES['img']['tmp_name'] != null) {
+                $imgName = "profile".$resultSet[0]['id']."." . $imgFileType;
+                $target_dir = "public/assets/profileImg/";
+                $target_file = $target_dir . $imgName;
                 move_uploaded_file($_FILES["img"]["tmp_name"], $target_file);   
                 $conexao->query('UPDATE perfil_pessoa SET imagem = "'.$imgName.'" WHERE id = ' . $resultSet[0]['id']);
             }
