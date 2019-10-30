@@ -24,7 +24,7 @@
 
     <div class="container my-3 text-center">
         <?php
-        // PARTE DO USUÁRIO
+        // Cria tela se for uma pessoa
         if ($_SESSION['banda'] == false) {
             echo '<h1>Vagas Disponíveis</h1>';
             echo '<form class="col-sm-12 col-md-6 mb-2 mx-auto" class="row d-block my-4" method="get" action="/vagas/">
@@ -97,7 +97,7 @@
                 </div>
                 </div>            
             ';
-            // PARTE DA BANDA
+            // Cria tela se for uma banda
         } else {
             echo '
                 <h1>Solicitações de Vaga</h1>

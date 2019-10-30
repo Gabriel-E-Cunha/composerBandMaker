@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../vendor/fontawesome/css/fontawesome.css">
+    <link rel="stylesheet" href="../vendor/fontawesome/css/brands.css">
+    <link rel="stylesheet" href="../vendor/fontawesome/css/solid.css">
+    <title>Vagas</title>
+</head>
+
+<body>
+    <!--Menu-->
+    <header id="beggining">
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
+            <div class="mx-auto order-0">
+                <a class="navbar-brand mx-auto" href="../index.html">BandMaker</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container my-3 text-center">
+        <h1 class="text-muted">Notificações</h1>
+        <?php
+        if ($notificacoes != null) {
+            echo '
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Descrição</th>
+                            <th scope="col">Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody>';
+                    foreach ($notificacoes as $key => $value) {
+                        echo '<tr>';
+                            echo '<td>'. $notificacoes[$key]['titulo'] .'</td>';
+                            echo '<td>'. $notificacoes[$key]['descricao'] .'</td>';
+                            echo '<td><div class="btn-group"><button class="btn btn-success">Aceitar</button><button class="btn btn-danger">Recusar</button></div></td>';
+                        echo '</tr>';
+                    }
+               
+               echo '</tbody>
+            </table>
+                ';
+        } else {
+            echo '<h5>Você não tem nenhuma notificação!</h5>';
+        }
+        ?>
+    
+    </div>
+</body>
+<script src="../js/jquery-3.3.1.js"></script>
+<script src="../js/app.js"></script>
+<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+
+</html>
