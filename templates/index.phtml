@@ -42,9 +42,13 @@
                     <!-- Cria o botão de evento/vaga caso esteja logado -->
                     <?php
                     if (isset($perfil)) {
-                        echo '<li class="nav-item bd-highlight">';
-                        echo '<a class="nav-link" href="/eventos/">Eventos</a>';
-                        echo '</li>';
+                        if($banda || isset($perfil[0]['banda_id'])) {
+                            echo '<li class="nav-item bd-highlight">';
+                            echo '<a class="nav-link" href="/eventos/">Eventos</a>';
+                            echo '</li>';
+                        }
+                    }
+                    if(isset($perfil)) {
                         echo '<li class="nav-item bd-highlight">';
                         echo '<a class="nav-link" href="/vagas/">Vagas</a>';
                         echo '</li>';
