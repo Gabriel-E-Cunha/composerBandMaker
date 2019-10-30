@@ -32,8 +32,6 @@ return function (App $app) {
         $resultSet = $conexao->query('SELECT * FROM perfil_banda WHERE nome_usuario = "' . $args['action'] . '"')->fetchAll();
         $args['perfil'] = $resultSet;
 
-        $conexao->query('INSERT INTO vaga (vaga,banda_id) VALUES("' . $_POST['vagas'] . '",' . $resultSet[0]['id'] . ') ');
-
         return $response->withRedirect('/perfil-banda/'.$resultSet[0]['nome_usuario']);       
     });
 };

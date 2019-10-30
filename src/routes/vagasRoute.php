@@ -15,34 +15,28 @@ return function (App $app) {
 
         if ($_SESSION['banda'] == false) {
 
-            $resultSet = $conexao->query('SELECT banda_id FROM vaga INNER JOIN
-            perfil_banda WHERE vaga.banda_id = perfil_banda.id')->fetchAll();
-
             if (isset($_GET['busca'])) {
-                $resultSet01 = $conexao->query('SELECT * FROM perfil_banda INNER JOIN
+                $resultSet = $conexao->query('SELECT * FROM perfil_banda INNER JOIN
                 vaga WHERE vaga.banda_id = perfil_banda.id AND
-                perfil_banda.nome_usuario LIKE "%' . $_GET['busca'] . '%"')->fetchAll();
-                $args['resultado'] = $resultSet01;
+                perfil_banda.nome_usuario LIKE "%' . $_GET['busca'] . '%"  AND vaga.id NOT IN
+                (SELECT vaga_id FROM pedido WHERE usuario = '. $_SESSION['loginID'] .')')->fetchAll();
+                $args['resultado'] = $resultSet;
             }
-            if (isset($_GET['genero']) && $_GET['genero'] != "Gênero") {
-                $resultSet01 = $conexao->query('SELECT * FROM perfil_banda INNER JOIN
-                vaga WHERE vaga.banda_id = perfil_banda.id AND perfil_banda.genero ="' . $_GET['genero'] . '"')->fetchAll();
-                $args['resultado'] = $resultSet01;
+            if (isset($_GET['busca']) && $_GET['genero'] != "Gênero") {
+                $resultSet = $conexao->query('SELECT * FROM perfil_banda INNER JOIN
+                vaga WHERE vaga.banda_id = perfil_banda.id AND perfil_banda.genero ="' . $_GET['genero'] . '" AND vaga.id NOT IN
+                (SELECT vaga_id FROM pedido WHERE usuario = '. $_SESSION['loginID'] .')')->fetchAll();
+                $args['resultado'] = $resultSet;
             }
-            if (isset($_GET['vaga']) && $_GET['vaga'] != "Vaga") {
-                $resultSet01 = $conexao->query('SELECT * FROM perfil_banda INNER JOIN
-                vaga WHERE vaga.banda_id = perfil_banda.id AND vaga.vaga = "' . $_GET['vaga'] . '"')->fetchAll();
-                $args['resultado'] = $resultSet01;
+            if (isset($_GET['busca']) && $_GET['vaga'] != "Vaga") {
+                $resultSet = $conexao->query('SELECT * FROM perfil_banda INNER JOIN
+                vaga WHERE vaga.banda_id = perfil_banda.id AND vaga.vaga = "' . $_GET['vaga'] . '" AND vaga.id NOT IN
+                (SELECT vaga_id FROM pedido WHERE usuario = '. $_SESSION['loginID'] .')')->fetchAll();
+                $args['resultado'] = $resultSet;
             }
         }else {            
-            $resultSet = $conexao->query('SELECT * FROM vaga
-            WHERE vaga.banda_id = '.$_SESSION['banda'])->fetchAll();
+            $resultSet = $conexao->query('SELECT * FROM vaga WHERE vaga.banda_id = '.$_SESSION['loginID'])->fetchAll();
             $args['resultado'] = $resultSet;
-
-            $resultSet = $conexao->query('SELECT * FROM perfil_pessoa INNER JOIN
-            pedido WHERE pedido.usuario = perfil_pessoa.id')->fetchAll();
-            $args['usuario'] = $resultSet;
-
         }
 
 
@@ -60,9 +54,17 @@ return function (App $app) {
             $resultSet = $conexao->query('SELECT * FROM vaga
         WHERE id = "' . $params['vaga'] . '"')->fetchAll();
 
-            $conexao->query('INSERT INTO pedido(usuario,vaga,banda_destino)
+            $conexao->query('INSERT INTO pedido(usuario,vaga_id,banda_destino)
         VALUES(' . $_SESSION['loginID'] . ',' . $resultSet[0]['id'] . ',' . $resultSet[0]['banda_id'] . ')');
-        } else { }
+        } else {
+            if($params['vaga'] == null) {
+                $conexao->query('DELETE FROM pedido WHERE vaga_id = '.$params['vaga_id'])->fetchAll();
+                $conexao->query('DELETE FROM vaga WHERE id = '.$params['vaga_id'])->fetchAll();
+            } else {
+                $conexao->query('INSERT INTO vaga(vaga, banda_id) VALUES("'. $params['vaga'] .'",'.$_SESSION['loginID'].')')->fetchAll();
+            }
+            return $response->withRedirect('/vagas/');
+        }
 
         // Render index view
         return $container->get('renderer')->render($response, 'vagas.phtml', $args);
