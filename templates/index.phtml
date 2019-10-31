@@ -39,7 +39,7 @@
                     <li class="nav-item bd-highlight">
                         <a class="nav-link" href="#sb">Saiba Mais</a>
                     </li>
-                    <!-- Cria o botão de evento/vaga caso esteja logado -->
+                    <!-- Cria botões que aparecem quando logado -->
                     <?php
                     if (isset($perfil)) {
                         if($banda || isset($perfil[0]['banda_id'])) {
@@ -47,19 +47,17 @@
                             echo '<a class="nav-link" href="/eventos/">Eventos</a>';
                             echo '</li>';
                         }
-                    }
-                    if(isset($perfil)) {
-                        echo '<li class="nav-item bd-highlight">';
-                        echo '<a class="nav-link" href="/vagas/">Vagas</a>';
-                        echo '</li>';
+                   
+                        if($banda || !isset($perfil[0]['banda_id'])) {
+                            echo '<li class="nav-item bd-highlight">';
+                            echo '<a class="nav-link" href="/vagas/">Vagas</a>';
+                            echo '</li>';
+                        }
+                  
                         echo '<li class="nav-item bd-highlight">';
                         echo '<a class="nav-link" href="/notificacoes/">Notificações</a>';
                         echo '</li>';
-                    }
-                    ?>
-                    <!-- Cria o botão sair caso esteja logado -->
-                    <?php
-                    if (isset($perfil)) {
+                   
                         echo '<li class="nav-item bd-highlight">';
                         echo '<a class="nav-link" href="/logout">Sair</a>';
                         echo '</li>';
