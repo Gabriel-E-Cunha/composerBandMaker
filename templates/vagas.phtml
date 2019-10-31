@@ -128,7 +128,7 @@
                 foreach ($resultado as $key => $value) {
                     echo '<tr>';
                     echo '<form method="post" action="/vagas/">';
-                    echo '<td><h5>';
+                    echo '<td><h5 class="my-4">';
                     echo $resultado[$key]['vaga'];
                     echo '</h5></td>';
                     echo '<input type="hidden" name="vaga_id" value="' . $resultado[$key]['id'] . '">';
