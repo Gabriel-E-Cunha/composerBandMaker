@@ -34,7 +34,7 @@ return function (App $app) {
         if (
             $params['nome_usuario'] == null || $params['senha'] == null || $params['confirmar-senha'] == null || $params['nome'] == null || $params['cidade'] == null || $params['cep'] == null ||
             $params['sobrenome'] == null || $params['estado'] == null || $params['email'] == null || $params['idade'] == null ||
-            $params['tempo'] == null || $params['email'] == null || $params['instrumento'] == "---"
+            $params['tempo'] == null || $params['email'] == null || $params['instrumento'] == "---"|| $params['influencia'] == null
         ) {
             return $response->withRedirect('/criarConta/blank-fields');
 
