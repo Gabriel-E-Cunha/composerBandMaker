@@ -43,11 +43,15 @@
                             if($notificacoes[$key]['titulo'] == 'Convite') {
                           echo '<td>
                                 <div class="btn-group">
-                                <form>
-                                <button class="btn btn-success">Aceitar</button>
+                                <form method="post" action="/notificacoes/">
+                                <input type="hidden" name="pedido_id" value="' . $notificacoes[$key]['pedido_id'] . '">
+                                <input type="hidden" name="botao" value="aceitar">
+                                <button class="btn btn-success" type="submit">Aceitar</button>
                                 </form>
-                                <form>
-                                <button class="btn btn-danger">Recusar</button>
+                                <form method="post" action="/notificacoes/">
+                                <input type="hidden" name="botao" value="recusar">
+                                <input type="hidden" name="pedido_id" value="' . $notificacoes[$key]['pedido_id'] . '">
+                                <button class="btn btn-danger" type="submit">Recusar</button>
                                 </form>
                                 </div>
                                 </td>';
