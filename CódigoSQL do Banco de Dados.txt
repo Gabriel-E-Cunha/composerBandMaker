@@ -57,10 +57,13 @@ CREATE TABLE IF NOT EXISTS `notificacao` (
   `descricao` varchar(100) NOT NULL,
   `banda_id` int(10) unsigned DEFAULT NULL,
   `pessoa_id` int(10) unsigned DEFAULT NULL,
+  `pedido_id` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `banda_id_FK2` (`banda_id`),
   KEY `pessoa_id_FK1` (`pessoa_id`),
+  KEY `pedido_id_FK` (`pedido_id`),
   CONSTRAINT `banda_id_FK2` FOREIGN KEY (`banda_id`) REFERENCES `perfil_banda` (`id`),
+  CONSTRAINT `pedido_id_FK` FOREIGN KEY (`pedido_id`) REFERENCES `pedido` (`id`),
   CONSTRAINT `pessoa_id_FK1` FOREIGN KEY (`pessoa_id`) REFERENCES `perfil_pessoa` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
