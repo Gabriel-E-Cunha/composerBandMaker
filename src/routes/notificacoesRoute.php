@@ -22,4 +22,13 @@ return function (App $app) {
         // Render index view
         return $container->get('renderer')->render($response, 'notificacoes.phtml', $args);
     });
+    $app->post('/notificacoes/', function (Request $request, Response $response, array $args) use ($container) {
+        // Sample log message
+        $container->get('logger')->info("Slim-Skeleton '/notificacoes/' route");
+
+        
+
+        // Render index view
+        return $container->get('renderer')->render($response, 'notificacoes.phtml', $args);
+    });
 };

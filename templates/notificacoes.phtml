@@ -40,7 +40,18 @@
                         echo '<tr>';
                             echo '<td>'. $notificacoes[$key]['titulo'] .'</td>';
                             echo '<td>'. $notificacoes[$key]['descricao'] .'</td>';
-                            echo '<td><div class="btn-group"><button class="btn btn-success">Aceitar</button><button class="btn btn-danger">Recusar</button></div></td>';
+                            if($notificacoes[$key]['titulo'] == 'Convite') {
+                          echo '<td>
+                                <div class="btn-group">
+                                <form>
+                                <button class="btn btn-success">Aceitar</button>
+                                </form>
+                                <form>
+                                <button class="btn btn-danger">Recusar</button>
+                                </form>
+                                </div>
+                                </td>';
+                            }
                         echo '</tr>';
                     }
                
