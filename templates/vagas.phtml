@@ -31,8 +31,7 @@
                 <div class="input-group">
                 <input type="text" name="busca" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
                 <select class="custom-select ml-3 col-3" name="genero">
-                    <option selected>Gênero</option>             
-                ';
+                    <option selected>Gênero</option>';
             if (isset($genero)) {
                 foreach ($genero as $key => $value) {
                     echo '<option>' . $genero[$key]['genero'] . '</option>';

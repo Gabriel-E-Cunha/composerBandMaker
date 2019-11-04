@@ -13,6 +13,10 @@ return function (App $app) {
 
         $conexao = $container->get('pdo');
 
+        $resultSet = $conexao->query('SELECT genero FROM perfil_banda')->fetchAll();       
+        $args['genero'] = $resultSet;
+
+
         if ($_SESSION['banda'] == false) {
 
             if (isset($_GET['busca'])) {
