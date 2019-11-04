@@ -1,6 +1,6 @@
 ﻿-- --------------------------------------------------------
 -- Servidor:                     127.0.0.1
--- Versão do servidor:           10.3.16-MariaDB - mariadb.org binary distribution
+-- Versão do servidor:           10.4.6-MariaDB - mariadb.org binary distribution
 -- OS do Servidor:               Win64
 -- HeidiSQL Versão:              10.2.0.5599
 -- --------------------------------------------------------
@@ -45,6 +45,44 @@ CREATE TABLE IF NOT EXISTS `evento` (
   PRIMARY KEY (`id`),
   KEY `banda_id_FK` (`banda_id`),
   CONSTRAINT `banda_id_FK` FOREIGN KEY (`banda_id`) REFERENCES `perfil_banda` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+-- Exportação de dados foi desmarcado.
+
+-- Copiando estrutura para tabela bandmaker.notificacao
+DROP TABLE IF EXISTS `notificacao`;
+CREATE TABLE IF NOT EXISTS `notificacao` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `titulo` varchar(20) NOT NULL,
+  `descricao` varchar(100) NOT NULL,
+  `banda_id` int(10) unsigned DEFAULT NULL,
+  `pessoa_id` int(10) unsigned DEFAULT NULL,
+  `pedido_id` int(10) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `banda_id_FK2` (`banda_id`),
+  KEY `pessoa_id_FK1` (`pessoa_id`),
+  KEY `pedido_id_FK` (`pedido_id`),
+  CONSTRAINT `banda_id_FK2` FOREIGN KEY (`banda_id`) REFERENCES `perfil_banda` (`id`),
+  CONSTRAINT `pedido_id_FK` FOREIGN KEY (`pedido_id`) REFERENCES `pedido` (`id`),
+  CONSTRAINT `pessoa_id_FK1` FOREIGN KEY (`pessoa_id`) REFERENCES `perfil_pessoa` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+-- Exportação de dados foi desmarcado.
+
+-- Copiando estrutura para tabela bandmaker.pedido
+DROP TABLE IF EXISTS `pedido`;
+CREATE TABLE IF NOT EXISTS `pedido` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `banda_destino` int(10) unsigned NOT NULL,
+  `usuario` int(10) unsigned NOT NULL,
+  `vaga_id` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `banda_destino_FK` (`banda_destino`),
+  KEY `usuario_FK` (`usuario`),
+  KEY `vaga_id_FK` (`vaga_id`),
+  CONSTRAINT `banda_destino_FK` FOREIGN KEY (`banda_destino`) REFERENCES `perfil_banda` (`id`),
+  CONSTRAINT `usuario_FK` FOREIGN KEY (`usuario`) REFERENCES `perfil_pessoa` (`id`),
+  CONSTRAINT `vaga_id_FK` FOREIGN KEY (`vaga_id`) REFERENCES `vaga` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 -- Exportação de dados foi desmarcado.
@@ -96,7 +134,19 @@ CREATE TABLE IF NOT EXISTS `perfil_pessoa` (
 
 -- Exportação de dados foi desmarcado.
 
+-- Copiando estrutura para tabela bandmaker.vaga
+DROP TABLE IF EXISTS `vaga`;
+CREATE TABLE IF NOT EXISTS `vaga` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `vaga` varchar(50) NOT NULL,
+  `banda_id` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `banda_id_FK1` (`banda_id`),
+  CONSTRAINT `banda_id_FK1` FOREIGN KEY (`banda_id`) REFERENCES `perfil_banda` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+-- Exportação de dados foi desmarcado.
+
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-
