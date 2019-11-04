@@ -27,9 +27,8 @@
                 <div class="row">
                     <div class="col-6">
                         <?php
-                        echo '<img class="img-fluid mx-auto w-100 d-block" src="../assets/bandProfileImg/' . $perfil[0]['imagem'] . '">'
+                        echo '<img class src="../assets/BandProfileImg/' . $perfil[0]['imagem'] . '" width="185" height="145">';
                         ?>
-
                     </div>
                     <div class="col-6 text-center">
                         <?php
@@ -47,7 +46,6 @@
                         <?php
                         echo '<p>' . $perfil[0]['influencias'] . '</p>';
                         ?>
-
                     </article>
                     <h5>Sobre a Banda</h5>
                     <article>
@@ -55,7 +53,6 @@
                         echo '<p>' . $perfil[0]['descricao'] . '</p>';
                         ?>
                     </article>
-
                     <h5><strong>Vagas Disponíveis</strong></h5>                        
 
                 </div>
@@ -65,8 +62,8 @@
                     <?php
                     foreach ($integrante as $key => $value) {
                         echo '<a class="text-reset nav-link" href="/perfil/' . $integrante[$key]['nome_usuario'] . '"><div class="card mb-3 py-1"> <div class="card-body"> <div class="row"> <div class="col-2">';
-                        echo '<img class="img-fluid mx-auto w-100 d-block" src="../assets/img/' . $integrante[$key]['imagem'] . '" alt="">';
-                        echo ' </div> <div class="col-6 my-4"> <h6> ' . $integrante[$key]['nome_usuario'] . ' - ' . $integrante[$key]['instrumento'] . '</h6> </div> </div> </div> </div></a>';
+                        echo '<img class src="../assets/profileImg/' . $integrante[0]['imagem'] . '" width="100" height="100">';
+                        echo ' </div> <div class="col-6 my-auto mx-auto"> <h6> ' . $integrante[$key]['nome_usuario'] . ' - ' . $integrante[$key]['instrumento'] . '</h6> </div> </div> </div> </div></a>';
                     }
                     ?>
                 </div>

@@ -44,7 +44,6 @@
                 ?>
             </div>
 
-
         </div>
 
         <div class="row mt-6 pt-5">
@@ -67,11 +66,19 @@
                 <?php
                 if ($banda == null) {
                     $banda[0]['nome_usuario'] = "Nenhuma";
+                    echo '<div class="card">';
+                    echo '<h4 class="card-body">Banda: ' . $banda[0]['nome_usuario'] . '';
+                    echo '</h4>';                 
+                    echo '</div>';
+                }else {
+                    echo '<div class="card">';
+                    echo '<h4 class="card-body">Banda: ' . $banda[0]['nome_usuario'] . '';
+                    echo '<form method="post" action="/perfil/">';
+                    echo '<button class="btn btn-danger" type="submit">Sair da banda</button>';
+                    echo '</form>';
+                    echo '</h4>';                 
+                    echo '</div>';
                 }
-                echo '<div class="card">';
-                echo '<h4 class="card-body">Banda: ' . $banda[0]['nome_usuario'] . '</h4>';
-                echo '</div>';
-
                 ?>
             </div>
         </div>
