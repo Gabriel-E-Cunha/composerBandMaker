@@ -13,6 +13,10 @@ return function (App $app) {
         $container->get('logger')->info("Slim-Skeleton '/eventos/' route");        
         $conexao = $container->get('pdo');
         
+        //Caso o usuário tenha saído da tela de cadastro, apaga todos os inputs salvos.
+        unset($_SESSION['bandValues']);
+        unset($_SESSION['personValues']);
+
             if($_SESSION['banda']) {
                 $args['banda'] = true;
                 $resultSet = $conexao->query('SELECT * FROM perfil_banda WHERE id = ' . $_SESSION['loginID'])->fetchAll();

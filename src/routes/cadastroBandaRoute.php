@@ -24,10 +24,12 @@ return function (App $app) {
 
         $imgFileType = explode('/', $_FILES["img"]["type"])[1];
         
-        $_SESSION['inputValues'] = $params;
-        $_SESSION['inputValues']['senha'] = null;
-        $_SESSION['inputValues']['confirmar-senha'] = null;
+        $_SESSION['bandValues'] = $params;
+        $_SESSION['bandValues']['senha'] = null;
+        $_SESSION['bandValues']['confirmar-senha'] = null;
 
+        //Faz consulta no banco para verificar se existe algum nome_usuario igual ao que está sendo cadastrado
+        $resultSet = $conexao->query('SELECT nome_usuario FROM perfil_banda WHERE nome_usuario = "'.$params['nome_usuario'].'"')->fetchAll();
 
         if (
             $params['nome_usuario'] == null || $params['senha'] == null || $params['confirmar-senha'] == null  || $params['cidade'] == null || $params['cep'] == null ||
@@ -75,9 +77,9 @@ return function (App $app) {
             }
             $_SESSION['banda'] = true;
             $_SESSION['loginID'] = $resultSet[0]['id'];
+            unset($_SESSION['bandValues']);
+
             return $response->withRedirect('/');
         }
-        // Render index view
-        return $container->get('renderer')->render($response, 'perfilBanda.phtml', $args);
     });
 };
