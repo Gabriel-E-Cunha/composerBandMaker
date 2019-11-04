@@ -31,8 +31,7 @@
                 <div class="input-group">
                 <input type="text" name="busca" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
                 <select class="custom-select ml-3 col-3" name="genero">
-                    <option selected>Gênero</option>             
-                ';
+                    <option selected>Gênero</option>';
             if (isset($genero)) {
                 foreach ($genero as $key => $value) {
                     echo '<option>' . $genero[$key]['genero'] . '</option>';
@@ -128,7 +127,7 @@
                 foreach ($resultado as $key => $value) {
                     echo '<tr>';
                     echo '<form method="post" action="/vagas/">';
-                    echo '<td><h5>';
+                    echo '<td><h5 class="my-4">';
                     echo $resultado[$key]['vaga'];
                     echo '</h5></td>';
                     echo '<input type="hidden" name="vaga_id" value="' . $resultado[$key]['id'] . '">';
