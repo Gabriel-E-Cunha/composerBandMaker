@@ -55,6 +55,16 @@
                                 </form>
                                 </div>
                                 </td>';
+                            } else  if($notificacoes[$key]['titulo'] == 'Mensagem'){
+                                echo '
+                                <td>
+                                <div class="btn-group">
+                                <form method="post" action="/notificacoes/">
+                                <input type="hidden" name="notificacao_id" value="' . $notificacoes[$key]['id'] . '">
+                                <input type="hidden" name="botao" value="mensagem">
+                                <button class="btn btn-danger" type="submit">OK</button>
+                                </form>
+                                ';
                             }
                         echo '</tr>';
                     }
