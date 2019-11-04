@@ -73,16 +73,10 @@ return function (App $app) {
                 $conexao->query('UPDATE perfil_banda SET imagem = "' . $imgName . '" WHERE id = ' . $resultSet[0]['id']);
 
             }
-
-
-
             $_SESSION['banda'] = true;
             $_SESSION['loginID'] = $resultSet[0]['id'];
             return $response->withRedirect('/');
         }
-
-
-
         // Render index view
         return $container->get('renderer')->render($response, 'perfilBanda.phtml', $args);
     });
