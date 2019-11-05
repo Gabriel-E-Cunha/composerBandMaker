@@ -13,9 +13,21 @@ return function (App $app) {
 
         $conexao = $container->get('pdo');
 
-        $resultSet = $conexao->query('SELECT * FROM perfil_banda WHERE nome_usuario = "' . $args['action'] . '"')->fetchAll();
-        $args['perfil'] = $resultSet;
+        //Caso logado, envia info para Navbar de logado
+        if (isset($_SESSION['loginID'])) {
+            if($_SESSION['banda']) {
+                $args['banda'] = true;
+                $resultSet = $conexao->query('SELECT * FROM perfil_banda WHERE id = ' . $_SESSION['loginID'])->fetchAll();
+            } else {
+                $args['banda'] = false;
+                $resultSet = $conexao->query('SELECT * FROM perfil_pessoa WHERE id = ' . $_SESSION['loginID'])->fetchAll(); 
+            }
+            $args['perfil'] = $resultSet;
+        }
 
+        //Envia informações do perfil do action para o front construir o perfil
+        $resultSet = $conexao->query('SELECT * FROM perfil_banda WHERE nome_usuario = "' . $args['action'] . '"')->fetchAll();
+        $args['perfilExibido'] = $resultSet;
         $resultSet = $conexao->query('SELECT * FROM perfil_pessoa WHERE banda_id = ' . $resultSet[0]['id'])->fetchAll();
         $args['integrante']  = $resultSet;
 

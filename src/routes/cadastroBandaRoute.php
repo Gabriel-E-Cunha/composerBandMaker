@@ -45,8 +45,8 @@ return function (App $app) {
         } else if(filter_var($params['email'], FILTER_VALIDATE_EMAIL) == false){
             return $response->withRedirect('/criarBanda/email-not-valid');
         }
-
-        else if ($imgFileType != "jpeg" && $imgFileType != "png" && $imgFileType != "jpg") {
+        // verifica imagem
+        else if ($_FILES['img']['name'] != null && $imgFileType != "jpeg" && $imgFileType != "png" && $imgFileType != "jpg") {
             return $response->withRedirect('/criarBanda/incorrect-format');
         } else if ($_FILES["img"]["size"] > 500000) {
             return $response->withRedirect('/criarBanda/img-too-big');

@@ -14,13 +14,61 @@
 
 <body>
     <!--Menu-->
-    <header id="beggining">
-        <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
-            <div class="mx-auto order-0">
-                <a class="navbar-brand mx-auto" href="../index.html">BandMaker</a>
-            </div>
-        </nav>
-    </header>
+    <?php
+    if (isset($_SESSION['loginID'])) {
+        echo '
+        <header id="beggining">
+
+        <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark p-0">
+            <a class="navbar-brand ml-4" href="/">BandMaker</a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse content-center" id="navbarText">
+                <ul class="navbar-nav d-flex bd-highlight">
+                    <li class="nav-item active">';
+        if ($banda) {
+            echo '<a class="nav-link" href="/perfil-banda/' . $perfil[0]['nome_usuario'] . '">Banda: ' . $perfil[0]['nome_usuario'] . '<span class="sr-only">(current)</span></a>';
+        } else {
+            echo '<a class="nav-link" href="/perfil/' . $perfil[0]['nome_usuario'] . '">' . $perfil[0]['nome_usuario'] . '<span class="sr-only">(current)</span></a>';
+        }
+
+        echo '</li>';
+
+        if ($banda || isset($perfil[0]['banda_id'])) {
+            echo '<li class="nav-item bd-highlight">';
+            echo '<a class="nav-link" href="/eventos/">Eventos</a>';
+            echo '</li>';
+        }
+        if ($banda || !isset($perfil[0]['banda_id'])) {
+            echo '<li class="nav-item bd-highlight">';
+            echo '<a class="nav-link" href="/vagas/">Vagas</a>';
+            echo '</li>';
+        }
+        echo '<li class="nav-item bd-highlight">';
+        echo '<a class="nav-link" href="/notificacoes/">Notificações</a>';
+        echo '</li>';
+
+        echo '<li class="nav-item bd-highlight">';
+        echo '<a class="nav-link" href="/logout">Deslogar</a>';
+        echo '</li>';
+        echo '</ul>
+                    </div>
+                </nav>
+            </header>';
+    } else {
+        echo '
+        <header id="beggining">
+            <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
+                <div class="mx-auto order-0">
+                    <a class="navbar-brand mx-auto" href="/">BandMaker</a>
+                </div>
+            </nav>
+        </header>
+        ';
+    }
+    ?>
 
     <div class="container my-3 text-center">
         <h1>Buscar Bandas</h1>
@@ -52,7 +100,7 @@
                             foreach ($resultado as $key => $value) {
                                 echo '<tr>';
                                 echo '<td>';
-                                echo '<img class="img-fluid" src="../assets/profileImg/' . $resultado[$key]['imagem'] . '" style="max-height: 100px; max-width: 100px;">';
+                                echo '<img class="img-fluid" src="../assets/BandProfileImg/' . $resultado[$key]['imagem'] . '" style="max-height: 100px; max-width: 100px;">';
                                 echo '</td>';
                                 echo '<td><h5>';                                
                                 echo '<a class="text-reset nav-link my-4" href="/perfil-banda/' . $resultado[$key]['nome_usuario'] . '">

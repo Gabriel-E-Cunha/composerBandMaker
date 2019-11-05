@@ -15,8 +15,8 @@ return function (App $app) {
 
 
         $args['banda'] = true;
-        $resultSet = $conexao->query('SELECT * FROM perfil_banda WHERE id = ' . $_SESSION['loginID'])->fetchAll();
-        $args['eventos'] = $conexao->query('SELECT * FROM evento WHERE banda_id = ' . $resultSet[0]['id'])->fetchAll();
+        $resultSet = $conexao->query('SELECT id,nome_usuario FROM perfil_banda WHERE id = ' . $_SESSION['loginID'])->fetchAll();
+        $args['eventos'] = $conexao->query('SELECT nome_evento,descricao FROM evento WHERE banda_id = ' . $resultSet[0]['id'])->fetchAll();
         $args['nome_banda'] = $resultSet[0]['nome_usuario'];
         $args['perfil'] = $resultSet;
 

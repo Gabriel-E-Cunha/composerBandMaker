@@ -11,13 +11,62 @@
 
 <body>
     <!--Menu-->
-    <header id="beggining">
-        <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
-            <div class="mx-auto order-0">
-                <a class="navbar-brand mx-auto" href="/">BandMaker</a>
-            </div>
-        </nav>
-    </header>
+    <?php
+    if (isset($_SESSION['loginID'])) {
+        echo '
+        <header id="beggining">
+
+        <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark p-0">
+            <a class="navbar-brand ml-4" href="/">BandMaker</a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse content-center" id="navbarText">
+                <ul class="navbar-nav d-flex bd-highlight">
+                    <li class="nav-item active">';
+        if ($banda) {
+            echo '<a class="nav-link" href="/perfil-banda/' . $perfil[0]['nome_usuario'] . '">Banda: ' . $perfil[0]['nome_usuario'] . '<span class="sr-only">(current)</span></a>';
+        } else {
+            echo '<a class="nav-link" href="/perfil/' . $perfil[0]['nome_usuario'] . '">' . $perfil[0]['nome_usuario'] . '<span class="sr-only">(current)</span></a>';
+        }
+
+        echo '</li>';
+
+        if ($banda || isset($perfil[0]['banda_id'])) {
+            echo '<li class="nav-item bd-highlight">';
+            echo '<a class="nav-link" href="/eventos/">Eventos</a>';
+            echo '</li>';
+        }
+        if ($banda || !isset($perfil[0]['banda_id'])) {
+            echo '<li class="nav-item bd-highlight">';
+            echo '<a class="nav-link" href="/vagas/">Vagas</a>';
+            echo '</li>';
+        }
+        echo '<li class="nav-item bd-highlight">';
+        echo '<a class="nav-link" href="/notificacoes/">Notificações</a>';
+        echo '</li>';
+
+        echo '<li class="nav-item bd-highlight">';
+        echo '<a class="nav-link" href="/logout">Deslogar</a>';
+        echo '</li>';
+        echo '</ul>
+                    </div>
+                </nav>
+            </header>';
+    } else {
+        echo '
+        <header id="beggining">
+            <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
+                <div class="mx-auto order-0">
+                    <a class="navbar-brand mx-auto" href="/">BandMaker</a>
+                </div>
+            </nav>
+        </header>
+        ';
+    }
+    ?>
+
 
     <div class="container my-5">
         <section>
@@ -27,13 +76,13 @@
                 <div class="row">
                     <div class="col-6">
                         <?php
-                        echo '<img class src="../assets/BandProfileImg/' . $perfil[0]['imagem'] . '" width="185" height="145">';
+                        echo '<img class src="../assets/BandProfileImg/' . $perfilExibido[0]['imagem'] . '" width="185" height="145">';
                         ?>
                     </div>
                     <div class="col-6 text-center">
                         <?php
-                        echo '<h3>' . $perfil[0]['nome_usuario'] . '</h3>';
-                        echo '<h4 class="mt-4">' . $perfil[0]['genero'] . '</h4>'
+                        echo '<h3>' . $perfilExibido[0]['nome_usuario'] . '</h3>';
+                        echo '<h4 class="mt-4">' . $perfilExibido[0]['genero'] . '</h4>'
                         ?>
                     </div>
                 </div>
@@ -44,16 +93,16 @@
                     <h5>Influências</h5>
                     <article>
                         <?php
-                        echo '<p>' . $perfil[0]['influencias'] . '</p>';
+                        echo '<p>' . $perfilExibido[0]['influencias'] . '</p>';
                         ?>
                     </article>
                     <h5>Sobre a Banda</h5>
                     <article>
-                        <?php 
-                        echo '<p>' . $perfil[0]['descricao'] . '</p>';
+                        <?php
+                        echo '<p>' . $perfilExibido[0]['descricao'] . '</p>';
                         ?>
                     </article>
-                    <h5><strong>Vagas Disponíveis</strong></h5>                        
+                    <h5><strong>Vagas Disponíveis</strong></h5>
 
                 </div>
 

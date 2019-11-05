@@ -17,15 +17,16 @@ return function (App $app) {
         unset($_SESSION['bandValues']);
         unset($_SESSION['personValues']);
 
+            //Envia as info para o header e para a table de eventos
             if($_SESSION['banda']) {
                 $args['banda'] = true;
-                $resultSet = $conexao->query('SELECT * FROM perfil_banda WHERE id = ' . $_SESSION['loginID'])->fetchAll();
-                $args['eventos'] = $conexao->query('SELECT * FROM evento WHERE banda_id = ' . $resultSet[0]['id'])->fetchAll();
+                $resultSet = $conexao->query('SELECT id,nome_usuario FROM perfil_banda WHERE id = ' . $_SESSION['loginID'])->fetchAll();
+                $args['eventos'] = $conexao->query('SELECT nome_evento,descricao FROM evento WHERE banda_id = ' . $resultSet[0]['id'])->fetchAll();
                 $args['nome_banda'] = $resultSet[0]['nome_usuario'];
             } else {
                 $args['banda'] = false;
-                $resultSet = $conexao->query('SELECT * FROM perfil_pessoa WHERE id = ' . $_SESSION['loginID'])->fetchAll();
-                $args['eventos'] = $conexao->query('SELECT * FROM evento WHERE banda_id = ' . $resultSet[0]['banda_id'])->fetchAll(); 
+                $resultSet = $conexao->query('SELECT nome_usuario,banda_id FROM perfil_pessoa WHERE id = ' . $_SESSION['loginID'])->fetchAll();
+                $args['eventos'] = $conexao->query('SELECT nome_evento,descricao FROM evento WHERE banda_id = ' . $resultSet[0]['banda_id'])->fetchAll(); 
                 $resultNomeBanda = $conexao->query('SELECT nome_usuario FROM perfil_banda WHERE id = ' . $resultSet[0]['banda_id'])->fetchAll();
                 $args['nome_banda'] = $resultNomeBanda[0]['nome_usuario'];
             }
