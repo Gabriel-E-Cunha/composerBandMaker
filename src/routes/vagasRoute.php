@@ -88,7 +88,7 @@ return function (App $app) {
             if ($params['vaga'] == null) {
                 $conexao->query('DELETE FROM pedido WHERE vaga_id = ' . $params['vaga_id'])->fetchAll();
                 $conexao->query('DELETE FROM vaga WHERE id = ' . $params['vaga_id'])->fetchAll();
-            } else {
+            } else if($params['vaga'] != 'Precisamos de:'){
                 $conexao->query('INSERT INTO vaga(vaga, banda_id) VALUES("' . $params['vaga'] . '",' . $_SESSION['loginID'] . ')')->fetchAll();
             }
             return $response->withRedirect('/vagas/');

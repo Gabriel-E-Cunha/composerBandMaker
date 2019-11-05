@@ -35,24 +35,24 @@
                     </li>
                     <!-- Cria botões que aparecem quando logado -->
                     <?php
-                        if ($banda || isset($perfil[0]['banda_id'])) {
-                            echo '<li class="nav-item bd-highlight">';
-                            echo '<a class="nav-link" href="/eventos/">Eventos</a>';
-                            echo '</li>';
-                        }
+                    if ($banda || isset($perfil[0]['banda_id'])) {
+                        echo '<li class="nav-item bd-highlight">';
+                        echo '<a class="nav-link" href="/eventos/">Eventos</a>';
+                        echo '</li>';
+                    }
 
-                        if ($banda || !isset($perfil[0]['banda_id'])) {
-                            echo '<li class="nav-item bd-highlight">';
-                            echo '<a class="nav-link" href="/vagas/">Vagas</a>';
-                            echo '</li>';
-                        }
+                    if ($banda || !isset($perfil[0]['banda_id'])) {
                         echo '<li class="nav-item bd-highlight">';
-                        echo '<a class="nav-link" href="/notificacoes/">Notificações</a>';
+                        echo '<a class="nav-link" href="/vagas/">Vagas</a>';
                         echo '</li>';
-                   
-                        echo '<li class="nav-item bd-highlight">';
-                        echo '<a class="nav-link" href="/logout">Deslogar</a>';
-                        echo '</li>';
+                    }
+                    echo '<li class="nav-item bd-highlight">';
+                    echo '<a class="nav-link" href="/notificacoes/">Notificações</a>';
+                    echo '</li>';
+
+                    echo '<li class="nav-item bd-highlight">';
+                    echo '<a class="nav-link" href="/logout">Deslogar</a>';
+                    echo '</li>';
                     ?>
                 </ul>
             </div>
@@ -126,7 +126,7 @@
                             echo '<div class="card"><div class="card-header" id="heading' . $key . '"><h2 class="mb-0">';
                             echo '<button class="btn btn-link text-reset" type="button" data-toggle="collapse"
                                 data-target="#collapse' . $key . '" aria-expanded="true" aria-controls="collapse' . $key . '">
-                                ' . $eventos[$key]['nome_evento'] . '</button>';
+                                ' . $eventos[$key]['nome_evento'] . ' - '. $eventos[$key]['data'] .'</button>';
                             echo '</button></h2></div>';
                             echo '<div id="collapse' . $key . '" class="collapse" aria-labelledby="heading' . $key . '"data-parent="#accordionExample"><div class="card-body">';
                             echo $eventos[$key]['descricao'];

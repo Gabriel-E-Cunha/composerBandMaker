@@ -83,10 +83,10 @@
                 <div class="col-sm-12 mt-3">
                     <div class="form-group">
                         <div class="input-group date" id="datetimepicker4" data-target-input="nearest">
-                            <input type="text" placeholder="Data" class="form-control datetimepicker-input" data-target="#datetimepicker4" name="data" />
                             <div class="input-group-append" data-target="#datetimepicker4" data-toggle="datetimepicker">
                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                             </div>
+                            <input type="text" placeholder="Data" class="form-control datetimepicker-input" data-target="#datetimepicker4" name="data">
                         </div>
                     </div>
                 </div>
@@ -122,7 +122,7 @@
                             echo '<div class="card"><div class="card-header" id="heading' . $key . '"><h2 class="mb-0">';
                             echo '<button class="btn btn-link text-reset" type="button" data-toggle="collapse"
                                 data-target="#collapse' . $key . '" aria-expanded="true" aria-controls="collapse' . $key . '">
-                                ' . $eventos[$key]['nome_evento'] . '</button>';
+                                ' . $eventos[$key]['nome_evento'] . ' - '.$eventos[$key]['data'].'</button>';
                             echo '</button></h2></div>';
                             echo '<div id="collapse' . $key . '" class="collapse" aria-labelledby="heading' . $key . '"data-parent="#accordionExample"><div class="card-body">';
                             echo $eventos[$key]['descricao'];
