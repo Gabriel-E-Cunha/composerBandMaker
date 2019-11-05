@@ -68,6 +68,7 @@
     ?>
 
 
+
     <div class="container my-5">
         <section>
             <!-- Nome e Gênero -->
@@ -87,8 +88,17 @@
                     </div>
                 </div>
             </div>
+
+            <!-- DEMO -->
+
+            <audio controls class="my-3">
+                <?php
+                echo ' <source src="../assets/audio/' . $perfilExibido[0]['track'] . '" type="audio/mpeg">';
+                ?>
+            </audio>
+
             <!-- Integrantes -->
-            <div class="row ml-3 mt-2">
+            <div class="row ml-3">
                 <div class="col-3 border border-dark text-justify mr-5">
                     <h5>Influências</h5>
                     <article>
