@@ -12,12 +12,18 @@ return function (App $app) {
         $container->get('logger')->info("Slim-Skeleton '/notificacoes/' route");
         $conexao = $container->get('pdo');
 
+        //Envia as info para o header e as notificações para a table
         if ($_SESSION['banda']) {
-            $resultSet = $conexao->query('SELECT titulo, notificacao.descricao, pedido_id FROM notificacao INNER JOIN perfil_banda WHERE perfil_banda.id = ' . $_SESSION['loginID'] . ' AND perfil_banda.id = banda_id')->fetchAll();
+            $args['banda'] = true;
+            $resultSet = $conexao->query('SELECT id,nome_usuario FROM perfil_banda WHERE id = ' . $_SESSION['loginID'])->fetchAll();
+            $notificacoes = $conexao->query('SELECT notificacao.id,titulo, notificacao.descricao, pedido_id FROM notificacao INNER JOIN perfil_banda WHERE perfil_banda.id = ' . $_SESSION['loginID'] . ' AND perfil_banda.id = banda_id')->fetchAll();
         } else {
-            $resultSet = $conexao->query('SELECT notificacao.id, titulo, descricao, pedido_id FROM notificacao INNER JOIN perfil_pessoa WHERE perfil_pessoa.id = ' . $_SESSION['loginID'] . ' AND perfil_pessoa.id = pessoa_id')->fetchAll();
+            $args['banda'] = false;
+            $resultSet = $conexao->query('SELECT nome_usuario,banda_id FROM perfil_pessoa WHERE id = ' . $_SESSION['loginID'])->fetchAll();
+            $notificacoes = $conexao->query('SELECT notificacao.id, titulo, descricao, pedido_id FROM notificacao INNER JOIN perfil_pessoa WHERE perfil_pessoa.id = ' . $_SESSION['loginID'] . ' AND perfil_pessoa.id = pessoa_id')->fetchAll();
         }
-        $args['notificacoes'] = $resultSet;
+        $args['perfil'] = $resultSet;
+        $args['notificacoes'] = $notificacoes;
 
         // Render index view
         return $container->get('renderer')->render($response, 'notificacoes.phtml', $args);
@@ -38,7 +44,7 @@ return function (App $app) {
             $resultSet = $conexao->query('SELECT vaga_id, usuario, banda_destino FROM pedido WHERE id = ' . $params['pedido_id'])->fetchAll();
             $vaga = $conexao->query('SELECT vaga FROM vaga WHERE id = '.$resultSet[0]['vaga_id'])->fetchAll();
             $nome_banda = $conexao->query('SELECT nome_usuario FROM perfil_banda WHERE id = '.$_SESSION['loginID'])->fetchAll();
-            $conexao->query('INSERT INTO notificacao (titulo, descricao, pessoa_id) VALUES("Mensagem","A banda '.$nome_banda[0]['nome_usuario'].' aceitou sua solicitação para preencher a vaga de '.$vaga[0]['vaga'].'",'.$resultSet[0]['usuario'].')')->fetchAll();
+            $conexao->query('INSERT INTO notificacao (titulo, descricao, pessoa_id) VALUES("Aviso","A banda '.$nome_banda[0]['nome_usuario'].' aceitou sua solicitação para preencher a vaga de '.$vaga[0]['vaga'].'",'.$resultSet[0]['usuario'].')')->fetchAll();
 
             //Deleta todas as notificações e pedidos envolvidos com a vaga
             $conexao->query('DELETE FROM notificacao WHERE pedido_id IN(SELECT id FROM pedido WHERE usuario = '.$resultSet[0]['usuario'].')')->fetchAll();
@@ -53,7 +59,7 @@ return function (App $app) {
             $resultSet = $conexao->query('SELECT vaga_id, usuario, banda_destino FROM pedido WHERE id = ' . $params['pedido_id'])->fetchAll();
             $vaga = $conexao->query('SELECT vaga FROM vaga WHERE id = '.$resultSet[0]['vaga_id'])->fetchAll();
             $nome_banda = $conexao->query('SELECT nome_usuario FROM perfil_banda WHERE id = '.$_SESSION['loginID'])->fetchAll();
-            $conexao->query('INSERT INTO notificacao (titulo, descricao, pessoa_id) VALUES("Mensagem","A banda '.$nome_banda[0]['nome_usuario'].' recusou sua solicitação para preencher a vaga de '.$vaga[0]['vaga'].'",'.$resultSet[0]['usuario'].')')->fetchAll();
+            $conexao->query('INSERT INTO notificacao (titulo, descricao, pessoa_id) VALUES("Aviso","A banda '.$nome_banda[0]['nome_usuario'].' recusou sua solicitação para preencher a vaga de '.$vaga[0]['vaga'].'",'.$resultSet[0]['usuario'].')')->fetchAll();
            
             //Deleta a notificação e o pedido
             $conexao->query('DELETE FROM notificacao WHERE pedido_id = ' . $params['pedido_id'])->fetchAll();

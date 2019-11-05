@@ -18,8 +18,6 @@ return function (App $app) {
         // Sample log message
         $container->get('logger')->info("Slim-Skeleton '/criarConta/' route");
 
-
-
         $conexao = $container->get('pdo');
         $params = $request->getParsedBody();
 
@@ -27,9 +25,12 @@ return function (App $app) {
             $imgFileType = explode('/',$_FILES["img"]["type"])[1];
         }
         
-        $_SESSION['inputValues'] = $params;
-        $_SESSION['inputValues']['senha'] = null;
-        $_SESSION['inputValues']['confirmar-senha'] = null;
+        $_SESSION['personValues'] = $params;
+        $_SESSION['personValues']['senha'] = null;
+        $_SESSION['personValues']['confirmar-senha'] = null;
+
+        //Faz consulta no banco para verificar se existe algum nome_usuario igual ao que está sendo cadastrado
+        $resultSet = $conexao->query('SELECT nome_usuario FROM perfil_pessoa WHERE nome_usuario = "'.$params['nome_usuario'].'"')->fetchAll();
        
         if (
             $params['nome_usuario'] == null || $params['senha'] == null || $params['confirmar-senha'] == null || $params['nome'] == null || $params['cidade'] == null || $params['cep'] == null ||
@@ -78,10 +79,9 @@ return function (App $app) {
             
             $_SESSION['banda'] = false;
             $_SESSION['loginID'] = $resultSet[0]['id'];
+            unset($_SESSION['personValues']);
             
             return $response->withRedirect('/');
-        }
-        // Render index view
-        return $container->get('renderer')->render($response, 'cadastroNormal.phtml', $args);
+        }    
     });
 };
