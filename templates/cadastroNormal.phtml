@@ -27,7 +27,65 @@
                 <h2 class="mt-4">Crie seu Perfil</h2>
             </div>
         </div>
-
+        <div class="row px-5 justify-content-center">
+            <?php
+            if (isset($action) && $action == "user-alredy-exists") {
+                echo '
+                <div class="alert alert-danger mt-5" role="alert">
+                <h4 class="alert-heading">Erro: Nome de usuário já está em uso!</h4>
+                <p class="text-center">Esse nome já foi utilizado por outro usuário, tente outro.</p>
+                <hr>
+                <p class="mb-0 text-center">Aviso: digite novamente sua senha.</p>
+                </div>
+                ';
+            } else if (isset($action) && $action == "blank-fields") {
+                echo '
+                <div class="alert alert-danger mt-5" role="alert">
+                <h4 class="alert-heading">Erro: Preencha todos os campos obrigatórios!</h4>
+                <p class="text-center">Verifique se algum campo não foi preenchido.</p>
+                <hr>
+                <p class="mb-0 text-center">Aviso: digite novamente sua senha.</p>
+                </div>
+                ';
+            } else if (isset($action) && $action == "email-not-valid") {
+                echo '
+                <div class="alert alert-danger mt-5" role="alert">
+                <h4 class="alert-heading">Erro: O email não é válido!</h4>
+                <p class="text-center">Verifique se o email foi digitado corretamente.</p>
+                <hr>
+                <p class="mb-0 text-center">Aviso: digite novamente sua senha.</p>
+                </div>
+                ';
+            } else if (isset($action) && $action == "not-an-image") {
+                echo '
+                <div class="alert alert-danger mt-5" role="alert">
+                <h4 class="alert-heading">Erro: O arquivo não é uma imagem!</h4>
+                <p class="text-center">Por favor, envie apenas imagens</p>
+                <hr>
+                <p class="mb-0 text-center">Aviso: digite novamente sua senha.</p>
+                </div>
+                ';
+            } else if (isset($action) && $action == "img-too-big") {
+                echo '
+                <div class="alert alert-danger mt-5" role="alert">
+                <h4 class="alert-heading">Erro: Imagem muito grande!</h4>
+                <p class="text-center">A imagem deve ter no máximo 500 KB</p>
+                <hr>
+                <p class="mb-0 text-center">Aviso: digite novamente sua senha.</p>
+                </div>
+                ';
+            } else if (isset($action) && $action == "incorrect-format") {
+                echo '
+                <div class="alert alert-danger mt-5" role="alert">
+                <h4 class="alert-heading">Erro: Formato incompatível!</h4>
+                <p class="text-center">A imagem deve ser jpg, jpeg ou png.</p>
+                <hr>
+                <p class="mb-0 text-center">Aviso: digite novamente sua senha.</p>
+                </div>
+                ';
+            }
+            ?>
+        </div>
         <!-- Input de informações para cadastro -->
         <div class="row mt-5 justify-content-center">
             <div class="col-sm-12 col-md-12 justify-content-center ">
@@ -50,12 +108,6 @@
                             ?>
 
                         </div>
-
-                        <?php
-                        if (isset($action) && $action == "user-alredy-exists") {
-                            echo '<h5 class="alert alert-danger my-3">Erro: Nome já foi usado, escolha outro</h5>';
-                        }
-                        ?>
 
                         <!-- Senha -->
                         <div class="input-group my-3">
@@ -201,61 +253,111 @@
                         <!-- Instrumento -->
                         <div class="my-3">
                             <div class="input-group-prepend">
-                                <label class="input-group-text" for="inputGroupSelect01">Instrumento</label>
+                                <label class="input-group-text" for="inputGroupSelect01">Qual ou quais instrumentos você toca?</label>
                             </div>
                             <div class="col-3 mb-2 form-check form-check-inline">
-                                <input name="guitarra" class="form-check-input" type="checkbox" id="inlineCheckbox1" value="Guitarra">
+                                <input name="guitarra" class="form-check-input" type="checkbox" id="inlineCheckbox1" value="Guitarra" <?php if (isset($_SESSION['personValues']['guitarra'])) {
+                                                                                                                                            echo "checked";
+                                                                                                                                        } ?>>
                                 <label class="form-check-label" for="inlineCheckbox1">Guitarra</label>
                             </div>
                             <div class="col-3 form-check form-check-inline">
-                                <input name="baixo" class="form-check-input" type="checkbox" id="inlineCheckbox2" value="Baixo">
+                                <input name="baixo" class="form-check-input" type="checkbox" id="inlineCheckbox2" value="Baixo" <?php if (isset($_SESSION['personValues']['baixo'])) {
+                                                                                                                                    echo "checked";
+                                                                                                                                } ?>>
                                 <label class="form-check-label" for="inlineCheckbox2">Baixo</label>
                             </div>
                             <div class="col-3 form-check form-check-inline">
-                                <input name="teclado" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="Teclado">
+                                <input name="teclado" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="Teclado" <?php if (isset($_SESSION['personValues']['teclado'])) {
+                                                                                                                                        echo "checked";
+                                                                                                                                    } ?>>
                                 <label class="form-check-label" for="inlineCheckbox3">Teclado</label>
                             </div>
                             <div class="col-3 form-check form-check-inline">
-                                <input name="piano" class="form-check-input" type="checkbox" id="inlineCheckbox4" value="Piano">
+                                <input name="piano" class="form-check-input" type="checkbox" id="inlineCheckbox4" value="Piano" <?php if (isset($_SESSION['personValues']['piano'])) {
+                                                                                                                                    echo "checked";
+                                                                                                                                } ?>>
                                 <label class="form-check-label" for="inlineCheckbox4">Piano</label>
                             </div>
                             <div class="col-3 form-check form-check-inline">
-                                <input name="pandeiro" class="form-check-input" type="checkbox" id="inlineCheckbox5" value="Pandeiro">
+                                <input name="pandeiro" class="form-check-input" type="checkbox" id="inlineCheckbox5" value="Pandeiro" <?php if (isset($_SESSION['personValues']['pandeiro'])) {
+                                                                                                                                            echo "checked";
+                                                                                                                                        } ?>>
                                 <label class="form-check-label" for="inlineCheckbox5">Pandeiro</label>
                             </div>
                             <div class="col-3 form-check form-check-inline">
-                                <input name="gaita" class="form-check-input" type="checkbox" id="inlineCheckbox6" value="Gaita">
+                                <input name="gaita" class="form-check-input" type="checkbox" id="inlineCheckbox6" value="Gaita" <?php if (isset($_SESSION['personValues']['gaita'])) {
+                                                                                                                                    echo "checked";
+                                                                                                                                } ?>>
                                 <label class="form-check-label" for="inlineCheckbox6">Gaita</label>
                             </div>
                             <div class="col-3 form-check form-check-inline">
-                                <input name="bateria" class="form-check-input" type="checkbox" id="inlineCheckbox7" value="Bateria">
+                                <input name="bateria" class="form-check-input" type="checkbox" id="inlineCheckbox7" value="Bateria" <?php if (isset($_SESSION['personValues']['bateria'])) {
+                                                                                                                                        echo "checked";
+                                                                                                                                    } ?>>
                                 <label class="form-check-label" for="inlineCheckbox7">Bateria</label>
                             </div>
                             <div class="col-3 form-check form-check-inline">
-                                <input name="vocal" class="form-check-input" type="checkbox" id="inlineCheckbox8" value="Vocal">
+                                <input name="vocal" class="form-check-input" type="checkbox" id="inlineCheckbox8" value="Vocal" <?php if (isset($_SESSION['personValues']['vocal'])) {
+                                                                                                                                    echo "checked";
+                                                                                                                                } ?>>
                                 <label class="form-check-label" for="inlineCheckbox8">Vocal</label>
                             </div>
                             <div class="col-5 form-check form-check-inline">
-                                <input name="outros" class="form-check-input" type="checkbox" id="inlineCheckbox9">
+                                <input name="outros" class="form-check-input" type="checkbox" id="inlineCheckbox9" <?php if (isset($_SESSION['personValues']['outros'])) {
+                                                                                                                        echo "checked";
+                                                                                                                    } ?>>
                                 <label class="form-check-label mr-3" for="inlineCheckbox9">Outros</label>
-                                <input name="outros-input" type="text" class="form-control" placeholder="Ex: Escaleta, Hurdy Gurdy">
+                                <?php
+                                if (isset($_SESSION['personValues']['outros-input'])) {
+                                    echo '<input name="outros-input" type="text" class="form-control" placeholder="Ex: Escaleta, Hurdy Gurdy" value="' . $_SESSION['personValues']['outros-input'] . '">';
+                                } else {
+                                    echo '<input name="outros-input" type="text" class="form-control" placeholder="Ex: Escaleta, Hurdy Gurdy">';
+                                }
+                                ?>
+
                             </div>
                         </div>
 
                         <!-- Experiencia -->
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">Experiência</span>
-                            </div>
-                            <?php
-                            if (isset($_SESSION['personValues'])) {
-                                echo '<input name="tempo" type="number" aria-label="exp" placeholder="2 anos" class="form-control" value="' . $_SESSION['personValues']['tempo'] . '">';
-                            } else {
-                                echo '<input name="tempo" type="number" aria-label="exp" placeholder="2 anos" class="form-control">';
-                            }
-                            ?>
 
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Qual sua experiência com música?</span>
                         </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="experiencia" id="1" value="Pouco tempo, alguns meses." <?php if (isset($_SESSION['personValues']) && $_SESSION['personValues']['experiencia'] == "Pouco tempo, alguns meses.") {
+                                                                                                                                            echo "checked";
+                                                                                                                                        } ?>>
+                            <label class="form-check-label" for="1">
+                                Pouco tempo, alguns meses.
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="experiencia" id="2" value="De 1 a 2 anos." <?php if (isset($_SESSION['personValues']) && $_SESSION['personValues']['experiencia'] == "De 1 a 2 anos.") {
+                                                                                                                                echo "checked";
+                                                                                                                            } ?>>
+                            <label class="form-check-label" for="2">
+                                De 1 a 2 anos.
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="experiencia" id="3" value="De 2 a 5 anos." <?php if (isset($_SESSION['personValues']) && $_SESSION['personValues']['experiencia'] == "De 2 a 5 anos.") {
+                                                                                                                                echo "checked";
+                                                                                                                            } ?>>
+                            <label class="form-check-label" for="3">
+                                De 2 a 5 anos.
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="experiencia" id="4" value="Mais de 5 anos." <?php if (isset($_SESSION['personValues']) && $_SESSION['personValues']['experiencia'] == "Mais de 5 anos.") {
+                                                                                                                                echo "checked";
+                                                                                                                            } ?>>
+                            <label class="form-check-label" for="4">
+                                Mais de 5 anos.
+                            </label>
+                        </div>
+
+
 
 
                         <!-- INFLUENCIAS -->
@@ -282,19 +384,6 @@ Quenn"  aria-label="With textarea"></textarea>';
                                 <img class="mt-2 img-fluid mx-auto" src="#" id="imgshow" align="left">
                             </div>
                         </div>
-                        <?php
-                        if (isset($action) && $action == "blank-fields") {
-                            echo '<h5 class="alert alert-danger">Erro: Preencha todos os campos obrigatórios!</h5>';
-                        } else if (isset($action) && $action == "email-not-valid") {
-                            echo '<h5 class="alert alert-danger">Erro: O email não é válido!</h5>';
-                        } else if (isset($action) && $action == "not-an-image") {
-                            echo '<h5 class="alert alert-danger">Erro: O arquivo não é uma imagem!</h5>';
-                        } else if (isset($action) && $action == "img-too-big") {
-                            echo '<h5 class="alert alert-danger">Erro: Imagem muito grande!</h5>';
-                        } else if (isset($action) && $action == "incorrect-format") {
-                            echo '<h5 class="alert alert-danger">Erro: Formato incompatível, a imagem deve ser jpg, jpeg ou png!</h5>';
-                        }
-                        ?>
                         <div class="col-sm-12 col-md-4 ml-auto my-1">
                             <button type="submit" class="btn btn-dark btn-lg w-100">Criar</button>
                         </div>

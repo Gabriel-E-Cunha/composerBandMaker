@@ -24,7 +24,7 @@ return function (App $app) {
         if($_FILES['img']['tmp_name'] != null) {
             $imgFileType = explode('/',$_FILES["img"]["type"])[1];
         }
-        
+
         $_SESSION['personValues'] = $params;
         $_SESSION['personValues']['senha'] = null;
         $_SESSION['personValues']['confirmar-senha'] = null;
@@ -35,7 +35,7 @@ return function (App $app) {
         if (
             $params['nome_usuario'] == null || $params['senha'] == null || $params['confirmar-senha'] == null || $params['nome'] == null || $params['cidade'] == null || $params['cep'] == null ||
             $params['sobrenome'] == null || $params['estado'] == null || $params['email'] == null || $params['idade'] == null ||
-            $params['tempo'] == null || $params['email'] == null || $params['influencia'] == null
+            $params['email'] == null || $params['influencia'] == null
         ) {
             return $response->withRedirect('/criarConta/blank-fields');
 
@@ -89,7 +89,7 @@ return function (App $app) {
             tempo,telefone,influencia,cep,rua) 
             VALUES("' . $params['nome_usuario'] . '", "' . $params['nome'] . '", "' . $params['sobrenome'] . '",
             "' . $params['email'] . '", "' . $params['idade'] . '", "' . $params['cidade'] . '", "' . $params['estado'] . '",
-            "' . $instrumentos . '", "' . $params['tempo'] . '", "' . $params['telefone'] . '", "' . $params['influencia'] . '","' . $params['cep'] . '", "' . $params['rua'] . '")');
+            "' . $instrumentos . '", "' . $params['experiencia'] . '", "' . $params['telefone'] . '", "' . $params['influencia'] . '","' . $params['cep'] . '", "' . $params['rua'] . '")');
 
             $resultSet = $conexao->query('SELECT id FROM perfil_pessoa
             WHERE nome_usuario = "' . $params['nome_usuario'] . '"')->fetchAll();
