@@ -21,7 +21,7 @@
         </nav>
     </header>
 
-    <div class="container pt-5">
+    <div class="container pt-5 ">
         <div class="row class justify-content-center ">
             <div>
                 <h2 class="mt-4">Crie seu Perfil</h2>
@@ -253,7 +253,7 @@
                         <!-- Instrumento -->
                         <div class="my-3">
                             <div class="input-group-prepend">
-                                <label class="input-group-text" for="inputGroupSelect01">Qual ou quais instrumentos você toca?</label>
+                                <label class="input-group-text" for="inputGroupSelect01">Quais instrumentos você toca?</label>
                             </div>
                             <div class="col-3 mb-2 form-check form-check-inline">
                                 <input name="guitarra" class="form-check-input" type="checkbox" id="inlineCheckbox1" value="Guitarra" <?php if (isset($_SESSION['personValues']['guitarra'])) {
@@ -303,7 +303,7 @@
                                                                                                                                 } ?>>
                                 <label class="form-check-label" for="inlineCheckbox8">Vocal</label>
                             </div>
-                            <div class="col-5 form-check form-check-inline">
+                            <div class="col-12 form-check form-check-inline">
                                 <input name="outros" class="form-check-input" type="checkbox" id="inlineCheckbox9" <?php if (isset($_SESSION['personValues']['outros'])) {
                                                                                                                         echo "checked";
                                                                                                                     } ?>>
@@ -368,24 +368,26 @@
                             <?php
                             if (isset($_SESSION['personValues'])) {
                                 echo '<textarea name="influencia" class="form-control" placeholder="Banda Tigres do axé 
-Quenn"  aria-label="With textarea">' . $_SESSION['personValues']['influencia'] . '</textarea>';
+Queen"  aria-label="With textarea">' . $_SESSION['personValues']['influencia'] . '</textarea>';
                             } else {
                                 echo '<textarea name="influencia" class="form-control" placeholder="Banda Tigres do axé 
-Quenn"  aria-label="With textarea"></textarea>';
+Queen"  aria-label="With textarea"></textarea>';
                             }
                             ?>
                         </div>
 
                         <!-- ADD Imagem -->
-                        <div class="border border-light border-radius-3 col-6 w-25">
+                        <div class="row">
+                        <div class="border border-light border-radius-3 col-12 w-25">
                             <p class="text-secondary">Adicione uma Imagem da banda</p>
-                            <div>
-                                <input name="img" type="file" id="imgload">
+                            <div class="col-md-4 col-sm-4">
+                                <input name="img" type="file" id="imgload" class="w-100">
                                 <img class="mt-2 img-fluid mx-auto" src="#" id="imgshow" align="left">
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-4 ml-auto my-1">
                             <button type="submit" class="btn btn-dark btn-lg w-100">Criar</button>
+                        </div>
                         </div>
                     </form>
                 </div>
