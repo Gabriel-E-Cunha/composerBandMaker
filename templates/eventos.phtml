@@ -78,17 +78,19 @@
                                                 echo '6';
                                             } ?> mb-2 mx-auto">
 
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <button class="btn btn-outline-secondary" type="submit" id="button-addon1"><i class="fas fa-search"></i></button>
+                <form method="get" action="/eventos/">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <button class="btn btn-outline-secondary" type="submit"><i class="fas fa-search"></i></button>
+                        </div>
+                        <input name="nome_evento" type="text" class="form-control" placeholder="Nome do evento">
                     </div>
-                    <input type="text" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
-                </div>
+                </form>
             </div>
             <?php
             if ($banda) {
                 echo '<div class="col-sm-12 col-md-4 mb-auto d-flex justify-content-center">
-                <a class="btn btn-outline-secondary" href="/criar-evento/">Criar Evento</a>
+                <a class="btn btn-outline-secondary" href="/criar-evento/">Criar novos eventos</a>
                 </div>';
             }
             ?>
@@ -102,14 +104,19 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-12 p-0">
-                            <div class="form-group">
-                                <div class="input-group date" id="datetimepicker4" data-target-input="nearest">
-                                    <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker4" />
-                                    <div class="input-group-append" data-target="#datetimepicker4" data-toggle="datetimepicker">
-                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            <form method="get" action="/eventos/">
+                                <div class="form-group">
+                                    <div class="input-group date" id="datetimepicker4" data-target-input="nearest">
+                                        <div class="input-group-prepend">
+                                            <button class="btn btn-outline-secondary" type="submit"><i class="fas fa-search"></i></button>
+                                        </div>
+                                        <input name="data" type="text" class="form-control datetimepicker-input" data-target="#datetimepicker4">
+                                        <div class="input-group-append" data-target="#datetimepicker4" data-toggle="datetimepicker">
+                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -126,28 +133,20 @@
                             echo '<div class="card"><div class="card-header" id="heading' . $key . '"><h2 class="mb-0">';
                             echo '<button class="btn btn-link text-reset" type="button" data-toggle="collapse"
                                 data-target="#collapse' . $key . '" aria-expanded="true" aria-controls="collapse' . $key . '">
-                                ' . $eventos[$key]['nome_evento'] . ' - '. $eventos[$key]['data'] .'</button>';
+                                ' . $eventos[$key]['nome_evento'] . ' - ' . $eventos[$key]['data'] . '</button>';
                             echo '</button></h2></div>';
                             echo '<div id="collapse' . $key . '" class="collapse" aria-labelledby="heading' . $key . '"data-parent="#accordionExample"><div class="card-body">';
                             echo $eventos[$key]['descricao'];
                             echo '</div></div></div>';
                         }
                     } else {
-                        echo '<h4 class="text-muted">Nenhum evento marcado</h4>';
+                        echo '<h4 class="text-muted text-center">Nenhum evento encontrado</h4>';
                     }
                     ?>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Footer -->
-    <footer>
-        <nav class="navbar navbar-fixed-bottom navbar-dark bg-dark p-0 mt-5">
-            <div class="mx-auto order-0">
-                <a class="navbar-text mx-auto" href="#">&copy;Copyright BandMaker 2019</a>
-            </div>
-        </nav>
-    </footer>
 
 </body>
 
