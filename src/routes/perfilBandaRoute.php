@@ -15,12 +15,12 @@ return function (App $app) {
 
         //Caso logado, envia info para Navbar de logado
         if (isset($_SESSION['loginID'])) {
-            if($_SESSION['banda']) {
+            if ($_SESSION['banda']) {
                 $args['banda'] = true;
                 $resultSet = $conexao->query('SELECT * FROM perfil_banda WHERE id = ' . $_SESSION['loginID'])->fetchAll();
             } else {
                 $args['banda'] = false;
-                $resultSet = $conexao->query('SELECT * FROM perfil_pessoa WHERE id = ' . $_SESSION['loginID'])->fetchAll(); 
+                $resultSet = $conexao->query('SELECT * FROM perfil_pessoa WHERE id = ' . $_SESSION['loginID'])->fetchAll();
             }
             $args['perfil'] = $resultSet;
         }
@@ -30,6 +30,7 @@ return function (App $app) {
         $args['perfilExibido'] = $resultSet;
         $resultSet = $conexao->query('SELECT * FROM perfil_pessoa WHERE banda_id = ' . $resultSet[0]['id'])->fetchAll();
         $args['integrante']  = $resultSet;
+
 
         // Render index view
         return $container->get('renderer')->render($response, 'perfilBanda.phtml', $args);
@@ -41,9 +42,22 @@ return function (App $app) {
 
         $conexao = $container->get('pdo');
 
-        $resultSet = $conexao->query('SELECT * FROM perfil_banda WHERE nome_usuario = "' . $args['action'] . '"')->fetchAll();
-        $args['perfil'] = $resultSet;
+        $audioFileType = explode('.', $_FILES["audio"]["name"])[1];
 
-        return $response->withRedirect('/perfil-banda/'.$resultSet[0]['nome_usuario']);       
+
+        $resultSet = $conexao->query('SELECT * 
+        FROM perfil_banda 
+        WHERE id = ' . $_SESSION['loginID'] . '')->fetchAll();
+        
+
+        if ($_FILES['audio'] != null) {
+            $audioName = "audio" . $resultSet[0]['id'] . "." . $audioFileType;
+            $target_dir = "public/assets/audio/";
+            $target_file = $target_dir . $audioName;
+            move_uploaded_file($_FILES["audio"]["tmp_name"], $target_file);
+            $conexao->query('UPDATE perfil_banda SET track = "' . $audioName . '"
+            WHERE id = ' . $resultSet[0]['id'])->fetchAll();
+        }
+        return $response->withRedirect('/perfil-banda/' . $resultSet[0]['nome_usuario']);
     });
 };

@@ -24,17 +24,13 @@ return function (App $app) {
 
         $imgFileType = explode('/', $_FILES["img"]["type"])[1];
 
-        $audioFileType = explode('.', $_FILES["audio"]["name"])[1];
+        // $audioFileType = explode('.', $_FILES["audio"]["name"])[1];
 
 
         $_SESSION['bandValues'] = $params;
         $_SESSION['bandValues']['senha'] = null;
-        $_SESSION['bandValues']['confirmar-senha'] = null;
-
-    
-        print_r($_FILES["img"]);
-        print_r($_FILES["audio"]);
-        exit;
+        $_SESSION['bandValues']['confirmar-senha'] = null;    
+   
 
         //Faz consulta no banco para verificar se existe algum nome_usuario igual ao que está sendo cadastrado
         $resultSet = $conexao->query('SELECT nome_usuario FROM perfil_banda WHERE nome_usuario = "' . $params['nome_usuario'] . '"')->fetchAll();
@@ -81,19 +77,6 @@ return function (App $app) {
                 $target_file = $target_dir . $imgName;
                 move_uploaded_file($_FILES["img"]["tmp_name"], $target_file);
                 $conexao->query('UPDATE perfil_banda SET imagem = "' . $imgName . '" WHERE id = ' . $resultSet[0]['id']);
-            }
-            $_SESSION['banda'] = true;
-            $_SESSION['loginID'] = $resultSet[0]['id'];
-            unset($_SESSION['bandValues']);
-
-            //Tratamento de audio 
-            if ($_FILES['audio'] != null) {
-                $audioName = "audio" . $resultSet[0]['id'] . "." . $audioFileType;
-                $target_dir = "public/assets/audio/";
-                $target_file = $target_dir . $audioName;
-                move_uploaded_file($_FILES["audio"]["name"], $target_file);
-                $conexao->query('UPDATE perfil_banda SET track = "' . $audioName . '"
-                WHERE id = ' . $resultSet[0]['id']);
             }
             $_SESSION['banda'] = true;
             $_SESSION['loginID'] = $resultSet[0]['id'];
