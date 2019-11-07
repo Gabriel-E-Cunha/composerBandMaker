@@ -17,6 +17,12 @@ return function (App $app) {
         unset($_SESSION['bandValues']);
         unset($_SESSION['personValues']);
 
+        //verifica se precisa deletar algum evento
+        if(isset($_GET['deletar-evento'])) {
+            $conexao->query('DELETE FROM evento WHERE id = ' . $_GET['deletar-evento'])->fetchAll();
+            return $response->withRedirect('/eventos/');
+        }
+
         //Envia as info para o header e pega o id da banda para fazer consulta de eventos
         if ($_SESSION['banda']) {
             $args['banda'] = true;
@@ -34,15 +40,15 @@ return function (App $app) {
         //Busca eventos
         if(isset($_GET)) {
             if(isset($_GET['nome_evento']) && $_GET['nome_evento'] != null) {
-                $args['eventos'] = $conexao->query('SELECT nome_evento,descricao,data FROM evento WHERE banda_id = ' . $banda_id . ' AND nome_evento = "' . $_GET['nome_evento'] . '"')->fetchAll();
+                $args['eventos'] = $conexao->query('SELECT id,nome_evento,descricao,data FROM evento WHERE banda_id = ' . $banda_id . ' AND nome_evento = "' . $_GET['nome_evento'] . '"')->fetchAll();
             } else if (isset($_GET['data']) && $_GET['data'] != null) {
                 $data = explode('/', $_GET['data'])[2] . '-' . explode('/', $_GET['data'])[0] . '-' . explode('/', $_GET['data'])[1];
-                $args['eventos'] = $conexao->query('SELECT nome_evento,descricao,data FROM evento WHERE banda_id = ' . $banda_id . ' AND data = "' . $data . '"')->fetchAll();
+                $args['eventos'] = $conexao->query('SELECT id,nome_evento,descricao,data FROM evento WHERE banda_id = ' . $banda_id . ' AND data = "' . $data . '"')->fetchAll();
             } else {
-                $args['eventos'] = $conexao->query('SELECT nome_evento,descricao,data FROM evento WHERE banda_id = ' . $banda_id)->fetchAll();
+                $args['eventos'] = $conexao->query('SELECT id,nome_evento,descricao,data FROM evento WHERE banda_id = ' . $banda_id)->fetchAll();
             }
         } else {
-            $args['eventos'] = $conexao->query('SELECT nome_evento,descricao,data FROM evento WHERE banda_id = ' . $banda_id)->fetchAll();
+            $args['eventos'] = $conexao->query('SELECT id,nome_evento,descricao,data FROM evento WHERE banda_id = ' . $banda_id)->fetchAll();
         }
 
         //Converte as datas para expor de forma coesa MM/DD/YYYY

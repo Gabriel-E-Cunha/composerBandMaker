@@ -131,9 +131,12 @@
                     if ($eventos != null) {
                         foreach ($eventos as $key => $value) {
                             echo '<div class="card"><div class="card-header" id="heading' . $key . '"><h2 class="mb-0">';
-                            echo '<button class="btn btn-link text-reset" type="button" data-toggle="collapse"
+                            echo '<form method="delete" action="/eventos/"><button class="btn btn-link text-reset" type="button" data-toggle="collapse"
                                 data-target="#collapse' . $key . '" aria-expanded="true" aria-controls="collapse' . $key . '">
-                                ' . $eventos[$key]['nome_evento'] . ' - ' . $eventos[$key]['data'] . '</button>';
+                                ' . $eventos[$key]['nome_evento'] . ' - ' . $eventos[$key]['data'] . '</button>
+                                <button class="btn btn-danger float-right" type="submit">Apagar evento</button>
+                                <input name="deletar-evento" type="hidden" value="'.$eventos[$key]['id'].'">
+                            </form>';
                             echo '</button></h2></div>';
                             echo '<div id="collapse' . $key . '" class="collapse" aria-labelledby="heading' . $key . '"data-parent="#accordionExample"><div class="card-body">';
                             echo $eventos[$key]['descricao'];
