@@ -101,7 +101,7 @@
                         echo '<tr>';
                         echo '<form method="post" action="/vagas/">';
                         echo '<td>';
-                        echo '<img class="img-fluid" src="../assets/profileImg/' . $resultado[$key]['imagem'] . '" style="max-height: 100px; max-width: 100px;">';
+                        echo '<img class="img-fluid" src="../assets/BandProfileImg/' . $resultado[$key]['imagem'] . '" style="max-height: 100px; max-width: 100px;">';
                         echo '</td>';
                         echo '<td><h5>';
                         echo '<a class="text-reset nav-link my-4"  href="/perfil-banda/' . $resultado[$key]['nome_usuario'] . '">
@@ -125,7 +125,7 @@
                         echo '</tr>';
                     }
                 } else {
-                    echo '<h5 class="alert alert-danger">Vaga indisponível ou digitada incorretamente</h5>';
+                    echo '<h5 class="alert alert-danger">Nenhuma vaga encontrada</h5>';
                 }
             }
             echo '

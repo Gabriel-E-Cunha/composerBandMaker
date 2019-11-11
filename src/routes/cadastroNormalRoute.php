@@ -24,7 +24,7 @@ return function (App $app) {
         if($_FILES['img']['tmp_name'] != null) {
             $imgFileType = explode('/',$_FILES["img"]["type"])[1];
         }
-        
+
         $_SESSION['personValues'] = $params;
         $_SESSION['personValues']['senha'] = null;
         $_SESSION['personValues']['confirmar-senha'] = null;
@@ -35,7 +35,7 @@ return function (App $app) {
         if (
             $params['nome_usuario'] == null || $params['senha'] == null || $params['confirmar-senha'] == null || $params['nome'] == null || $params['cidade'] == null || $params['cep'] == null ||
             $params['sobrenome'] == null || $params['estado'] == null || $params['email'] == null || $params['idade'] == null ||
-            $params['tempo'] == null || $params['email'] == null || $params['instrumento'] == "---"|| $params['influencia'] == null
+            $params['email'] == null || $params['influencia'] == null
         ) {
             return $response->withRedirect('/criarConta/blank-fields');
 
@@ -56,11 +56,40 @@ return function (App $app) {
                 return $response->withRedirect('/criarConta/img-too-big');
         } else {
 
+             $instrumentos = "";
+            if(isset($params['guitarra'])) {
+                $instrumentos = $instrumentos.$params['guitarra'] . "   ";
+            }
+            if(isset($params['baixo'])) {
+                $instrumentos = $instrumentos.$params['baixo'] . "   ";
+            }
+            if(isset($params['teclado'])) {
+                $instrumentos = $instrumentos.$params['teclado'] . "   ";
+            }
+            if(isset($params['piano'])) {
+                $instrumentos = $instrumentos.$params['piano'] . "   ";
+            }
+            if(isset($params['pandeiro'])) {
+                $instrumentos = $instrumentos.$params['pandeiro'] . "   ";
+            }
+            if(isset($params['gaita'])) {
+                $instrumentos = $instrumentos.$params['gaita'] . "   ";
+            }
+            if(isset($params['bateria'])) {
+                $instrumentos = $instrumentos.$params['bateria'] . "   ";
+            }
+            if(isset($params['vocal'])) {
+                $instrumentos = $instrumentos.$params['vocal'] . "   ";
+            }
+            if(isset($params['outros'])) {
+                $instrumentos = $instrumentos.str_replace("," ,"   ", $params['outros-input']);
+            } 
+
             $conexao->query('INSERT INTO perfil_pessoa (nome_usuario,nome,sobrenome,email,idade,cidade,estado,instrumento,
             tempo,telefone,influencia,cep,rua) 
             VALUES("' . $params['nome_usuario'] . '", "' . $params['nome'] . '", "' . $params['sobrenome'] . '",
             "' . $params['email'] . '", "' . $params['idade'] . '", "' . $params['cidade'] . '", "' . $params['estado'] . '",
-            "' . $params['instrumento'] . '", "' . $params['tempo'] . '", "' . $params['telefone'] . '", "' . $params['influencia'] . '","' . $params['cep'] . '", "' . $params['rua'] . '")');
+            "' . $instrumentos . '", "' . $params['experiencia'] . '", "' . $params['telefone'] . '", "' . $params['influencia'] . '","' . $params['cep'] . '", "' . $params['rua'] . '")');
 
             $resultSet = $conexao->query('SELECT id FROM perfil_pessoa
             WHERE nome_usuario = "' . $params['nome_usuario'] . '"')->fetchAll();

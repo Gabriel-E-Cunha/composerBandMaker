@@ -14,7 +14,7 @@
     <header id="beggining">
         <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
             <div class="mx-auto order-0">
-                <a class="navbar-brand mx-auto" href="../index.html">BandMaker</a>
+                <a class="navbar-brand mx-auto" href="/">BandMaker</a>
             </div>
         </nav>
     </header>
@@ -26,6 +26,66 @@
             <div>
                 <h2 class="mt-4">Cadastre sua Banda</h2>
             </div>
+        </div>
+
+        <div class="row px-5 justify-content-center">
+            <?php
+            if (isset($action) && $action == "band-alredy-exists") {
+                echo '
+                <div class="alert alert-danger mt-5" role="alert">
+                <h4 class="alert-heading">Erro: Nome de usuário já está em uso!</h4>
+                <p class="text-center">Esse nome já foi utilizado por outra banda, tente outro.</p>
+                <hr>
+                <p class="mb-0 text-center">Aviso: digite novamente sua senha.</p>
+                </div>
+                ';
+            } else if (isset($action) && $action == "blank-fields") {
+                echo '
+                <div class="alert alert-danger mt-5" role="alert">
+                <h4 class="alert-heading">Erro: Preencha todos os campos obrigatórios!</h4>
+                <p class="text-center">Verifique se algum campo não foi preenchido.</p>
+                <hr>
+                <p class="mb-0 text-center">Aviso: digite novamente sua senha.</p>
+                </div>
+                ';
+            } else if (isset($action) && $action == "email-not-valid") {
+                echo '
+                <div class="alert alert-danger mt-5" role="alert">
+                <h4 class="alert-heading">Erro: O email não é válido!</h4>
+                <p class="text-center">Verifique se o email foi digitado corretamente.</p>
+                <hr>
+                <p class="mb-0 text-center">Aviso: digite novamente sua senha.</p>
+                </div>
+                ';
+            } else if (isset($action) && $action == "not-an-image") {
+                echo '
+                <div class="alert alert-danger mt-5" role="alert">
+                <h4 class="alert-heading">Erro: O arquivo não é uma imagem!</h4>
+                <p class="text-center">Por favor, envie apenas imagens</p>
+                <hr>
+                <p class="mb-0 text-center">Aviso: digite novamente sua senha.</p>
+                </div>
+                ';
+            } else if (isset($action) && $action == "img-too-big") {
+                echo '
+                <div class="alert alert-danger mt-5" role="alert">
+                <h4 class="alert-heading">Erro: Imagem muito grande!</h4>
+                <p class="text-center">A imagem deve ter no máximo 500 KB</p>
+                <hr>
+                <p class="mb-0 text-center">Aviso: digite novamente sua senha.</p>
+                </div>
+                ';
+            } else if (isset($action) && $action == "incorrect-format") {
+                echo '
+                <div class="alert alert-danger mt-5" role="alert">
+                <h4 class="alert-heading">Erro: Formato incompatível!</h4>
+                <p class="text-center">A imagem deve ser jpg, jpeg ou png.</p>
+                <hr>
+                <p class="mb-0 text-center">Aviso: digite novamente sua senha.</p>
+                </div>
+                ';
+            }
+            ?>
         </div>
 
         <div class="row mt-5 justify-content-center">
@@ -47,12 +107,6 @@
                             }
                             ?>
                         </div>
-
-                        <?php
-                        if (isset($action) && $action == "band-alredy-exists") {
-                            echo '<h5 class="alert alert-danger my-3">Erro: Nome já foi usado, escolha outro</h5>';
-                        }
-                        ?>
 
                         <!-- Senha -->
                         <div class="input-group my-3">
@@ -214,39 +268,19 @@
 
                         <!-- ADD Imagem -->
                         <div class="col-sm-12 col-md-6">
-                            <div class="border border-light border-radius-3 col-6">
+                            <div class="border border-light border-radius-3 col-12">
                                 <p class="text-secondary">Adicione uma Imagem da banda</p>
                                 <div>
-                                    <input name="img" type="file" id="imgload">
+
+                                    <input name="img" type="file" id="imgload" class="w-100">
+                                    <img class="mt-2 img-fluid mx-auto" src="#" id="imgshow" align="left">
+
                                 </div>
                             </div>
                         </div>
 
-                        <!-- ADD Demo -->
-                        <!-- <div class="col-sm-12 col-md-6">
-                            <div class="border border-light border-radius-3 col-6">
-                                <p class="text-secondary">Adicione uma Track da banda</p>
-                                <div>
-                                    <input name="audio" type="file" id="audioload" accept="audio/*">
-                                </div>
-                            </div>
-                        </div> -->
-
-
-                        <div class="col-sm-12 col-md-6">
-                            <?php
-                            if (isset($action) && $action == "blank-fields") {
-                                echo '<h5 class="alert alert-danger">Erro: Preencha todos os campos obrigatórios!</h5>';
-                            } else if (isset($action) && $action == "email-not-valid") {
-                                echo '<h5 class="alert alert-danger">Erro: O email não é válido!</h5>';
-                            } else if (isset($action) && $action == "img-too-big") {
-                                echo '<h5 class="alert alert-danger">Erro: Imagem muito grande!</h5>';
-                            } else if (isset($action) && $action == "incorrect-format") {
-                                echo '<h5 class="alert alert-danger">Erro: Formato incompatível, a imagem deve ser jpg, jpeg ou png!</h5>';
-                            }
-                            ?>
-                        </div>
-                        <div class="col-sm-12 col-md-4 ml-auto my-1">
+                    
+                         <div class="col-sm-12 col-md-4 ml-auto my-1">
                             <button type="submit" class="btn btn-dark btn-lg w-100">Criar</button>
                         </div>
 
