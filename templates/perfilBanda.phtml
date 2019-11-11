@@ -94,32 +94,36 @@
             <div class="col-sm-4 col-md-4 my-3 text-center text-break ">
                 <!-- DEMO -->
                 <?php
-                if (isset($perfilExibido[0]['track'])) {
+                if (isset($perfilExibido[0]['track']) && $perfilExibido[0]['track'] != null) {
 
                     echo '<audio controls class="my-3">';
                     echo ' <source src="../assets/audio/' . $perfilExibido[0]['track'] . '" type="audio/mpeg">';
                     echo '</audio>';
+                    echo '<ul class="list-group">';
+                    echo ' <li class="list-group-item"><b>' . $perfilExibido[0]['cidade'] . '/' . $perfilExibido[0]['estado'] . '</b></li>';
+                    echo '<li class="list-group-item"><b>Contato</b> <br>' . $perfilExibido[0]['telefone'] . '<br>' . $perfilExibido[0]['email'] . '</li>';
+                    echo '<li class="list-group-item"><b>Influências</b> <br> ' . $perfilExibido[0]['influencias'] . '</li>';
+                    echo '<li class="list-group-item"><b>Sobre a Banda</b> <br>' . $perfilExibido[0]['descricao'] . '</li>';
+                    echo '</ul>';
                 } else {
-                    echo '<div class="col-sm-12 col-md-6">';
+                    echo '<ul class="list-group">';
+                    echo ' <li class="list-group-item"><b>' . $perfilExibido[0]['cidade'] . '/' . $perfilExibido[0]['estado'] . '</b></li>';
+                    echo '<li class="list-group-item"><b>Contato</b> <br>' . $perfilExibido[0]['telefone'] . '<br>' . $perfilExibido[0]['email'] . '</li>';
+                    echo '<li class="list-group-item"><b>Influências</b> <br> ' . $perfilExibido[0]['influencias'] . '</li>';
+                    echo '<li class="list-group-item"><b>Sobre a Banda</b> <br>' . $perfilExibido[0]['descricao'] . '</li>';
+                    echo '</ul>';
+                    echo '<div class="col-sm-12 col-md-4 my-2">';
                     echo '<form method="post" action="/perfil-banda/" enctype="multipart/form-data">';
                     echo '<div class="border border-light border-radius-3">';
                     echo '<p class="text-secondary">Adicione uma Track da banda</p>';
                     echo '<div>';
                     echo '<input name="audio" type="file" id="audioload" accept="audio/*">';
                     echo '</div>';
-                    echo '<button type="submit" class="btn btn-dark btn-lg w-25">Criar</button>';
+                    echo '<button type="submit" class="btn btn-dark btn-lg">Criar</button>';
                     echo '</div>';
                     echo '</form>';
                     echo '</div>';
                 }
-                ?>
-                <?php
-                echo '<ul class="list-group">';
-                echo ' <li class="list-group-item"><b>' . $perfilExibido[0]['cidade'] . '/' . $perfilExibido[0]['estado'] . '</b></li>';
-                echo '<li class="list-group-item"><b>Contato</b> <br>' . $perfilExibido[0]['telefone'] . '<br>' . $perfilExibido[0]['email'] . '</li>';
-                echo '<li class="list-group-item"><b>Influências</b> <br> ' . $perfilExibido[0]['influencias'] . '</li>';
-                echo '<li class="list-group-item"><b>Sobre a Banda</b> <br>' . $perfilExibido[0]['descricao'] . '</li>';
-                echo '</ul>';
                 ?>
             </div>
 
@@ -128,7 +132,7 @@
                 <?php
                 foreach ($integrante as $key => $value) {
                     echo '<a class="text-reset nav-link" href="/perfil/' . $integrante[$key]['nome_usuario'] . '"><div class="card mb-3 py-1"> <div class="card-body"> <div class="row"> <div class="col-2">';
-                    echo '<img class src="../assets/profileImg/' . $integrante[0]['imagem'] . '" width="100" height="100">';
+                    echo '<img class src="../assets/profileImg/' . $integrante[$key]['imagem'] . '" width="100" height="100">';
                     echo ' </div> <div class="col-6 my-auto mx-auto"> <h6> ' . $integrante[$key]['nome_usuario'] . ' - ' . $integrante[$key]['instrumento'] . '</h6> </div> </div> </div> </div></a>';
                 }
                 ?>

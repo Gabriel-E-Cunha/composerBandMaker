@@ -77,56 +77,64 @@
 
         <div class="row mt-4">
             <div class="col-sm-12 col-md-8 d-flex">
-                <!-- Escreve informações do Perfil -->
+                <!-- Informações -->
                 <?php
-                echo '<img class src="../assets/profileImg/' . $perfilExibido[0]['imagem'] . '" width="185" height="145">';
-
-                echo '<ul class="list-group list-group-vertical">';
-                echo '<li class="list-group-item">' . $perfilExibido[0]['nome'] . ' // @' . $perfilExibido[0]['nome_usuario'] . '</li>';
-                echo ' <li class="list-group-item">' . $perfilExibido[0]['email'] . '</li>';
-                echo ' <li class="list-group-item">' . $perfilExibido[0]['estado'] . ' // ' . $perfilExibido[0]['cidade'] . '</li>';
-                echo '</ul>';
-                echo '<div class="card">';
-                echo ' <div class="card-body">' . $perfilExibido[0]['influencia'] . '</div>';
-                echo '</div>';
+                echo '<img class="img-thumbnail" src="../assets/profileImg/' . $perfilExibido[0]['imagem'] . '" width="185" height="145">';
                 ?>
+                <div class="text-center text-break p-4">
+                    <?php
+                    echo '<ul class="list-group">';
+                    echo '<li class="list-group-item">' . $perfilExibido[0]['nome'] . ' ' . $perfilExibido[0]['sobrenome'] . ' - 
+                    ' . $perfilExibido[0]['idade'] . ' anos</li>';
+                    echo '<li class="list-group-item">@' . $perfilExibido[0]['nome_usuario'] . '</li>';
+                    echo '</ul>';
+                    ?>
+                </div>
             </div>
-
         </div>
+
+        <!-- nome email estado influencia -->
 
         <div class="row mt-6 pt-5">
 
-            <div class="col-sm-4 col-md-6 margin-left-0">
-                <!-- Escreve informações do Perfil -->
+            <div class="col-sm-4 col-md-4 text-center text-break">
+                                
                 <?php
-                echo '<ul class="list-group">';
-                echo '<li class="list-group-item">Idade: ' . $perfilExibido[0]['idade'] . ' anos</li>';
-                echo '<li class="list-group-item">Telefone: ' . $perfilExibido[0]['telefone'] . '</li>';
-                echo '<li class="list-group-item">Instrumento: ' . $perfilExibido[0]['instrumento'] . '</li>';
-                echo '<li class="list-group-item">Tempo que toca: ' . $perfilExibido[0]['tempo'] . ' anos</li>';
-                echo '</ul>';
+                    echo '<ul class="list-group">';
+                    echo ' <li class="list-group-item"><b>' . $perfilExibido[0]['cidade'] . '/' . $perfilExibido[0]['estado'] . '</b></li>';
+                    echo '<li class="list-group-item"><b>Contato</b> <br>' . $perfilExibido[0]['telefone'] . '<br>' . $perfilExibido[0]['email'] . '</li>';
+                    echo '<li class="list-group-item"><b>Influências</b> <br> ' . $perfilExibido[0]['influencia'] . '</li>';
+                    echo '<li class="list-group-item"><b>Instrumento</b>  <br>' . $perfilExibido[0]['instrumento'] . '</li>';
+                    echo '<li class="list-group-item"><b>Experiência</b>  <br>' . $perfilExibido[0]['tempo'] . '</li>';
+                
+                    echo '</ul>';
 
+                // echo '<li class="list-group-item">Idade: ' . $perfilExibido[0]['idade'] . ' anos</li>';
+                
+                // echo '<li class="list-group-item">Tempo que toca: ' . $perfilExibido[0]['tempo'] . ' anos</li>';
                 ?>
             </div>
 
-            <div class="col-sm-8 col-md-6 margin-left-0">
+            <div class="col-sm-8 col-md-8 margin-left-0 text-center">
                 <!-- Escreve qual banda pertence -->
                 <?php
+
                 if ($bandaParticipante == null) {
-                    $bandaParticipante[0]['nome_usuario'] = "Nenhuma";
-                    echo '<div class="card">';
-                    echo '<h4 class="card-body">Banda: ' . $bandaParticipante[0]['nome_usuario'] . '';
-                    echo '</h4>';                 
-                    echo '</div>';
-                }else {
-                    echo '<div class="card">';
-                    echo '<h4 class="card-body">Banda: ' . $bandaParticipante[0]['nome_usuario'] . '';
+                    $bandaParticipante[0]['nome_usuario'] = "Não possui banda";
+                }
+                echo '<div class="card">';
+                echo '<h4 class="card-body">Banda: ' . $bandaParticipante[0]['nome_usuario'] . '';
+
+                if ($_SESSION['loginID'] == $perfilExibido[0]['id'] && $_SESSION['banda'] == false
+                && $bandaParticipante[0]['nome_usuario'] != "Não possui banda") {
+
                     echo '<form method="post" action="/perfil/">';
                     echo '<button class="btn btn-danger" type="submit">Sair da banda</button>';
                     echo '</form>';
-                    echo '</h4>';                 
-                    echo '</div>';
                 }
+
+                echo '</h4>';
+                echo '</div>';
                 ?>
             </div>
         </div>
