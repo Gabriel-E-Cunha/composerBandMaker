@@ -47,7 +47,7 @@
             echo '</li>';
         }
         echo '<li class="nav-item bd-highlight">';
-        echo '<a class="nav-link" href="/notificacoes/">Notificações</a>';
+        echo '<a class="nav-link" href="/notificacoes/">Notificações <span class="badge badge-light">'.$notificacao.'</span></a>';
         echo '</li>';
 
         echo '<li class="nav-item bd-highlight">';
@@ -71,7 +71,7 @@
     ?>
 
     <div class="container my-3 text-center">
-        <h1>Buscar Bandas</h1>
+        <h1 class="mt-5">Buscar Bandas</h1>
         <form class="col-sm-12 col-md-6 mb-2 mx-auto" class="row d-block my-4" method="get" action="/pesquisaBanda/">
             <div class="input-group">
                 <input type="text" name="busca" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">

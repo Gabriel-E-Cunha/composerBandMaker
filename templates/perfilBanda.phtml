@@ -44,7 +44,7 @@
             echo '</li>';
         }
         echo '<li class="nav-item bd-highlight">';
-        echo '<a class="nav-link" href="/notificacoes/">Notificações</a>';
+        echo '<a class="nav-link" href="/notificacoes/">Notificações <span class="badge badge-light">'.$notificacao.'</span></a>';
         echo '</li>';
 
         echo '<li class="nav-item bd-highlight">';
@@ -112,17 +112,19 @@
                     echo '<li class="list-group-item"><b>Influências</b> <br> ' . $perfilExibido[0]['influencias'] . '</li>';
                     echo '<li class="list-group-item"><b>Sobre a Banda</b> <br>' . $perfilExibido[0]['descricao'] . '</li>';
                     echo '</ul>';
-                    echo '<div class="col-sm-12 col-md-4 my-2">';
-                    echo '<form method="post" action="/perfil-banda/" enctype="multipart/form-data">';
-                    echo '<div class="border border-light border-radius-3">';
-                    echo '<p class="text-secondary">Adicione uma Track da banda</p>';
-                    echo '<div>';
-                    echo '<input name="audio" type="file" id="audioload" accept="audio/*">';
-                    echo '</div>';
-                    echo '<button type="submit" class="btn btn-dark btn-lg">Criar</button>';
-                    echo '</div>';
-                    echo '</form>';
-                    echo '</div>';
+                   if($_SESSION['loginID'] == $perfilExibido[0]['id'] && $_SESSION['banda'] == true) {
+                        echo '<div class="col-sm-12 col-md-4 my-2">';
+                        echo '<form method="post" action="/perfil-banda/" enctype="multipart/form-data">';
+                        echo '<div class="border border-light border-radius-3">';
+                        echo '<p class="text-secondary">Adicione uma Track da banda</p>';
+                        echo '<div>';
+                        echo '<input name="audio" type="file" id="audioload" accept="audio/*">';
+                        echo '</div>';
+                        echo '<button type="submit" class="btn btn-dark btn-lg">Criar</button>';
+                        echo '</div>';
+                        echo '</form>';
+                        echo '</div>';
+                    }
                 }
                 ?>
             </div>

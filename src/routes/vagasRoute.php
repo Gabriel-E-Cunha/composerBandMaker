@@ -20,9 +20,13 @@ return function (App $app) {
         if ($_SESSION['banda']) {
             $args['banda'] = true;
             $resultSet = $conexao->query('SELECT id,nome_usuario FROM perfil_banda WHERE id = ' . $_SESSION['loginID'])->fetchAll();
+            $notificacoes = $conexao->query('SELECT COUNT(id) FROM notificacao WHERE banda_id = '.$_SESSION['loginID'])->fetchAll();
+                $args['notificacao'] = $notificacoes[0]['COUNT(id)'];
         } else {
             $args['banda'] = false;
             $resultSet = $conexao->query('SELECT nome_usuario,banda_id FROM perfil_pessoa WHERE id = ' . $_SESSION['loginID'])->fetchAll();
+            $notificacoes = $conexao->query('SELECT COUNT(id) FROM notificacao WHERE pessoa_id = '.$_SESSION['loginID'])->fetchAll();
+                $args['notificacao'] = $notificacoes[0]['COUNT(id)'];
         }
         $args['perfil'] = $resultSet;
 

@@ -23,17 +23,13 @@ return function (App $app) {
         $params = $request->getParsedBody();
 
         $imgFileType = explode('/', $_FILES["img"]["type"])[1];
-
-        // $audioFileType = explode('.', $_FILES["audio"]["name"])[1];
-
-
+        
         $_SESSION['bandValues'] = $params;
         $_SESSION['bandValues']['senha'] = null;
-        $_SESSION['bandValues']['confirmar-senha'] = null;    
-   
+        $_SESSION['bandValues']['confirmar-senha'] = null;
 
         //Faz consulta no banco para verificar se existe algum nome_usuario igual ao que está sendo cadastrado
-        $resultSet = $conexao->query('SELECT nome_usuario FROM perfil_banda WHERE nome_usuario = "' . $params['nome_usuario'] . '"')->fetchAll();
+        $resultSet = $conexao->query('SELECT nome_usuario FROM perfil_banda WHERE nome_usuario = "'.$params['nome_usuario'].'"')->fetchAll();
 
         if (
             $params['nome_usuario'] == null || $params['senha'] == null || $params['confirmar-senha'] == null  || $params['cidade'] == null || $params['cep'] == null ||
@@ -46,7 +42,7 @@ return function (App $app) {
         } else if ($params['senha'] != $params['confirmar-senha']) {
 
             return $response->withRedirect('/criarBanda/passwords-not-equal');
-        } else if (filter_var($params['email'], FILTER_VALIDATE_EMAIL) == false) {
+        } else if(filter_var($params['email'], FILTER_VALIDATE_EMAIL) == false){
             return $response->withRedirect('/criarBanda/email-not-valid');
         }
         // verifica imagem
@@ -71,12 +67,13 @@ return function (App $app) {
             VALUES("' . $params['nome_usuario'] . '", "' . md5($params['senha']) . '", "' . $resultSet[0]['id'] . '")');
 
             //Tratamento de imagem 
-            if ($_FILES['img']['tmp_name'] != null) {
+            if($_FILES['img']['tmp_name'] != null) {
                 $imgName = "profile" . $resultSet[0]['id'] . "." . $imgFileType;
                 $target_dir = "public/assets/BandProfileImg/";
                 $target_file = $target_dir . $imgName;
                 move_uploaded_file($_FILES["img"]["tmp_name"], $target_file);
                 $conexao->query('UPDATE perfil_banda SET imagem = "' . $imgName . '" WHERE id = ' . $resultSet[0]['id']);
+
             }
             $_SESSION['banda'] = true;
             $_SESSION['loginID'] = $resultSet[0]['id'];

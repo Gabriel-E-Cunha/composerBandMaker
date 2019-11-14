@@ -17,10 +17,15 @@ return function (App $app) {
             $args['banda'] = true;
             $resultSet = $conexao->query('SELECT id,nome_usuario FROM perfil_banda WHERE id = ' . $_SESSION['loginID'])->fetchAll();
             $notificacoes = $conexao->query('SELECT notificacao.id,titulo, notificacao.descricao, pedido_id FROM notificacao INNER JOIN perfil_banda WHERE perfil_banda.id = ' . $_SESSION['loginID'] . ' AND perfil_banda.id = banda_id')->fetchAll();
+            $notificacao = $conexao->query('SELECT COUNT(id) FROM notificacao WHERE banda_id = '.$_SESSION['loginID'])->fetchAll();
+                $args['notificacao'] = $notificacao[0]['COUNT(id)'];
+            
         } else {
             $args['banda'] = false;
             $resultSet = $conexao->query('SELECT nome_usuario,banda_id FROM perfil_pessoa WHERE id = ' . $_SESSION['loginID'])->fetchAll();
             $notificacoes = $conexao->query('SELECT notificacao.id, titulo, descricao, pedido_id FROM notificacao INNER JOIN perfil_pessoa WHERE perfil_pessoa.id = ' . $_SESSION['loginID'] . ' AND perfil_pessoa.id = pessoa_id')->fetchAll();
+            $notificacao = $conexao->query('SELECT COUNT(id) FROM notificacao WHERE pessoa_id = '.$_SESSION['loginID'])->fetchAll();
+                $args['notificacao'] = $notificacao[0]['COUNT(id)'];
         }
         $args['perfil'] = $resultSet;
         $args['notificacoes'] = $notificacoes;

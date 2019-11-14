@@ -29,12 +29,16 @@ return function (App $app) {
             $resultSet = $conexao->query('SELECT id,nome_usuario FROM perfil_banda WHERE id = ' . $_SESSION['loginID'])->fetchAll();
             $banda_id = $resultSet[0]['id'];
             $args['nome_banda'] = $resultSet[0]['nome_usuario'];
+            $notificacoes = $conexao->query('SELECT COUNT(id) FROM notificacao WHERE banda_id = '.$_SESSION['loginID'])->fetchAll();
+                $args['notificacao'] = $notificacoes[0]['COUNT(id)'];
         } else {
             $args['banda'] = false;
             $resultSet = $conexao->query('SELECT nome_usuario,banda_id FROM perfil_pessoa WHERE id = ' . $_SESSION['loginID'])->fetchAll();
             $banda_id = $resultSet[0]['banda_id'];
             $resultNomeBanda = $conexao->query('SELECT nome_usuario FROM perfil_banda WHERE id = ' . $resultSet[0]['banda_id'])->fetchAll();
             $args['nome_banda'] = $resultNomeBanda[0]['nome_usuario'];
+            $notificacoes = $conexao->query('SELECT COUNT(id) FROM notificacao WHERE pessoa_id = '.$_SESSION['loginID'])->fetchAll();
+                $args['notificacao'] = $notificacoes[0]['COUNT(id)'];
         }
 
         //Busca eventos

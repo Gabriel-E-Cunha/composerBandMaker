@@ -27,9 +27,13 @@ return function (App $app) {
             if($resultSet[0]['pessoa_id'] != null) {
                 $_SESSION['banda'] = false;
                 $_SESSION['loginID'] = $resultSet[0]['pessoa_id'];
+                $notificacoes = $conexao->query('SELECT COUNT(id) FROM notificacao WHERE pessoa_id = '.$_SESSION['loginID'])->fetchAll();
+                $_SESSION['notificacao'] = $notificacoes[0]['COUNT(id)'];
             } else {
                 $_SESSION['banda'] = true;
                 $_SESSION['loginID'] = $resultSet[0]['banda_id'];
+               $notificacoes = $conexao->query('SELECT COUNT(id) FROM notificacao WHERE banda_id = '.$_SESSION['loginID'])->fetchAll();
+                $_SESSION['notificacao'] = $notificacoes[0]['COUNT(id)'];
             }
             return $response->withRedirect('/');
         } else if($params['user'] == null || $params['senha'] == null){

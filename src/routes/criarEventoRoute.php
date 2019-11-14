@@ -19,6 +19,8 @@ return function (App $app) {
         $args['eventos'] = $conexao->query('SELECT nome_evento,descricao,data FROM evento WHERE banda_id = ' . $resultSet[0]['id'])->fetchAll();
         $args['nome_banda'] = $resultSet[0]['nome_usuario'];
         $args['perfil'] = $resultSet;
+        $notificacoes = $conexao->query('SELECT COUNT(id) FROM notificacao WHERE banda_id = '.$_SESSION['loginID'])->fetchAll();
+                $args['notificacao'] = $notificacoes[0]['COUNT(id)'];
 
         //Converte as datas para expor de forma coesa MM/DD/YYYY
         foreach ($args['eventos'] as $key => $value) {
